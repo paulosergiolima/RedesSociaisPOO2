@@ -4,6 +4,7 @@ public class VideoPost extends Post  {
     private String url_video;
     private String title;
     private final String username;
+    //username vai ser substituído pelo usuário
     private String content;
     private int minutes, seconds;
     private final LocalDateTime date;
