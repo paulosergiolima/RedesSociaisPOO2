@@ -1,7 +1,7 @@
 import java.time.LocalDateTime;
 
 public class VideoPost extends Post  {
-    private String url_video;
+    private String[] url_videos;
     private String title;
     private final String username;
     //username vai ser substituído pelo usuário
@@ -10,8 +10,8 @@ public class VideoPost extends Post  {
     private final LocalDateTime date;
 
 
-    VideoPost(String url_video, String title, String username, String content, int minutes, int seconds, LocalDateTime date) {
-        this.url_video = url_video;
+    VideoPost(String[] urlVideoS, String title, String username, String content, int minutes, int seconds, LocalDateTime date) {
+        this.url_videos = urlVideo;
         this.title = title;
         this.username = username;
         this.content = content;
@@ -20,8 +20,8 @@ public class VideoPost extends Post  {
         this.date = date;
 
     }
-    public String getUrl_video() {
-        return this.url_video;
+    public String[] getUrl_videos() {
+        return this.url_videos;
     }
     public int getMinutes() {
         return this.minutes;
@@ -41,10 +41,10 @@ public class VideoPost extends Post  {
     public LocalDateTime getDate() {
         return this.date;
     }
-    public void setVideo(String url_video, int minutes, int seconds) {
+    public void setVideo(String[] url_videos, int minutes, int seconds) {
         this.seconds = seconds;
         this.minutes = minutes;
-        this.url_video = url_video;
+        this.url_videos = url_videos;
     }
     public void setTitle(String title) {
         this.title = title;
