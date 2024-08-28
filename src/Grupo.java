@@ -1,23 +1,23 @@
 import java.util.ArrayList;
 
-public class Grupo {
-    ArrayList<Usuario> members;
+public class Group {
+    ArrayList<User> members;
     ArrayList<Message> messages;
     //Usuario vai ser a classe criada
-    public void putUser(Usuario novo_integrante) {
-        integrantes.add(novo_integrante);
+    public void putUser(User new_member) {
+        members.add(new_member);
     }
-    public void removeUser(Usuario integrante) {
-        integrantes.remove(integrante);
+    public void removeUser(User member) {
+        members.remove(member);
     }
-    public ArrayList<Usuario> getUsers() {
-        return this.integrantes;
+    public ArrayList<User> getUsers() {
+        return this.members;
     }
-    public Usuario getUser(int index) {
-        return this.integrantes.get(index);
+    public User getUser(int index) {
+        return this.members.get(index);
     }
-    public Usuario getUser(Usuario usuario) {
-        return this.integrantes.get(this.integrantes.indexOf(usuario));
+    public User getUser(Usuario usuario) {
+        return this.members.get(this.members.indexOf(usuario));
     }
     public void sendMessage(Usuario user,String message) {
         Message msg = new Message(message, user);
