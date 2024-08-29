@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Group {
-    ArrayList<User> members;
-    ArrayList<Message> messages;
+    private ArrayList<User> members;
+    private ArrayList<Message> messages;
     //Usuario vai ser a classe criada
     public void putUser(User new_member) {
         members.add(new_member);
