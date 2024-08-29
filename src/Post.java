@@ -18,16 +18,12 @@ public class Post {
 
     // Constructor
 
-    public Post(String postUser, String postID, LocalDateTime postDate, String postText, ArrayList<String> postComments, boolean domainFlag, Group postDomain) {
+    public Post(String postUser, String postID, LocalDateTime postDate, String postText, ArrayList<String> postComments) {
         this.postUser = postUser;
         this.postID = postID; // criar um ID para o post
         this.postDate = postDate; // setar a data de publicação (como?)
         this.postText = postText;
         this.postComments = postComments;
-        this.domainFlag = domainFlag;
-        if (this.domainFlag) {
-            this.postDomain = postDomain;
-        }
     }
 
     // Methods:
