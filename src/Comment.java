@@ -17,6 +17,7 @@ public class Comment extends Post{
     //construtor
     Comment()
     {
+        //WIP mudar os ultimos dois parametros(editFlag e editDate), que estao atualmente presentes, pois n vi o codigo do post
         super(User postUser, LocalDateTime postDate, String postText, String postID, boolean postFlag, Group postDomain, false, null);
         subcomments = new ArrayList<SubComment>();
     }
@@ -37,7 +38,7 @@ public class Comment extends Post{
     //seters
     public boolean setCommentText(String newText)
     {
-        //gostaria de montar uma classe de utilidade para fazer verificacao desse tipo (em relacao a validez(n sei se isso eh uma palavra) de uma variavel)
+        //WIP gostaria de montar uma classe de utilidade para fazer verificacao desse tipo (em relacao a validez(n sei se isso eh uma palavra) de uma variavel)
         if(!newText.equals(""))
         {
             setEditFlag(true);

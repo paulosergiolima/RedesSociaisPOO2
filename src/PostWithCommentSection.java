@@ -19,6 +19,7 @@ public abstract class PostWithCommentSection extends Post{
     //construtor
     PostWithCommentSection()
     {
+        //WIP mudar os ultimos dois parametros(editFlag e editDate), que estao atualmente presentes, pois n vi o codigo do post
         super(User postUser, LocalDateTime postDate, String postText, String postID, boolean postFlag, Group postDomain, false, null);
         comments = new ArrayList<Comment>();
     }
