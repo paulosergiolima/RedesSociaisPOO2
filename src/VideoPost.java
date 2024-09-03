@@ -7,17 +7,15 @@ public class VideoPost extends Post  {
     //username vai ser substituído pelo usuário
     private String content;
     private int minutes, seconds;
-    private final LocalDateTime date;
 
 
-    VideoPost(String[] urlVideoS, String title, String username, String content, int minutes, int seconds, LocalDateTime date) {
-        this.url_videos = urlVideo;
+    VideoPost(String[] urlVideos, String title, String username, String content, int minutes, int seconds) {
+        this.url_videos = urlVideos;
         this.title = title;
         this.username = username;
         this.content = content;
         this.minutes = minutes;
         this.seconds = seconds;
-        this.date = date;
 
     }
     public String[] getUrl_videos() {
@@ -37,9 +35,6 @@ public class VideoPost extends Post  {
     }
     public String getContent() {
         return this.content;
-    }
-    public LocalDateTime getDate() {
-        return this.date;
     }
     public void setVideo(String[] url_videos, int minutes, int seconds) {
         this.seconds = seconds;
