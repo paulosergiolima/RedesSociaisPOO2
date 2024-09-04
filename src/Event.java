@@ -21,6 +21,7 @@ public class Event {
         this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
+        eventParticipants = new ArrayList<User>();
     }
 
     public void postponeEventInDays(int days){
