@@ -1,14 +1,14 @@
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.time.*;
+import java.util.*;
 
 // @author Abigail Sayury
 
 public class Post {
-    private String postUser;
-    private String postID;
+    private Usuario postUser;
+    private UUID postID;
     private LocalDateTime postDate;
     private String postText;
-    private ArrayList<String> postComments;
+    private ArrayList<Comment> postComments;
 
     private boolean domainFlag;
     private Group postDomain;
@@ -18,27 +18,35 @@ public class Post {
 
     // Constructor
 
-    public Post(String postUser, String postID, LocalDateTime postDate, String postText, ArrayList<String> postComments) {
-        this.postUser = postUser;
-        this.postID = postID; // criar um ID para o post
-        this.postDate = postDate; // setar a data de publicação (como?)
-        this.postText = postText;
-        this.postComments = postComments;
+    public Post(Usuario postUser, String postText) {
+        setPostUser(postUser); // set user
+        setPostText(postText); // set test, universal.
+        setPostDate(LocalDateTime.now()); // set hour.
+        setPostID(UUID.randomUUID()); // rando generated ID.
+
     }
 
     // Methods:
 
-    // Criar meodo de criação do ID
+    public void getComments() {
+        int i = 0;
+        for (i = 0; i < postComments.size(); i++) {
+            postComments.get(i).showComment();
+        }
+    }
 
-    // Criar metodo de setar a data da publicação
+    public void showPost() {
+        System.out.println(postUser.getNickName() + " at " + postDate);
+        System.out.println(postText);
+    }
 
     // getters & setters
 
-    public String getPostUser() {
+    public Usuario getPostUser() {
         return postUser;
     }
 
-    public void setPostUser(String postUser) {
+    public void setPostUser(Usuario postUser) {
         this.postUser = postUser;
     }
 
@@ -58,19 +66,19 @@ public class Post {
         this.postText = postText;
     }
 
-    public ArrayList<String> getPostComments() {
+    public ArrayList<Comment> getPostComments() {
         return postComments;
     }
 
-    public void setPostComments(ArrayList<String> postComments) {
+    public void setPostComments(ArrayList<Comment> postComments) {
         this.postComments = postComments;
     }
 
-    public String getPostID() {
+    public UUID getPostID() {
         return postID;
     }
 
-    public void setPostID(String postID) {
+    public void setPostID(UUID postID) {
         this.postID = postID;
     }
 
