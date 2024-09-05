@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class PhotoPost extends Post {
     private ArrayList<String> urls;
 
-    public PhotoPost(Usuario postUser, String postText, LocalDateTime date, String content, ArrayList<String> urls, String username) {
+    public PhotoPost(Usuario postUser, String postText, ArrayList<String> urls) {
         super(postUser, postText);
         this.urls = urls;
     }
