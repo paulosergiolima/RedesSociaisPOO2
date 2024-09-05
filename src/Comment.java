@@ -3,7 +3,7 @@
  */
 
 import java.util.ArrayList;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Comment extends Post{
     //constantes
@@ -15,9 +15,9 @@ public class Comment extends Post{
 
 
     //construtor
-    Comment(Usuario postUser, LocalDateTime postDate, String postText, String postID, boolean postFlag, Group postDomain)
+    Comment(Usuario postUser, String postText)
     {
-        //WIP mudar os ultimos dois parametros(editFlag e editDate), que estao atualmente presentes, pois n vi o codigo do post
+        //WIP pd mudar sla oq esta acontecendo
         super(postUser, postDate, postText, postID, postFlag, postDomain, false, null);
         subcomments = new ArrayList<SubComment>();
     }
@@ -51,13 +51,13 @@ public class Comment extends Post{
 
 
     //adicao de comentarios na lista
-    //WIP mudar os ultimos dois parametros(editFlag e editDate), que estao atualmente presentes, pois n vi o codigo do post
-    public boolean addSubComment(Usuario postUser, LocalDateTime postDate, String postText, String postID, boolean postFlag, Group postDomain)
+    //WIP pd mudar sla oq esta acontecendo
+    public boolean addSubComment(Usuario postUser, String postText)
     {
         if(comments.size() < TAMANHO_MAX)
         {
-            //WIP talvez mude os parametros
-            SubComment newSubComment = new SubComment(postUser, postDate, postText, postID, postFlag, postDomain);
+            //WIP pd mudar sla oq esta acontecendo
+            SubComment newSubComment = new SubComment(postUser, postText);
             subcomments.add(newSubComment);
             return true;
         }

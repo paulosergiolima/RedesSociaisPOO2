@@ -3,7 +3,7 @@
  */
 
 import java.util.ArrayList;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public abstract class PostWithCommentSection extends Post{
     //constantes
@@ -15,10 +15,10 @@ public abstract class PostWithCommentSection extends Post{
 
 
     //construtor
-    PostWithCommentSection(Usuario postUser, LocalDateTime postDate, String postText, String postID, boolean postFlag, Group postDomain)
+    PostWithCommentSection(Usuario postUser, String postText)
     {
-        //WIP mudar os ultimos dois parametros(editFlag e editDate), que estao atualmente presentes, pois n vi o codigo do post
-        super(postUser, postDate, postText, postID, postFlag, postDomain, false, null);
+        //WIP pd mudar sla oq esta acontecendo
+        super(postUser, postText);
         comments = new ArrayList<Comment>();
     }
 
@@ -35,13 +35,13 @@ public abstract class PostWithCommentSection extends Post{
     }
 
     //adicao de comentarios na lista
-    //WIP mudar os ultimos dois parametros(editFlag e editDate), que estao atualmente presentes, pois n vi o codigo do post
-    public boolean addComment(Usuario postUser, LocalDateTime postDate, String postText, String postID, boolean postFlag, Group postDomain)
+    //WIP pd mudar sla oq esta acontecendo
+    public boolean addComment(Usuario postUser, String postText)
     {
         if(comments.size() < TAMANHO_MAX)
         {
-            //WIP talvez mude os parametros
-            Comment newComment = new Comment(postUser, postDate, postText, postID, postFlag, postDomain);
+            //WIP pd mudar sla oq esta acontecendo
+            Comment newComment = new Comment(postUser, postText);
             comments.add(newComment);
             return true;
         }
