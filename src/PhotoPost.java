@@ -1,29 +1,41 @@
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
 public class PhotoPost extends Post {
-    private final String username;
-    private ArrayList<String> images_url;
-    private String content;
-    private final LocalDateTime date;
+    private ArrayList<String> urls;
 
-    PhotoPost(String username, ArrayList<String> urlImages, String content, LocalDateTime date) {
-        this.username = username;
-        this.images_url = urlImages;
-        this.content = content;
-        this.date = date;
+    public PhotoPost(Usuario postUser, String postText, ArrayList<String> urls) {
+        super(postUser, postText);
+        this.urls = urls;
     }
 
-    public String getUsername() { return this.username; }
-    public ArrayList<String> getImages_url() { return this.images_url; }
-    public String getContent() { return this.content; }
-    public LocalDateTime getDate() { return this.date; }
+    public ArrayList<String> getUrls() { return this.urls; }
+    public void setImage(ArrayList<String> url_images) { this.urls = url_images; }
 
-    public void setImage(ArrayList<String> url_images) { this.images_url = url_images; }
-    public void setContent(String content) { this.content = content; }
+    public int getImageIndex(String url) {
+        for (int i = 0; i < urls.size(); i++) {
+            if (url.equals(urls.get(i))) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
+    public void addImage(String new_url) {
+        urls.add(new_url);
+    }
+
+    public boolean removeImageByIndex(int index) {
+        if (index >= 0 && index < urls.size()) {
+            urls.remove(index);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removeImageByUrl(String url) {
+        int index = this.getImageIndex(url);
+        return this.removeImageByIndex(index);
+    }
 }
-
-
