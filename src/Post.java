@@ -1,5 +1,5 @@
-import java.time.*;
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 // @author Abigail Sayury
 
@@ -8,7 +8,6 @@ public class Post {
     private UUID postID;
     private LocalDateTime postDate;
     private String postText;
-    private ArrayList<Comment> postComments;
 
     private boolean domainFlag;
     private Group postDomain;
@@ -20,25 +19,17 @@ public class Post {
 
     public Post(Usuario postUser, String postText) {
         setPostUser(postUser); // set user
-        setPostText(postText); // set test, universal.
-        setPostDate(LocalDateTime.now()); // set hour.
+        this.postText = postText; // set test, universal.
+        postDate = LocalDateTime.now(); // set hour.
         setPostID(UUID.randomUUID()); // rando generated ID.
 
     }
 
     // Methods:
 
-    public void getComments() {
-        int i = 0;
-        for (i = 0; i < postComments.size(); i++) {
-            postComments.get(i).showComment();
-        }
-    }
-
     public void showPost() {
         System.out.println(postUser.getNickName() + " at " + postDate);
         System.out.println(postText);
-        getComments();
     }
 
     // getters & setters
@@ -47,7 +38,7 @@ public class Post {
         return postUser;
     }
 
-    public void setPostUser(Usuario postUser) {
+    private void setPostUser(Usuario postUser) {
         this.postUser = postUser;
     }
 
@@ -67,19 +58,11 @@ public class Post {
         this.postText = postText;
     }
 
-    public ArrayList<Comment> getPostComments() {
-        return postComments;
-    }
-
-    public void setPostComments(ArrayList<Comment> postComments) {
-        this.postComments = postComments;
-    }
-
     public UUID getPostID() {
         return postID;
     }
 
-    public void setPostID(UUID postID) {
+    private void setPostID(UUID postID) {
         this.postID = postID;
     }
 
