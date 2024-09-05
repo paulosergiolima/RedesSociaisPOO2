@@ -1,29 +1,34 @@
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
 public class PhotoPost extends Post {
-    private final String username;
     private ArrayList<String> images_url;
-    private String content;
-    private final LocalDateTime date;
 
-    PhotoPost(String username, ArrayList<String> urlImages, String content, LocalDateTime date) {
-        this.username = username;
-        this.images_url = urlImages;
-        this.content = content;
-        this.date = date;
+    public PhotoPost(Usuario postUser, String postText, LocalDateTime date, String content, ArrayList<String> images_url, String username) {
+        super(postUser, postText);
+        this.images_url = images_url;
     }
 
-    public String getUsername() { return this.username; }
     public ArrayList<String> getImages_url() { return this.images_url; }
-    public String getContent() { return this.content; }
-    public LocalDateTime getDate() { return this.date; }
-
     public void setImage(ArrayList<String> url_images) { this.images_url = url_images; }
-    public void setContent(String content) { this.content = content; }
 
+    public void addImage(String new_url) {
+        images_url.add(new_url);
+    }
+
+    public void removeImageByIndex(int index) {
+        if (index >= 0 && index < images_url.size()) {
+            images_url.remove(index);
+        }
+    }
+
+    public int getImageIndex(String url) {
+        for (int i = 0; i < images_url.size(); i++) {
+            if (url.equals(images_url.get(i))) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
-
-
