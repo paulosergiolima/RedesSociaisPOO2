@@ -1,6 +1,5 @@
-import java.util.UUID;
-import java.util.ArrayList;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 // @author Abigail Sayury
 
@@ -9,7 +8,6 @@ public class Post {
     private UUID postID;
     private LocalDateTime postDate;
     private String postText;
-    private PostWithCommentSection postComments;
 
     private boolean domainFlag;
     private Group postDomain;
@@ -29,17 +27,9 @@ public class Post {
 
     // Methods:
 
-    public void getComments() {
-        ArrayList<Comment> commentArray = postComments.getComments();
-        for (int i = 0; i < postComments.getCommentSectionSize(); i++) {
-            commentArray.get(i).showPost();
-        }
-    }
-
     public void showPost() {
         System.out.println(postUser.getNickName() + " at " + postDate);
         System.out.println(postText);
-        getComments();
     }
 
     // getters & setters
