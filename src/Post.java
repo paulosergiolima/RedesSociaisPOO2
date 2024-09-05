@@ -38,6 +38,7 @@ public class Post {
     public void showPost() {
         System.out.println(postUser.getNickName() + " at " + postDate);
         System.out.println(postText);
+        getComments();
     }
 
     // getters & setters
