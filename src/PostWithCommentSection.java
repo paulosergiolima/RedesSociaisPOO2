@@ -1,9 +1,8 @@
 /**
  * @author arthu
  */
-
 import java.util.ArrayList;
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 public abstract class PostWithCommentSection extends Post{
     //constantes
@@ -15,9 +14,8 @@ public abstract class PostWithCommentSection extends Post{
 
 
     //construtor
-    PostWithCommentSection(Usuario postUser, String postText)
+    PostWithCommentSection(User postUser, String postText)
     {
-        //WIP pd mudar sla oq esta acontecendo
         super(postUser, postText);
         comments = new ArrayList<Comment>();
     }
@@ -35,12 +33,10 @@ public abstract class PostWithCommentSection extends Post{
     }
 
     //adicao de comentarios na lista
-    //WIP pd mudar sla oq esta acontecendo
-    public boolean addComment(Usuario postUser, String postText)
+    public boolean addComment(User postUser, String postText)
     {
         if(comments.size() < TAMANHO_MAX)
         {
-            //WIP pd mudar sla oq esta acontecendo
             Comment newComment = new Comment(postUser, postText);
             comments.add(newComment);
             return true;
@@ -50,7 +46,7 @@ public abstract class PostWithCommentSection extends Post{
 
 
     //remocao de comentarios na lista
-    public boolean removeComment(String targetPostID){
+    public boolean removeComment(UUID targetPostID){
         for( int i = 0; i < comments.size(); i++ ){
             if( comments.get(i).getPostID().equals(targetPostID)  ){
                 comments.remove(i);
@@ -59,7 +55,4 @@ public abstract class PostWithCommentSection extends Post{
         }
         return false;
     }
-
-
-
 }
