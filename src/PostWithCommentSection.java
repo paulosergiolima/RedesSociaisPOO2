@@ -1,9 +1,8 @@
 /**
  * @author arthu
  */
-
 import java.util.ArrayList;
-import java.time.LocalDate;
+import java.util.UUID;
 
 public abstract class PostWithCommentSection extends Post{
     //constantes
@@ -15,10 +14,9 @@ public abstract class PostWithCommentSection extends Post{
 
 
     //construtor
-    PostWithCommentSection(Usuario postUser, LocalDateTime postDate, String postText, String postID, boolean postFlag, Group postDomain)
+    PostWithCommentSection(User postUser, String postText)
     {
-        //WIP mudar os ultimos dois parametros(editFlag e editDate), que estao atualmente presentes, pois n vi o codigo do post
-        super(postUser, postDate, postText, postID, postFlag, postDomain, false, null);
+        super(postUser, postText);
         comments = new ArrayList<Comment>();
     }
 
@@ -35,13 +33,11 @@ public abstract class PostWithCommentSection extends Post{
     }
 
     //adicao de comentarios na lista
-    //WIP mudar os ultimos dois parametros(editFlag e editDate), que estao atualmente presentes, pois n vi o codigo do post
-    public boolean addComment(Usuario postUser, LocalDateTime postDate, String postText, String postID, boolean postFlag, Group postDomain)
+    public boolean addComment(User postUser, String postText)
     {
         if(comments.size() < TAMANHO_MAX)
         {
-            //WIP talvez mude os parametros
-            Comment newComment = new Comment(postUser, postDate, postText, postID, postFlag, postDomain);
+            Comment newComment = new Comment(postUser, postText);
             comments.add(newComment);
             return true;
         }
@@ -50,7 +46,7 @@ public abstract class PostWithCommentSection extends Post{
 
 
     //remocao de comentarios na lista
-    public boolean removeComment(String targetPostID){
+    public boolean removeComment(UUID targetPostID){
         for( int i = 0; i < comments.size(); i++ ){
             if( comments.get(i).getPostID().equals(targetPostID)  ){
                 comments.remove(i);
@@ -59,7 +55,4 @@ public abstract class PostWithCommentSection extends Post{
         }
         return false;
     }
-
-
-
 }

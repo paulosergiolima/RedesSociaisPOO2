@@ -1,14 +1,13 @@
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.UUID;
 
 // @author Abigail Sayury
 
 public class Post {
-    private String postUser;
-    private String postID;
+    private Usuario postUser;
+    private UUID postID;
     private LocalDateTime postDate;
     private String postText;
-    private ArrayList<String> postComments;
 
     private boolean domainFlag;
     private Group postDomain;
@@ -18,27 +17,28 @@ public class Post {
 
     // Constructor
 
-    public Post(String postUser, String postID, LocalDateTime postDate, String postText, ArrayList<String> postComments) {
-        this.postUser = postUser;
-        this.postID = postID; // criar um ID para o post
-        this.postDate = postDate; // setar a data de publicação (como?)
-        this.postText = postText;
-        this.postComments = postComments;
+    public Post(Usuario postUser, String postText) {
+        setPostUser(postUser); // set user
+        this.postText = postText; // set test, universal.
+        postDate = LocalDateTime.now(); // set hour.
+        setPostID(UUID.randomUUID()); // rando generated ID.
+
     }
 
     // Methods:
 
-    // Criar meodo de criação do ID
-
-    // Criar metodo de setar a data da publicação
+    public void showPost() {
+        System.out.println(postUser.getNickName() + " at " + postDate);
+        System.out.println(postText);
+    }
 
     // getters & setters
 
-    public String getPostUser() {
+    public Usuario getPostUser() {
         return postUser;
     }
 
-    public void setPostUser(String postUser) {
+    private void setPostUser(Usuario postUser) {
         this.postUser = postUser;
     }
 
@@ -58,19 +58,11 @@ public class Post {
         this.postText = postText;
     }
 
-    public ArrayList<String> getPostComments() {
-        return postComments;
-    }
-
-    public void setPostComments(ArrayList<String> postComments) {
-        this.postComments = postComments;
-    }
-
-    public String getPostID() {
+    public UUID getPostID() {
         return postID;
     }
 
-    public void setPostID(String postID) {
+    private void setPostID(UUID postID) {
         this.postID = postID;
     }
 

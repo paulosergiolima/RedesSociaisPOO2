@@ -1,6 +1,5 @@
-
-
-import java.time.LocalDate;
+import java.time.*;
+import java.time.format.*;
 import java.util.ArrayList;
 /**
  * @author cristian.eidi_unesp
@@ -8,20 +7,21 @@ import java.util.ArrayList;
 public class Event {
     
     private String eventName;
-    private LocalDate eventDate = LocalDate.parse("2022-09-21");
+    private LocalDate eventDate;
     private String eventLocation;
     private String eventDescription;
     
-    private ArrayList<User> eventParticipants = new ArrayList<User>();
+    private ArrayList<User> eventParticipants;
     private int eventNumberParticipants;
     
-    private boolean eventPrivacy;
+    private boolean eventPrivacy; // 0 publico, 1 privado 
 
-    public Event(String eventName, LocalDate eventDate, String eventLocation, String eventDescription ) {
+    public Event(String eventName, String eventDate, String eventLocation, String eventDescription ) {
         this.eventName = eventName;
-        this.eventDate = eventDate;
+        this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
+        eventParticipants = new ArrayList<User>();
     }
 
     public void postponeEventInDays(int days){
@@ -49,17 +49,37 @@ public class Event {
     }
     
     public void addParticipant(User participant){
-        eventParticipants.add(participant);
-        this.eventNumberParticipants++;
+        if( this.eventNumberParticipants == 0 ){ // se o evento estiver vazio
+            eventParticipants.add(participant);
+            this.eventNumberParticipants++;
+            return;
+        }
+        
+        if(this.eventPrivacy){ // evento privado, adicionara apenas se quem for adicionado tiver um amigo em comum
+            ArrayList<User> arrayFriends = participant.getFriends();
+            for( int counterInvited = 0; counterInvited < arrayFriends.size() ; counterInvited++){ // for para todos os amigos do convidado
+                for( int counterParticipants = 0; counterParticipants < eventParticipants.size(); counterParticipants++ ){ // for para todos os
+                    if( arrayFriends.get(counterInvited).equals(eventParticipants.get(counterParticipants)) ){                  // participantes do evento
+                        eventParticipants.add(participant);
+                        this.eventNumberParticipants++;
+                        return;
+                    }
+                }
+            }
+        }else{ // evento publico
+            eventParticipants.add(participant);
+            this.eventNumberParticipants++;
+        }
+        
     }
     
     public void removeParticipant(User participant){
         for( int counter = 0; counter < eventNumberParticipants; counter++ ){
             if( participant.equals(eventParticipants.get(counter))  ){
                 eventParticipants.remove(counter);
+                this.eventNumberParticipants--;
             }
         }        
-        this.eventNumberParticipants--;
     }
     
     
@@ -75,8 +95,8 @@ public class Event {
         return eventDate;
     }
 
-    public void setEventDate(LocalDate eventDate) {
-        this.eventDate = eventDate;
+    public void setEventDate(String eventDate) {
+        this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public String getEventLocation() {
@@ -93,14 +113,6 @@ public class Event {
 
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
-    }
-
-    public User getEventParticipants() {
-        return eventParticipants;
-    }
-
-    public void setEventParticipants(User eventParticipants) {
-        this.eventParticipants = eventParticipants;
     }
 
     public int getEventNumberParticipants() {
