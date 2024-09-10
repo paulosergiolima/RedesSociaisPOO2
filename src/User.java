@@ -78,6 +78,19 @@ public class User {
         }
     }
 
+    public void removeFollower(User user){
+        if(user == null){
+            return;
+        }
+
+        if(followers.contains(user)){
+            followers.remove(user);
+            user.following.remove(this);
+        }
+
+        return;
+    }
+
     public int followersQuantity(){
         return followers.size();
     }
