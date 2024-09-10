@@ -4,7 +4,7 @@ import java.util.UUID;
 // @author Abigail Sayury
 
 public class Post {
-    private Usuario postUser;
+    private User postUser;
     private UUID postID;
     private LocalDateTime postDate;
     private String postText;
@@ -17,7 +17,7 @@ public class Post {
 
     // Constructor
 
-    public Post(Usuario postUser, String postText) {
+    public Post(User postUser, String postText) {
         setPostUser(postUser); // set user
         this.postText = postText; // set test, universal.
         postDate = LocalDateTime.now(); // set hour.
@@ -34,11 +34,11 @@ public class Post {
 
     // getters & setters
 
-    public Usuario getPostUser() {
+    public User getPostUser() {
         return postUser;
     }
 
-    private void setPostUser(Usuario postUser) {
+    private void setPostUser(User postUser) {
         this.postUser = postUser;
     }
 
