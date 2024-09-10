@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 public class VideoPost extends Post  {
     private String url_video;
 
-    public VideoPost(Usuario postUser, String postText, String url_video) {
+    public VideoPost(User postUser, String postText, String url_video) {
         super(postUser, postText);
         this.url_video = url_video;
     }
