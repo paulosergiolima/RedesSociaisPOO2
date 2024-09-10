@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
-public class PhotoPost extends Post {
+public class PhotoPost extends PostWithCommentSection {
     private ArrayList<String> urls;
 
     public PhotoPost(User postUser, String postText, ArrayList<String> urls) {
