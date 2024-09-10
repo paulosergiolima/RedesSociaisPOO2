@@ -1,6 +1,4 @@
-import java.time.LocalDateTime;
-
-public class VideoPost extends Post  {
+public class VideoPost extends PostWithCommentSection  {
     private String url_video;
 
     public VideoPost(User postUser, String postText, String url_video) {
