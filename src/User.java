@@ -128,6 +128,35 @@ public class User {
         // não necessariamente o usuário quer seguir e ser seguido
         return; 
     }
+
+    // Adicionar post
+    public void addPost(String postText){
+        Post newPost = new Post(this, postText);
+        userPost.add(newPost);
+
+        return;
+    }
+
+    // Remover post
+    public void removePost(UUID postID){ // procura o post pelo seu ID
+
+        Post postToRemove = null;
+
+        // vasculhar cada um dos posts procurando pelo ID
+        for(int i = 0; i < userPost.size(); i++){ 
+            if(userPost.get(i).getPostID().equalsIgnoreCase(postID)){ // encontrou o post
+                postToRemove = userPost.get(i); // posição do post
+                break; // não precisa continuar a iteração 
+            }
+        }
+
+        if(postToRemove == null){ // não encontrou
+            return;
+        }else{
+            userPost.remove(postToRemove); // remove o post
+            return;
+        }
+    }
     
     // Getters e Setters
     public UUID getId() {
