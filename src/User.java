@@ -28,7 +28,7 @@ public class User {
         this.pronouns = pronouns;
         this.profileDescription = profileDescription;
         this.accountPrivacy = accountPrivacy;
-        this.creationDate = creationDate;
+        this.creationDate = LocalDateTime.now();
 
         this.followers = new ArrayList<>();
         this.following = new ArrayList<>();
@@ -65,9 +65,29 @@ public class User {
         }
     }
 
+    // Possibilidade de seguir um novo usuário
+    public void followUser(User user){
+        if(user == null){ // usuário não existe
+            return;
+        }
+
+        // função inspirada na do Arthur + Miguel
+        if(!this.equals(user)){ // evita que o usuário siga a si mesmo
+            this.following.add(user);
+            user.followers.add(this);
+        }
+    }
+
+    public int followersQuantity(){
+        return followers.size();
+    }
+
+    public int followingQuanitty(){
+        return following.size();
+    }
+
     
     // Getters e Setters
-
     public UUID getId() {
         return id;
     }
