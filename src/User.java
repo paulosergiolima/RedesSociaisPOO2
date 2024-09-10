@@ -2,8 +2,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class User {
@@ -13,7 +11,7 @@ public class User {
     private String email;
     private String pronouns;
     private String profileDescription;
-    private boolean accountPrivacy; 
+    private Boolean accountPrivacy; 
     private LocalDateTime creationDate;
 
     private ArrayList<User> followers; 
@@ -22,7 +20,7 @@ public class User {
     private ArrayList<Post> userPost; 
 
 
-    public User(UUID id, String userName, String nickName, String email, String pronouns, String profileDescription, boolean accountPrivacy, LocalDateTime creationDate, ArrayList<User> followers, ArrayList<User> following, Set<User> blockedUsers, ArrayList<Post> userPost) {
+    public User(UUID id, String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy, LocalDateTime creationDate, ArrayList<User> followers, ArrayList<User> following, Set<User> blockedUsers, ArrayList<Post> userPost) {
         this.id = UUID.randomUUID();
         this.userName = userName;
         this.nickName = nickName;
@@ -39,6 +37,34 @@ public class User {
     }
     
     
+    // Editar perfil
+    private void editProfile(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy){
+        // se o parâmetro for nulo, significa que o usuário não quer alterar esse parâmetro
+        if(userName != null){
+            setUserName(userName);
+        }
+
+        if(nickName != null){
+            setNickName(nickName);
+        }
+
+        if(email != null){
+            setEmail(email);
+        }
+
+        if(pronouns != null){
+            setPronouns(pronouns);
+        }
+
+        if(profileDescription != null){
+            setProfileDescription(profileDescription);
+        }
+
+        if(accountPrivacy != null){
+            setAccountPrivacy(accountPrivacy);
+        }
+    }
+
     
     // Getters e Setters
 
@@ -90,11 +116,11 @@ public class User {
         this.profileDescription = profileDescription;
     }
 
-    public boolean isAccountPrivacy() {
+    public Boolean isAccountPrivacy() {
         return accountPrivacy;
     }
 
-    public void setAccountPrivacy(boolean accountPrivacy) {
+    public void setAccountPrivacy(Boolean accountPrivacy) {
         this.accountPrivacy = accountPrivacy;
     }
 
