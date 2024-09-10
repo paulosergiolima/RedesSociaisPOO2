@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Group {
     private ArrayList<User> members;
     private ArrayList<Post> posts;
-    //Usuario vai ser a classe criada
     public void putUser(User new_member) {
         members.add(new_member);
     }
@@ -16,8 +15,8 @@ public class Group {
     public User getUser(int index) {
         return this.members.get(index);
     }
-    public User getUser(User usuario) {
-        return this.members.get(this.members.indexOf(usuario));
+    public User getUser(User user) {
+        return this.members.get(this.members.indexOf(user));
     }
     public boolean isUserInGroup(User user) {
         return members.contains(user);
