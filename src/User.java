@@ -67,7 +67,7 @@ public class User {
 
     // Possibilidade de seguir um novo usuário
     public void followUser(User user){
-        if(user == null){ // usuário não existe
+        if(user == null || blockedUsers.contains(user)){ // usuário não existe ou está bloqueado
             return;
         }
 
@@ -86,6 +86,35 @@ public class User {
         return following.size();
     }
 
+    // Bloquear outro usuário
+    public void blockUser(User user){
+        if(user == null){
+            return;
+        }
+
+        blockedUsers.add(user);
+        following.remove(user);
+        followers.remove(user);
+
+        // o this se refere ao próprio objeto (isabella help)
+        user.followers.remove(this);
+        user.following.remove(this);
+    }
+
+    public void unblockUser(User user){
+        if(user == null){ 
+            return; 
+        }
+
+        if(!blockedUsers.contains(user)){ // ()== false) usuário não está bloqueado
+            return;
+        }
+
+        blockedUsers.remove(user);
+
+        // não necessariamente o usuário quer seguir e ser seguido
+        return; 
+    }
     
     // Getters e Setters
     public UUID getId() {
