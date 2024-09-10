@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Group {
-    ArrayList<User> members;
-    ArrayList<Message> messages;
+    private ArrayList<User> members;
+    private ArrayList<Post> posts;
     //Usuario vai ser a classe criada
     public void putUser(User new_member) {
         members.add(new_member);
@@ -16,14 +16,13 @@ public class Group {
     public User getUser(int index) {
         return this.members.get(index);
     }
-    public User getUser(Usuario usuario) {
+    public User getUser(User usuario) {
         return this.members.get(this.members.indexOf(usuario));
     }
-    public void sendMessage(Usuario user,String message) {
-        Message msg = new Message(message, user);
-        messages.add(msg);
+    public boolean isUserInGroup(User user) {
+        return members.contains(user);
     }
-    public ArrayList<Message> getMessages() {
-        return this.messages;
+    public boolean isUserInGroup(int index) {
+        return members.get(index) != null;
     }
 }
