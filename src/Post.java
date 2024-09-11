@@ -18,6 +18,7 @@ public class Post extends PostWithReaction{
     // Constructor
 
     public Post(User postUser, String postText) {
+        super();
         setPostUser(postUser); // set user
         this.postText = postText; // set test, universal.
         postDate = LocalDateTime.now(); // set hour.

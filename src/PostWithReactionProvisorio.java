@@ -8,6 +8,11 @@ import java.time.LocalDate;
 public class PostWithReaction{
     private ArrayList<Reaction> reactions;
 
+    PostWithReaction()
+    {
+        this.reactions = new ArrayList<Reaction>();
+    }
+
     //getters
     public int getNumberOfLikes()
     {
