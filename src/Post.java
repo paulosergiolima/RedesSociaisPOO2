@@ -3,7 +3,7 @@ import java.util.UUID;
 
 // @author Abigail Sayury
 
-public class Post {
+public class Post extends PostWithReaction{
     private User postUser;
     private UUID postID;
     private LocalDateTime postDate;
