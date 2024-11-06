@@ -25,4 +25,7 @@ public class Group {
     public boolean isUserInGroup(int index) {
         return members.get(index) != null;
     }
+    public int getUserCount() {
+        return this.members.size();
+    }
 }
