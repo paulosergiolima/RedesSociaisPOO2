@@ -18,8 +18,8 @@
 | Post | Abigail |
 | Comentario | Arthur |
 | FotoPost | Miguel |
-| VideoPost | Paulo Sérgio |
+| VideoPost | Paulo Sergio |
 | MensagemPrivada | Roberto |
-| Grupo | Paulo Sérgio |
+| Grupo | Paulo Sergio |
 | Evento | Christian Eidi |
 | Reacao | ~~*Giovanni*~~ |
