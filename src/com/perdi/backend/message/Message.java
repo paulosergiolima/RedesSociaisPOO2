@@ -1,4 +1,8 @@
+package com.perdi.backend.message;
+
 import java.time.LocalDateTime;
+
+import User;
 
 public class Message {
     private String content;

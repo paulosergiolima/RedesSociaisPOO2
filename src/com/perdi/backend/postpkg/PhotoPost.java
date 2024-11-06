@@ -1,5 +1,9 @@
+package com.perdi.backend.postpkg;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import User;
 
 
 public class PhotoPost extends PostWithCommentSection {

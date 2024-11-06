@@ -1,4 +1,9 @@
+package com.perdi.backend.message;
+
 import java.util.ArrayList;
+
+import User;
+
 import java.time.LocalDateTime;
 
 public class PrivateMessage {

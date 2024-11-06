@@ -1,3 +1,4 @@
+package com.perdi.backend.postpkg;
 public class VideoPost extends PostWithCommentSection  {
     private String url_video;
 
