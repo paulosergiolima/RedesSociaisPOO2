@@ -1,9 +1,15 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Group {
+    private int id;
     private ArrayList<User> members;
     private ArrayList<Post> posts;
     //Usuario vai ser a classe criada
+    public Group(int id, ArrayList<User> members, ArrayList<Post> posts) {
+        Random rand = new Random()
+        this.id = rand.nextInt(0,999999);
+    }
     public void putUser(User new_member) {
         members.add(new_member);
     }
@@ -27,5 +33,8 @@ public class Group {
     }
     public int getUserCount() {
         return this.members.size();
+    }
+    public int getId() {
+        return id;
     }
 }
