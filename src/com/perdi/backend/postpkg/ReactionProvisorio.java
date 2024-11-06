@@ -1,8 +1,13 @@
+package com.perdi.backend.postpkg;
+
 /**
  * @author arthu
  */
 
 import java.util.ArrayList;
+
+import com.perdi.backend.postpkg.EnumReactionsProvisorio;
+
 import java.time.LocalDate;
 
 public class ReactionProvisorio{

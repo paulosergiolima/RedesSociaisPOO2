@@ -1,3 +1,5 @@
+package com.perdi.backend.eventpkg;
+
 import java.time.*;
 import java.time.format.*;
 import java.util.ArrayList;

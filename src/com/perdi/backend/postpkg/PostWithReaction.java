@@ -1,8 +1,13 @@
+package com.perdi.backend.postpkg;
 /**
  * @author arthu
  */
 
 import java.util.ArrayList;
+
+import ReactionProvisorio;
+import User;
+
 import java.time.LocalDate;
 
 public class PostWithReaction{

@@ -1,3 +1,5 @@
+package com.perdi.backend.postpkg;
+
 /**
  * @author arthu
  */
@@ -5,6 +7,8 @@
  import java.util.ArrayList;
  import java.time.LocalDateTime;
  import java.util.UUID;
+
+import User;
  
  public class Comment extends Post{
      //constantes

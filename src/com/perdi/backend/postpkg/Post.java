@@ -1,5 +1,10 @@
+package com.perdi.backend.postpkg;
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+import com.perdi.backend.group.Group;
+
+import User;
 
 // @author Abigail Sayury
 
