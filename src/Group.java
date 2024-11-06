@@ -6,7 +6,7 @@ public class Group {
     private ArrayList<User> members;
     private ArrayList<Post> posts;
     //Usuario vai ser a classe criada
-    public Group(int id, ArrayList<User> members, ArrayList<Post> posts) {
+    public Group() {
         Random rand = new Random()
         this.id = rand.nextInt(0,999999);
     }
