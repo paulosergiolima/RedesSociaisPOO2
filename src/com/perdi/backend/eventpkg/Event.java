@@ -10,6 +10,8 @@ import com.perdi.backend.grouppkg.Group;
 /**
  * @author cristian.eidi_unesp
  */
+
+
 public class Event {
     
     private String eventName;
