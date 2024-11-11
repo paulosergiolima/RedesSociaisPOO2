@@ -8,8 +8,8 @@ package com.perdi.backend.postpkg;
  import java.time.LocalDateTime;
  import java.util.UUID;
 
-import User;
- 
+import com.perdi.backend.userpkg.User;
+
  public class Comment extends Post{
      //constantes
      private static final int TAMANHO_MAX = 300;

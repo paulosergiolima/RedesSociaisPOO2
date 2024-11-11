@@ -1,5 +1,10 @@
+package com.perdi.backend.grouppkg;
+
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.perdi.backend.userpkg.User;
+import com.perdi.backend.postpkg.Post;
 
 public class Group {
     private int id;

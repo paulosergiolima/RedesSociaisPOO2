@@ -3,11 +3,10 @@ package com.perdi.backend.eventpkg;
 import java.time.*;
 import java.time.format.*;
 import java.util.ArrayList;
-import com.perdi.backend.user.User;
-import com.perdi.backend.group.Group;
 
-import User;
-import Group;
+import com.perdi.backend.userpkg.User;
+import com.perdi.backend.grouppkg.Group;
+
 /**
  * @author cristian.eidi_unesp
  */

@@ -1,10 +1,12 @@
-import com.perdi.backend.user;
+package com.perdi.backend.userpkg;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
+import com.perdi.backend.postpkg.Post;
 
 public class User {
     private UUID id;
