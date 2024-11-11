@@ -5,7 +5,7 @@ import java.time.format.*;
 import java.util.ArrayList;
 
 import com.perdi.backend.userpkg.User;
-import com.perdi.backend.group.Group;
+import com.perdi.backend.grouppkg.Group;
 
 /**
  * @author cristian.eidi_unesp
