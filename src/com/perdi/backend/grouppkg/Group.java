@@ -1,4 +1,4 @@
-package com.perdi.backend.group;
+package com.perdi.backend.grouppkg;
 
 import java.util.ArrayList;
 import java.util.Random;

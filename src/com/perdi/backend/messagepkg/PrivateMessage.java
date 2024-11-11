@@ -1,4 +1,4 @@
-package com.perdi.backend.message;
+package com.perdi.backend.messagepkg;
 
 import java.util.ArrayList;
 
