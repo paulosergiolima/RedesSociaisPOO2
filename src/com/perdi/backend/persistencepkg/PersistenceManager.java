@@ -1,4 +1,4 @@
-package com.perdi.backend.persistence;
+package com.perdi.backend.persistencepkg;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
