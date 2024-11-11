@@ -2,7 +2,7 @@ package com.perdi.backend.message;
 
 import java.time.LocalDateTime;
 
-import User;
+import com.perdi.backend.userpkg.User;
 
 public class Message {
     private String content;

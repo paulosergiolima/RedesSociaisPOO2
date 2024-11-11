@@ -2,9 +2,9 @@ package com.perdi.backend.message;
 
 import java.util.ArrayList;
 
-import User;
-
 import java.time.LocalDateTime;
+
+import com.perdi.backend.userpkg.User;
 
 public class PrivateMessage {
     
