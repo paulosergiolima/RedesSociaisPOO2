@@ -3,6 +3,7 @@ package com.perdi.backend.eventpkg;
 import java.time.*;
 import java.time.format.*;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import com.perdi.backend.userpkg.User;
 import com.perdi.backend.grouppkg.Group;
@@ -14,6 +15,7 @@ import com.perdi.backend.grouppkg.Group;
 
 public class Event {
     
+    private UUID eventID;
     private String eventName;
     private LocalDate eventDate;
     private String eventLocation;
@@ -24,7 +26,8 @@ public class Event {
     
     private int eventPrivacy; // 0 public, 1 only friends
 
-    public Event(String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, User firstUser ) {
+    public Event(UUID eventID,String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, User firstUser ) {
+        this.eventID = UUID.randomUUID();
         this.eventName = eventName;
         this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.eventLocation = eventLocation;
@@ -34,7 +37,8 @@ public class Event {
         eventParticipants.add(firstUser);
     }
 
-    public Event(String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, Group firstGroup ) {
+    public Event(UUID eventID,String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, Group firstGroup ) {
+        this.eventID = UUID.randomUUID();
         this.eventName = eventName;
         this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.eventLocation = eventLocation;
@@ -72,10 +76,10 @@ public class Event {
     
     public void addParticipant(User participant){
         if(this.eventPrivacy == 1){ // evento apenas amigos
-            ArrayList<User> arrayFriends = participant.getFriends();
-            for( int counterInvited = 0; counterInvited < arrayFriends.size() ; counterInvited++){ // for para todos os amigos do convidado
+            ArrayList<User> arrayFriends = participant.getFollowing();
+            for( int counterInvited = 0; counterInvited < arrayFriends.size() ; counterInvited++){ // for para todos q alguem esta seguindo
                 for( int counterParticipants = 0; counterParticipants < eventParticipants.size(); counterParticipants++ ){ // for para todos os
-                    if( arrayFriends.get(counterInvited).equals(eventParticipants.get(counterParticipants)) ){                  // participantes do evento
+                    if( arrayFriends.get(counterInvited).equals(eventParticipants.get(counterParticipants)) ){             // participantes do evento
                         eventParticipants.add(participant);
                         this.eventNumberParticipants++;
                         return;
