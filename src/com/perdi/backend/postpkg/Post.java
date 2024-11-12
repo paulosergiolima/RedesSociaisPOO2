@@ -24,6 +24,7 @@ public abstract class Post {
     
     private int views;
     private ArrayList<Reaction> postReactions;
+    private ArrayList<Comment> postComments;
 
     // Public Posts Constructor
     public Post(User postUser) {
@@ -39,7 +40,7 @@ public abstract class Post {
         setPostUser(postUser);
         setPostCreationDate();
         this.views = 0;
-        setPostDomainFlag(true);
+        setPostDomainFlag();
         setPostDomain(postDomain);
     }
 
@@ -109,8 +110,8 @@ public abstract class Post {
         return postDomainFlag;
     }
 
-    private void setPostDomainFlag(boolean postDomainFlag) {
-        this.postDomainFlag = postDomainFlag;
+    private void setPostDomainFlag() {
+        this.postDomainFlag = true;
     }
 
     public Group getPostDomain() {
@@ -136,5 +137,12 @@ public abstract class Post {
     public void setPostReactions(ArrayList<Reaction> postReactions) {
         this.postReactions = postReactions;
     }
-    
+
+    public ArrayList<Comment> getPostComments() {
+        return postComments;
+    }
+
+    public void setPostComments(ArrayList<Comment> postComments) {
+        this.postComments = postComments;
+    }
 }
