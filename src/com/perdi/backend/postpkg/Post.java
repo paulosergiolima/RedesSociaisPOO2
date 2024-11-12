@@ -1,12 +1,16 @@
 package com.perdi.backend.postpkg;
-import com.perdi.backend.grouppkg.Group;
-import com.perdi.backend.userpkg.User;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.ArrayList;
+
+import com.perdi.backend.grouppkg.Group;
+import com.perdi.backend.reactionpkg.Reaction;
+import com.perdi.backend.userpkg.User;
 
 // @author Abigail Sayury
 
 public abstract class Post {
+    
     private UUID postID;
     private User postUser;
     private Group postDomain;
@@ -19,6 +23,7 @@ public abstract class Post {
     private boolean postEditFlag;
     
     private int views;
+    private ArrayList<Reaction> postReactions;
 
     // Public Posts Constructor
     public Post(User postUser) {
@@ -115,7 +120,7 @@ public abstract class Post {
     private void setPostDomain(Group postDomain) {
         this.postDomain = postDomain;
     }
-
+    
     public String getPostTitle() {
         return postTitle;
     }
@@ -123,5 +128,13 @@ public abstract class Post {
     public void setPostTitle(String postTitle) {
         this.postTitle = postTitle;
     }
+    
+    public ArrayList<Reaction> getPostReactions() {
+        return postReactions;
+    }
 
+    public void setPostReactions(ArrayList<Reaction> postReactions) {
+        this.postReactions = postReactions;
+    }
+    
 }
