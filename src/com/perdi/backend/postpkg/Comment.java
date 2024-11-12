@@ -1,3 +1,5 @@
+package com.perdi.backend.postpkg;
+
 /**
  * @author arthu
  */
@@ -5,7 +7,9 @@
  import java.util.ArrayList;
  import java.time.LocalDateTime;
  import java.util.UUID;
- 
+
+import com.perdi.backend.userpkg.User;
+
  public class Comment extends Post{
      //constantes
      private static final int TAMANHO_MAX = 300;

@@ -1,8 +1,11 @@
+package com.perdi.backend.postpkg;
 /**
  * @author arthu
  */
 import java.util.ArrayList;
 import java.util.UUID;
+
+import User;
 
 public abstract class PostWithCommentSection extends Post{
     //constantes

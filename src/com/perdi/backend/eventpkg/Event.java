@@ -1,9 +1,17 @@
+package com.perdi.backend.eventpkg;
+
 import java.time.*;
 import java.time.format.*;
 import java.util.ArrayList;
+
+import com.perdi.backend.userpkg.User;
+import com.perdi.backend.grouppkg.Group;
+
 /**
  * @author cristian.eidi_unesp
  */
+
+
 public class Event {
     
     private String eventName;
@@ -14,16 +22,30 @@ public class Event {
     private ArrayList<User> eventParticipants;
     private int eventNumberParticipants;
     
-    private boolean eventPrivacy; // 0 publico, 1 privado 
+    private int eventPrivacy; // 0 public, 1 only friends
 
-    public Event(String eventName, String eventDate, String eventLocation, String eventDescription ) {
+    public Event(String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, User firstUser ) {
         this.eventName = eventName;
         this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
+        this.eventPrivacy = eventPrivacy;
         eventParticipants = new ArrayList<User>();
+        eventParticipants.add(firstUser);
     }
 
+    public Event(String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, Group firstGroup ) {
+        this.eventName = eventName;
+        this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.eventLocation = eventLocation;
+        this.eventDescription = eventDescription;
+        this.eventPrivacy = eventPrivacy;
+        eventParticipants = new ArrayList<User>();
+        for( int i = 0, n = firstGroup.getUserCount ; i < n; i++ ){
+            eventParticipants.add(firstGroup.getUser(i) );
+        }
+    }
+    
     public void postponeEventInDays(int days){
         eventDate.plusDays(days);
     }
@@ -49,13 +71,7 @@ public class Event {
     }
     
     public void addParticipant(User participant){
-        if( this.eventNumberParticipants == 0 ){ // se o evento estiver vazio
-            eventParticipants.add(participant);
-            this.eventNumberParticipants++;
-            return;
-        }
-        
-        if(this.eventPrivacy){ // evento privado, adicionara apenas se quem for adicionado tiver um amigo em comum
+        if(this.eventPrivacy == 1){ // evento apenas amigos
             ArrayList<User> arrayFriends = participant.getFriends();
             for( int counterInvited = 0; counterInvited < arrayFriends.size() ; counterInvited++){ // for para todos os amigos do convidado
                 for( int counterParticipants = 0; counterParticipants < eventParticipants.size(); counterParticipants++ ){ // for para todos os
@@ -66,12 +82,17 @@ public class Event {
                     }
                 }
             }
-        }else{ // evento publico
+        
+        }
+        if(this.eventPrivacy == 0 ){ // evento publico
             eventParticipants.add(participant);
             this.eventNumberParticipants++;
+            return;
         }
         
+        return;
     }
+    
     
     public void removeParticipant(User participant){
         for( int counter = 0; counter < eventNumberParticipants; counter++ ){
@@ -123,11 +144,11 @@ public class Event {
         this.eventNumberParticipants = eventNumberParticipants;
     }
 
-    public boolean isEventPrivacy() {
+    public int getEventPrivacy() {
         return eventPrivacy;
     }
 
-    public void setEventPrivacy(boolean eventPrivacy) {
+    public void setEventPrivacy(int eventPrivacy) {
         this.eventPrivacy = eventPrivacy;
     }
             
