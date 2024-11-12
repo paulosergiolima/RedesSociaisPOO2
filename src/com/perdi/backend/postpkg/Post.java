@@ -1,43 +1,69 @@
 package com.perdi.backend.postpkg;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.ArrayList;
 
 import com.perdi.backend.grouppkg.Group;
+import com.perdi.backend.reactionpkg.Reaction;
 import com.perdi.backend.userpkg.User;
 
 // @author Abigail Sayury
 
-public class Post extends PostWithReaction{
-    private User postUser;
+public abstract class Post {
+    
     private UUID postID;
-    private LocalDateTime postDate;
-    private String postText;
-
-    private boolean domainFlag;
+    private User postUser;
     private Group postDomain;
+    private String postTitle;
+    
+    private LocalDateTime postCreationDate;
+    private LocalDateTime postEditDate;
+    
+    private boolean postDomainFlag;
+    private boolean postEditFlag;
+    
+    private int views;
+    private ArrayList<Reaction> postReactions;
 
-    private boolean editFlag;
-    private LocalDateTime editDate;
-
-    // Constructor
-
-    public Post(User postUser, String postText) {
-        super();
-        setPostUser(postUser); // set user
-        this.postText = postText; // set test, universal.
-        postDate = LocalDateTime.now(); // set hour.
-        setPostID(UUID.randomUUID()); // rando generated ID.
-
+    // Public Posts Constructor
+    public Post(User postUser) {
+        setPostID();
+        setPostUser(postUser);
+        setPostCreationDate();
+        this.views = 0;
     }
 
-    // Methods:
-
-    public void showPost() {
-        System.out.println(postUser.getNickName() + " at " + postDate);
-        System.out.println(postText);
+    // Group Posts Constructor
+    public Post(User postUser, Group postDomain) {
+        setPostID();
+        setPostUser(postUser);
+        setPostCreationDate();
+        this.views = 0;
+        setPostDomainFlag(true);
+        setPostDomain(postDomain);
     }
 
-    // getters & setters
+    public abstract Object getContent();
+    public abstract void setContent(Object content);
+
+    public void addViews() {
+        this.views++;
+    }
+
+    public void markAsEdited() {
+        setPostEditFlag(true);
+        setPostEditDate();
+    }
+
+    // Getters & Setters
+
+    public UUID getPostID() {
+        return postID;
+    }
+
+    private void setPostID() {
+        postID = UUID.randomUUID();
+    }
 
     public User getPostUser() {
         return postUser;
@@ -47,59 +73,68 @@ public class Post extends PostWithReaction{
         this.postUser = postUser;
     }
 
-    public LocalDateTime getPostDate() {
-        return postDate;
+    public LocalDateTime getPostCreationDate() {
+        return postCreationDate;
     }
 
-    public void setPostDate(LocalDateTime postDate) {
-        this.postDate = postDate;
+    private void setPostCreationDate() {
+        postCreationDate = LocalDateTime.now();
     }
 
-    public String getPostText() {
-        return postText;
+    public boolean isPostEditFlag() {
+        return postEditFlag;
     }
 
-    public void setPostText(String postText) {
-        this.postText = postText;
+    public void setPostEditFlag(boolean postEditFlag) {
+        this.postEditFlag = postEditFlag;
     }
 
-    public UUID getPostID() {
-        return postID;
+    public LocalDateTime getPostEditDate() {
+        return postEditDate;
     }
 
-    private void setPostID(UUID postID) {
-        this.postID = postID;
+    public void setPostEditDate() {
+        postEditDate = LocalDateTime.now();
     }
 
-    public boolean isDomainFlag() {
-        return domainFlag;
+    public int getViews() {
+        return views;
     }
 
-    public void setDomainFlag(boolean domainFlag) {
-        this.domainFlag = domainFlag;
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public boolean isPostDomainFlag() {
+        return postDomainFlag;
+    }
+
+    private void setPostDomainFlag(boolean postDomainFlag) {
+        this.postDomainFlag = postDomainFlag;
     }
 
     public Group getPostDomain() {
         return postDomain;
     }
 
-    public void setPostDomain(Group postDomain) {
+    private void setPostDomain(Group postDomain) {
         this.postDomain = postDomain;
     }
-
-    public boolean isEditFlag() {
-        return editFlag;
+    
+    public String getPostTitle() {
+        return postTitle;
     }
 
-    public void setEditFlag(boolean editFlag) {
-        this.editFlag = editFlag;
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
+    }
+    
+    public ArrayList<Reaction> getPostReactions() {
+        return postReactions;
     }
 
-    public LocalDateTime getEditDate() {
-        return editDate;
+    public void setPostReactions(ArrayList<Reaction> postReactions) {
+        this.postReactions = postReactions;
     }
-
-    public void setEditDate(LocalDateTime editDate) {
-        this.editDate = editDate;
-    }
+    
 }
