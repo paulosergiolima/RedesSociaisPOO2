@@ -4,90 +4,80 @@ package com.perdi.backend.postpkg;
  * @author arthu
  */
 
- import java.util.ArrayList;
- import java.time.LocalDateTime;
- import java.util.UUID;
+import java.util.ArrayList;
+import java.util.UUID;
 
-import com.perdi.backend.userpkg.User;
+public class Comment {
+    //constantes
+    private static final int MAX_SIZE = 300;
+    private static final int MAX_DEPTH = 1;
 
- public class Comment extends Post{
-     //constantes
-     private static final int TAMANHO_MAX = 300;
- 
+    //atributos
+    private ArrayList<Post> comments;
+    private Comment subcomment;
+    private int depth;
 
-     //atributos
-     private ArrayList<SubComment> subcomments;
- 
- 
-     //construtor
-     Comment(User postUser, String postText)
-     {
-         super(postUser, postText);
-         subcomments = new ArrayList<SubComment>();
-     }
- 
- 
-     //getters
-     public ArrayList<SubComment> getSubComments()
-     {
-         return this.subcomments;
-     }
- 
-     public int getSubCommentSectionSize()
-     {
-         return this.subcomments.size();
-     }
- 
- 
-     //seters
-     public boolean setCommentText(String newText)
-     {
-         //WIP gostaria de montar uma classe de utilidade para fazer verificacao desse tipo (em relacao a validez(n sei se isso eh uma palavra) de uma variavel)
-         if(!newText.equals(""))
-         {
-             super.setEditFlag(true);
-             super.setEditDate(LocalDateTime.now());
-             super.setPostText(newText);
-             return true;
-         }
-         return false;
-     }
- 
- 
-     //adicao de comentarios na lista
-     public boolean addSubComment(User postUser, String postText)
-     {
-         if(subcomments.size() < TAMANHO_MAX)
-         {
-             SubComment newSubComment = new SubComment(postUser, postText);
-             subcomments.add(newSubComment);
-             return true;
-         }
-         return false;
-     }
- 
- 
-     //remocao de comentarios na lista
-     public boolean removeSubComment(UUID targetPostID){
-         for( int i = 0; i < subcomments.size(); i++ ){
-             if( subcomments.get(i).getPostID().equals(targetPostID)  ){
-                 subcomments.remove(i);
-                 return true;
-             }
-         }
-         return false;
-     }
- 
-     
-     //ferramenta de debug
-     public void showComment()
-     {
-         System.out.println("Coments: ");
-         showPost();
-         System.out.println("SubComents: ");
-         for(SubComment subcommentElement: subcomments)
-         {
-             subcommentElement.showPost();
-         }
-     }
- }
+    //construtor
+    Comment(int depth)
+    {
+        this.comments = new ArrayList<Post>();
+        this.depth = depth;
+        if(depth < MAX_DEPTH)
+        {
+            subcomment = new Comment(this.depth+1);
+        }
+    }
+
+
+    //getters
+    public Comment getSubComments()
+    {
+        return this.subcomment;
+    }
+
+    public int getCommentsSectionSize()
+    {
+        return this.comments.size();
+    }
+    public int getSubCommentsSectionSize()
+    {
+        return this.subcomment.getCommentsSectionSize();
+    }
+
+    //adicao de comentarios na lista
+    public boolean addComment(Post post)
+    {
+        if(comments.size() < MAX_SIZE)
+        {
+            comments.add(post);
+            return true;
+        }
+        return false;
+    }
+
+    //adicao de subcommentarios
+    public boolean addSubComment(Post post)
+    {
+        if(subcomment.getCommentsSectionSize() < MAX_SIZE)
+        {
+            return subcomment.addComment(post);
+        }
+        return false;
+    }
+
+    //remocao de comentarios na lista
+    public boolean removeComment(UUID targetPostID){
+        for( int i = 0; i < comments.size(); i++ ){
+            if( comments.get(i).getPostID().equals(targetPostID)  ){
+                comments.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //remocao de subcomentario
+    public boolean removeSubComment(UUID targetPostID){
+        return subcomment.removeComment(targetPostID);
+    }
+}
