@@ -106,7 +106,10 @@ public class Event {
             }
         }        
     }
-    
+
+    public UUID getEventID() {
+        return eventID;
+    }
     
     public String getEventName() {
         return eventName;
