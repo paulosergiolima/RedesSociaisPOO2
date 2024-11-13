@@ -12,7 +12,7 @@ public class Group {
     private ArrayList<Post> posts;
     //Usuario vai ser a classe criada
     public Group() {
-        Random rand = new Random()
+        Random rand = new Random();
         this.id = rand.nextInt(0,999999);
     }
     public void putUser(User new_member) {
