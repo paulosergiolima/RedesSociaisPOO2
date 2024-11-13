@@ -91,8 +91,8 @@ public class PersistenceManager {
         return loadPosts(filename).stream().filter(post -> post.getPostID().equals(id)).findFirst();
     }
 
-    public static Optional<Group> getGroupById(int id, String filename) throws IOException {
-        return loadGroups(filename).stream().filter(group -> group.getId() == id).findFirst();
+    public static Optional<Group> getGroupById(UUID id, String filename) throws IOException {
+        return loadGroups(filename).stream().filter(group -> group.getId().equals(id)).findFirst();
     }
 
     public static Optional<Event> getEventById(UUID id, String filename) throws IOException {
@@ -100,6 +100,6 @@ public class PersistenceManager {
     }
 
     public static Optional<Message> getMessageById(UUID id, String filename) throws IOException {
-        return loadMessages(filename).stream().filter(message -> message.getClass().equals(id)).findFirst();
+        return loadMessages(filename).stream().filter(message -> message.getMessageID().equals(id)).findFirst();
     }
 }
