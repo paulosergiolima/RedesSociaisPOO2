@@ -5,8 +5,14 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
+import com.perdi.backend.eventpkg.Event;
+import com.perdi.backend.grouppkg.Group;
+import com.perdi.backend.messagepkg.Message;
 import com.perdi.backend.postpkg.*;
+import com.perdi.backend.userpkg.User;
 
 public class PersistenceManager {
 
@@ -31,10 +37,69 @@ public class PersistenceManager {
         }
     }
 
-    public static List<Post> loadUsers(String filename) throws IOException {
+    public static List<Post> loadPosts(String filename) throws IOException {
         try (Reader reader = new FileReader(filename)) {
-            Type postListType = new TypeToken<List<Post>>() {}.getType();
-            return gson.fromJson(reader, postListType);
+            Type groupListType = new TypeToken<List<Post>>() {}.getType();
+            return gson.fromJson(reader, groupListType);
         }
+    }
+
+    public static void saveGroups(List<Group> groups, String filename) throws IOException {
+        try (Writer writer = new FileWriter(filename)) {
+            gson.toJson(groups, writer);
+        }
+    }
+
+    public static List<Group> loadGroups(String filename) throws IOException {
+        try (Reader reader = new FileReader(filename)) {
+            Type groupListType = new TypeToken<List<Group>>() {}.getType();
+            return gson.fromJson(reader, groupListType);
+        }
+    }
+    public static void saveEvents(List<Event> events, String filename) throws IOException {
+        try (Writer writer = new FileWriter(filename)) {
+            gson.toJson(events, writer);
+        }
+    }
+
+    public static List<Event> loadEvents(String filename) throws IOException {
+        try (Reader reader = new FileReader(filename)) {
+            Type eventListType = new TypeToken<List<Event>>() {}.getType();
+            return gson.fromJson(reader, eventListType);
+        }
+    }
+
+    public static void saveMessages(List<Message> messages, String filename) throws IOException {
+        try (Writer writer = new FileWriter(filename)) {
+            gson.toJson(messages, writer);
+        }
+    }
+
+    public static List<Post> loadMessages(String filename) throws IOException {
+        try (Reader reader = new FileReader(filename)) {
+            Type messageListType = new TypeToken<List<Message>>() {}.getType();
+            return gson.fromJson(reader, messageListType);
+        }
+    }
+
+    // Methods to retrieve specific objects by ID
+    public static Optional<User> getUserById(UUID id, String filename) throws IOException {
+        return loadUsers(filename).stream().filter(user -> user.getId().equals(id)).findFirst();
+    }
+
+    public static Optional<Post> getPostById(UUID id, String filename) throws IOException {
+        return loadPosts(filename).stream().filter(post -> post.getId().equals(id)).findFirst();
+    }
+
+    public static Optional<Group> getGroupById(UUID id, String filename) throws IOException {
+        return loadGroups(filename).stream().filter(group -> group.getId().equals(id)).findFirst();
+    }
+
+    public static Optional<Event> getEventById(UUID id, String filename) throws IOException {
+        return loadEvents(filename).stream().filter(event -> event.getId().equals(id)).findFirst();
+    }
+
+    public static Optional<Message> getMessageById(UUID id, String filename) throws IOException {
+        return loadMessages(filename).stream().filter(message -> message.getId().equals(id)).findFirst();
     }
 }
