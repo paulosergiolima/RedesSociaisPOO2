@@ -92,7 +92,7 @@ public class PersistenceManager {
     }
 
     public static Optional<Group> getGroupById(UUID id, String filename) throws IOException {
-        return loadGroups(filename).stream().filter(group -> group.getId(). gi(id)).findFirst();
+        return loadGroups(filename).stream().filter(group -> group.getId().equals(id)).findFirst();
     }
 
     public static Optional<Event> getEventById(UUID id, String filename) throws IOException {
