@@ -39,8 +39,8 @@ public class PersistenceManager {
 
     public static List<Post> loadPosts(String filename) throws IOException {
         try (Reader reader = new FileReader(filename)) {
-            Type groupListType = new TypeToken<List<Post>>() {}.getType();
-            return gson.fromJson(reader, groupListType);
+            Type postListType = new TypeToken<List<Post>>() {}.getType();
+            return gson.fromJson(reader, postListType);
         }
     }
 
@@ -75,7 +75,7 @@ public class PersistenceManager {
         }
     }
 
-    public static List<Post> loadMessages(String filename) throws IOException {
+    public static List<Message> loadMessages(String filename) throws IOException {
         try (Reader reader = new FileReader(filename)) {
             Type messageListType = new TypeToken<List<Message>>() {}.getType();
             return gson.fromJson(reader, messageListType);
@@ -88,18 +88,18 @@ public class PersistenceManager {
     }
 
     public static Optional<Post> getPostById(UUID id, String filename) throws IOException {
-        return loadPosts(filename).stream().filter(post -> post.getId().equals(id)).findFirst();
+        return loadPosts(filename).stream().filter(post -> post.getPostID().equals(id)).findFirst();
     }
 
-    public static Optional<Group> getGroupById(UUID id, String filename) throws IOException {
-        return loadGroups(filename).stream().filter(group -> group.getId().equals(id)).findFirst();
+    public static Optional<Group> getGroupById(int id, String filename) throws IOException {
+        return loadGroups(filename).stream().filter(group -> group.getId() == id).findFirst();
     }
 
     public static Optional<Event> getEventById(UUID id, String filename) throws IOException {
-        return loadEvents(filename).stream().filter(event -> event.getId().equals(id)).findFirst();
+        return loadEvents(filename).stream().filter(event -> event.getEventID().equals(id)).findFirst();
     }
 
     public static Optional<Message> getMessageById(UUID id, String filename) throws IOException {
-        return loadMessages(filename).stream().filter(message -> message.getId().equals(id)).findFirst();
+        return loadMessages(filename).stream().filter(message -> message.getClass().equals(id)).findFirst();
     }
 }
