@@ -33,6 +33,9 @@ import com.perdi.backend.userpkg.User;
  *      User user = instancia.getUser(UUID ou String);
  *          retorna um usuario que tenha o mesmo UUID ou a String seja igual ao username ou nickname do mesmo
  *
+ *      ArrayList<User> users = instancia.getUsers();
+ *          retorna um array list com todos os usuarios
+ *
  *      instancia.addPost(Post);
  *          adiciona um grupo ao array list de posts
  *
@@ -41,6 +44,9 @@ import com.perdi.backend.userpkg.User;
  *
  *      Post post = instancia.getPost(UUID);
  *          retorna um Post do array list que tenha o mesmo UUID
+ *
+ *      ArrayList<Post> posts = instancia.getPosts();
+ *          retorna um array list com todos os posts
  *
  *      instancia.addGroup(Group);
  *          adiciona um grupo ao array list de grupos
@@ -51,6 +57,9 @@ import com.perdi.backend.userpkg.User;
  *      Group group = instancia.getGroup(UUID);
  *          retorna um Grupo do array list que tenha o mesmo UUID
  *          nao recebe uma string, pois nao sei se dois grupos podem possuir o mesmo nome
+ *
+ *      ArrayList<Group> groups = instancia.getGroups();
+ *          retorna um array list com todos os grupos
  *
  *      instancia.addEvent(Event);
  *          adiciona um evento ao array list de eventos
@@ -68,6 +77,9 @@ import com.perdi.backend.userpkg.User;
  *
  *      ArrayList<Event> events = instancia.getEventsAfterDate(LocalDate)
  *          retorna os eventos que possuem data apos a data recebbida
+ *
+ *      ArrayList<Event> events = instancia.getEventsAfterDate(LocalDate)
+ *          retorna oum array list com todos os eventos
  */
 
 public class DataCenter {
@@ -151,6 +163,11 @@ public class DataCenter {
         return null;
     }
 
+    public ArrayList<User> getUsers()
+    {
+        return users;
+    }
+
     public void addPost(Post post)
     {
         posts.add(post);
@@ -178,6 +195,11 @@ public class DataCenter {
         return null;
     }
 
+    public ArrayList<Post> addPosts()
+    {
+        return posts;
+    }
+
     public void addGroup(Group group)
     {
         groups.add(group);
@@ -203,6 +225,11 @@ public class DataCenter {
             }
         }
         return null;
+    }
+
+    public ArrayList<Group> getGroups()
+    {
+        return groups;
     }
 
     public void addEvent(Event event)
@@ -308,5 +335,10 @@ public class DataCenter {
         }
 
         return result;
+    }
+
+    public ArrayList<Event> getEvents()
+    {
+        return events;
     }
 }
