@@ -1,12 +1,12 @@
 package com.perdi.backend.postpkg;
 
-import com.perdi.backend.userpkg.User;
+import java.util.UUID;
 
 public class VideoPost extends Post  {
     private String url_video;
 
-    public VideoPost(User postUser, String postText, String url_video) {
-        super(postUser);
+    public VideoPost(UUID postUserID, String postText, String url_video) {
+        super(postUserID);
         this.url_video = url_video;
     }
     public String getUrl_video() {

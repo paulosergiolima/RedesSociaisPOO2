@@ -62,7 +62,7 @@ import com.perdi.backend.userpkg.User;
 public abstract class Post {
     
     private UUID postID;
-    private User postUser;
+    private UUID postUserID;
     private Group postDomain;
     private String postTitle;
     
@@ -80,9 +80,9 @@ public abstract class Post {
     private ArrayList<Comment> postComments;
 
     // Public Posts Constructor
-    public Post(User postUser) {
+    public Post(UUID postUserID) {
         setPostID();
-        setPostUser(postUser);
+        setPostUserID(postUserID);
         setPostCreationDate();
         setPostTotalViews();
         setPostWeeklyViews();
@@ -90,9 +90,9 @@ public abstract class Post {
     }
 
     // Group Posts Constructor
-    public Post(User postUser, Group postDomain) {
+    public Post(UUID postUserID, Group postDomain) {
         setPostID();
-        setPostUser(postUser);
+        setPostUserID(postUserID);
         setPostCreationDate();
         setPostTotalViews();
         setPostWeeklyViews();
@@ -139,12 +139,12 @@ public abstract class Post {
         postID = UUID.randomUUID();
     }
 
-    public User getPostUser() {
-        return postUser;
+    public UUID getPostUserID() {
+        return postUserID;
     }
 
-    private void setPostUser(User postUser) {
-        this.postUser = postUser;
+    private void setPostUserID(UUID postUserID) {
+        this.postUserID = postUserID;
     }
 
     public LocalDateTime getPostCreationDate() {
