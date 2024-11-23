@@ -1,5 +1,6 @@
 package com.perdi;
 
+import com.perdi.backend.datapkg.DataCenter;
 import com.perdi.backend.datapkg.UserPersistence;
 import com.perdi.backend.postpkg.Post;
 import com.perdi.backend.postpkg.TextPost;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) {
+        DataCenter dataCenter = DataCenter.getInstance();
         UserPersistence userPersistence = UserPersistence.getInstance();
         // Criando usuários
         User user1 = new User("joao_doe", "João", "joao@example.com", "he/him", "Adoro programar!", true);
@@ -45,10 +47,19 @@ public class App {
         System.out.println("Novo e-mail de João: " + user1.getEmail());
         System.out.println("Nova descrição de perfil de João: " + user1.getProfileDescription());
 
-        userPersistence.saveUsers(List.of(user1, user2, user3));
+        dataCenter.addUser(user1);
+        dataCenter.addUser(user2);
+        dataCenter.addUser(user3);
 
-        System.out.println("Carregando usuarios do arquivo:");
+        userPersistence.saveUsers(dataCenter.getUsers());
+
+        System.out.println("Trazendo usuarios para o armazenamento local...");
         for (User user : userPersistence.loadUsers()) {
+            dataCenter.addUser(user);
+        }
+
+        System.out.println("Imprimindo usuarios:");
+        for (User user : dataCenter.getUsers()) {
             System.out.println("ID: " + user.getId());
             System.out.println("Username: " + user.getUserName());
             System.out.println("Nickname: " + user.getNickName());

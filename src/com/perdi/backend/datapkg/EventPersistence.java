@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.perdi.backend.datapkg.LocalDateAdapter;
-import com.perdi.backend.persistencepkg.LocalDateTimeAdapter;
 import com.perdi.backend.eventpkg.Event;
-import com.perdi.backend.userpkg.User;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -65,7 +62,7 @@ public class EventPersistence {
         return instance;
     }
 
-    public void saveEvents(List<Event> events) {
+    public void saveEvents(ArrayList<Event> events) {
         try (Writer writer = new FileWriter(FILE_NAME)){
             gson.toJson(events, writer);
         } catch (IOException e) {
@@ -73,8 +70,8 @@ public class EventPersistence {
         }
     }
 
-    public List<Event> loadEvents() {
-        List<Event> events = new ArrayList<>();
+    public ArrayList<Event> loadEvents() {
+        ArrayList<Event> events = new ArrayList<>();
         File file = new File(FILE_NAME);
 
         if (!file.exists() || file.length() == 0) {
@@ -83,7 +80,7 @@ public class EventPersistence {
         }
 
         try (Reader reader = new FileReader(FILE_NAME)){
-            Type eventListType = new TypeToken<List<Event>>() {}.getType();
+            Type eventListType = new TypeToken<ArrayList<Event>>() {}.getType();
             events = gson.fromJson(reader, eventListType);
 
             if (events == null) {
@@ -102,13 +99,13 @@ public class EventPersistence {
     }
 
     public void addEvent(Event event) {
-        List<Event> events = loadEvents();
+        ArrayList<Event> events = loadEvents();
         events.add(event);
         saveEvents(events);
     }
 
     public Event loadEventByID(UUID uuid) {
-        List<Event> events = loadEvents();
+        ArrayList<Event> events = loadEvents();
         for (Event event : events) {
             if (event.getEventID().equals(uuid)) {
                 return event;

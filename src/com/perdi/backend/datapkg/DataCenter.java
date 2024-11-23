@@ -91,7 +91,7 @@ import com.perdi.backend.userpkg.User;
 public class DataCenter {
     private static DataCenter instance;
     private ArrayList<User> users;
-    private ArrayList<Post> posts;
+    private ArrayList<Post> posts; // n foi implementado
     //private ArrayList<Message> messages; n sei pq a classe de persistencia salva Message
     private ArrayList<Group> groups;
     private ArrayList<Event> events;
@@ -201,7 +201,7 @@ public class DataCenter {
         return null;
     }
 
-    public ArrayList<Post> addPosts()
+    public ArrayList<Post> getPosts()
     {
         return posts;
     }

@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.perdi.backend.persistencepkg.LocalDateTimeAdapter;
 import com.perdi.backend.userpkg.User;
 
 import java.io.*;
@@ -60,7 +59,7 @@ public class UserPersistence {
         return instance;
     }
 
-    public void saveUsers(List<User> users) {
+    public void saveUsers(ArrayList<User> users) {
         try (Writer writer = new FileWriter(FILE_NAME)) {
             gson.toJson(users, writer);
         } catch (IOException e) {
@@ -68,8 +67,8 @@ public class UserPersistence {
         }
     }
 
-    public List<User> loadUsers() {
-        List<User> users = new ArrayList<>();
+    public ArrayList<User> loadUsers() {
+        ArrayList<User> users = new ArrayList<>();
         File file = new File(FILE_NAME);
 
         if (!file.exists() || file.length() == 0) {
@@ -78,7 +77,7 @@ public class UserPersistence {
         }
 
         try (Reader reader = new FileReader(FILE_NAME)){
-            Type userListType = new TypeToken<List<User>>() {}.getType();
+            Type userListType = new TypeToken<ArrayList<User>>() {}.getType();
             users = gson.fromJson(reader, userListType);
 
             if (users == null) {
@@ -97,13 +96,13 @@ public class UserPersistence {
     }
 
     public void addUser(User user) {
-        List<User> users = loadUsers();
+        ArrayList<User> users = loadUsers();
         users.add(user);
         saveUsers(users);
     }
 
     public User loadUserByID(UUID uuid) {
-        List<User> users = loadUsers();
+        ArrayList<User> users = loadUsers();
         for (User user : users) {
             if (user.getId().equals(uuid)) {
                 return user;
