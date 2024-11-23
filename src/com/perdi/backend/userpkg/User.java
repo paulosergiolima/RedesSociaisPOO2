@@ -136,7 +136,7 @@ public class User {
 
     // Adicionar post
     public void addTextPost(String postText){
-        Post newPost = new TextPost(this, postText);
+        Post newPost = new TextPost(this.id, postText);
         userPost.add(newPost);
 
         return;

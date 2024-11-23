@@ -1,4 +1,4 @@
-package com.perdi.backend.persistencepkg;
+package com.perdi.backend.datapkg;
 
 import com.google.gson.*;
 

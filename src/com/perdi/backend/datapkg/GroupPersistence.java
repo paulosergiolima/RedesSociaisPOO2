@@ -5,11 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.perdi.backend.grouppkg.Group;
-import com.perdi.backend.persistencepkg.LocalDateTimeAdapter;
-import com.perdi.backend.userpkg.User;
 
 import java.io.*;
-import java.lang.management.MemoryUsage;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -70,8 +67,8 @@ public class GroupPersistence {
         }
     }
 
-    public List<Group> loadGroups() {
-        List<Group> groups = new ArrayList<>();
+    public ArrayList<Group> loadGroups() {
+        ArrayList<Group> groups = new ArrayList<>();
         File file = new File(FILE_NAME);
 
         if (!file.exists() || file.length() == 0) {
@@ -80,7 +77,7 @@ public class GroupPersistence {
         }
 
         try (Reader reader = new FileReader(FILE_NAME)){
-            Type groupListType = new TypeToken<List<Group>>() {}.getType();
+            Type groupListType = new TypeToken<ArrayList<Group>>() {}.getType();
             groups = gson.fromJson(reader, groupListType);
 
             if (groups == null) {
@@ -99,13 +96,13 @@ public class GroupPersistence {
     }
 
     public void addGroup(Group group) {
-        List<Group> groups = loadGroups();
+        ArrayList<Group> groups = loadGroups();
         groups.add(group);
         saveGroups(groups);
     }
 
     public Group loadGroupByID(UUID uuid) {
-        List<Group> groups = loadGroups();
+        ArrayList<Group> groups = loadGroups();
         for (Group group : groups) {
             if (group.getId().equals(uuid)) {
                 return group;
