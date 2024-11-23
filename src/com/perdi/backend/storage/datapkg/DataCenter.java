@@ -179,10 +179,10 @@ public class DataCenter {
         posts.add(post);
     }
 
-    public void removePost(UUID uuid)
+    public void removePost(UUID userID, UUID uuid)
     {
         for (int i = 0; i < posts.size(); i++) {
-            if(posts.get(i).getPostID().equals(uuid))
+            if(posts.get(i).getPostID().equals(uuid) && posts.get(i).getPostUserID().equals(userID))
             {
                 posts.remove(i);
             }
@@ -312,7 +312,7 @@ public class DataCenter {
         ArrayList<Event> result = new ArrayList<>();
         for (Event event : events)
         {
-            if(event.getEventDate().isEqual(date.atStartOfDay()))
+            if(event.getEventDate().isEqual(date))
             {
                 result.add(event);
             }
@@ -330,7 +330,7 @@ public class DataCenter {
         ArrayList<Event> result = new ArrayList<>();
         for (Event event : events)
         {
-            if(event.getEventDate().isAfter(date.atStartOfDay()))
+            if(event.getEventDate().isAfter(date))
             {
                 result.add(event);
             }

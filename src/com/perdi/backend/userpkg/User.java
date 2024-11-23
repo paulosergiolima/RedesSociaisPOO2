@@ -163,6 +163,7 @@ public class User {
             return;
         }else{
             userPost.remove(postToRemove); // remove o post
+            dataCenter.removePost(this.id,postID);
             return;
         }
     }
