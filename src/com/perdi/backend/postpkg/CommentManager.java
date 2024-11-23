@@ -51,4 +51,13 @@ public class CommentManager {
         }
         return false;
     }
+
+    //remocao de comentario
+    public void removeSubComment(UUID targetPostID){
+        for (Comment comment : comments) {
+            if (comment.getSubComment(targetPostID) != null) {
+                comment.removeSubComment(targetPostID);
+            }
+        }
+    }
 }
