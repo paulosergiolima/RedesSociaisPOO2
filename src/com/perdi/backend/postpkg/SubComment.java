@@ -4,6 +4,8 @@ package com.perdi.backend.postpkg;
  * @author arthu
  */
 
+ import com.perdi.backend.userpkg.User;
+
  import java.time.LocalDateTime;
 
  public class SubComment extends Post{

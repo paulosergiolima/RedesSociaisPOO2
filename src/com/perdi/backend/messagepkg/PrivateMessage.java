@@ -25,14 +25,14 @@ public class PrivateMessage {
     }
 
     public void newVideoMessage(User user, String video_url) {
-        Message message = new VideoMessage(user, LocalDateTime.now(), url_video);
+        Message message = new VideoMessage(user, LocalDateTime.now(), video_url);
         messages.add(message);
     }
     
     public void removeMessage(Message message) {
         messages.remove(message);
     }
-
+/*
     public void editTextMessage(Message message, String newText, LocalDateTime editDate) {
         if(message instanceof TextMessage) {
             message.setContent(newText);
@@ -40,8 +40,8 @@ public class PrivateMessage {
             message.setEditDate(editDate);
         }
     }
-    
-    public Usuario getContact() {
+  */
+    public User getContact() {
         return contact;
     }
     

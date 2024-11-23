@@ -17,7 +17,7 @@ public abstract class Message {
         setMessageID(); // added for the sake of consistency across the project
     }
 
-    public abstract void setContent();
+    public abstract void setContent(String messages);
 
     public UUID getMessageID() {
         return messageID;
