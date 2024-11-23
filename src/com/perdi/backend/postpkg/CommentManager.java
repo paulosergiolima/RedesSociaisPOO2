@@ -1,5 +1,9 @@
 package com.perdi.backend.postpkg;
 
+/**
+ * @author arthur
+ */
+
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -25,11 +29,11 @@ public class CommentManager {
     }
 
     //adicao de comentario
-    public boolean addComment(Post post)
+    public boolean addComment(UUID postUserID, Post post)
     {
         if(comments.size() < MAX_SIZE)
         {
-            return comments.add(new Comment(post));
+            return comments.add(new Comment(postUserID,post));
         }
         return false;
     }

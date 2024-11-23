@@ -4,35 +4,28 @@ package com.perdi.backend.postpkg;
  * @author arthur
  */
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import com.perdi.backend.postpkg.Post;
 
-/*
-*      Modelo do comentario:
-*      Como deve ser usado no codigo
-*          descricao da funcao
-*
-*       Comentario(atributo de post).addComment(Post post);
-*           Adiciona um post para a lista de comentarios
-*
-*       Comment
-*
-*/
 
 public class Comment {
     //constantes
     private static final int MAX_SIZE = 300;
 
     //atributos
+    private LocalDateTime date;
+    private UUID postUserID;
     private Post content;
     private ArrayList<Comment> subcomment;
     private int depth;
 
     //construtor
-    Comment(Post content)
+    Comment(UUID postUserIDPost, Post content)
     {
+        postUserID = postUserIDPost;
+        date = LocalDateTime.now();
         this.content = content;
         this.subcomment = new ArrayList<Comment>();
         this.depth = 0;
@@ -72,24 +65,28 @@ public class Comment {
     }
 
     //adicao de subcommentarios
-    public boolean addSubComment(Post post)
+    public void addSubComment(Post post)
     {
         if(subcomment.size() < MAX_SIZE)
         {
-            return subcomment.add(new Comment(post, depth+1));
+            subcomment.add(new Comment(post, depth+1));
         }
-        return false;
     }
 
     //remocao de subcomentario
-    public boolean removeSubComment(UUID targetPostID){
+    public void removeSubComment(UUID targetPostID){
         for( int i = 0; i < subcomment.size(); i++ ){
             if( subcomment.get(i).getPostID().equals(targetPostID)  ){
                 subcomment.remove(i);
-                return true;
             }
         }
-        return false;
     }
 
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public UUID getPostUserID() {
+        return postUserID;
+    }
 }
