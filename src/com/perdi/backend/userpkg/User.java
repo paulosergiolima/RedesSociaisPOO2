@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import com.perdi.backend.datapkg.DataCenter;
 import com.perdi.backend.postpkg.Post;
 import com.perdi.backend.postpkg.TextPost;
 
@@ -22,8 +23,9 @@ public class User {
     private ArrayList<User> followers; 
     private ArrayList<User> following;
     private Set<User> blockedUsers; // evita duplicatas e é mais eficiente nesse caso
-    private ArrayList<Post> userPost; 
+    private ArrayList<Post> userPost;
 
+    private static DataCenter dataCenter = DataCenter.getInstance();
 
     public User(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy) {
         this.id = UUID.randomUUID();
@@ -39,6 +41,8 @@ public class User {
         this.following = new ArrayList<>();
         this.blockedUsers = new HashSet<>();
         this.userPost = new ArrayList<>();
+
+        dataCenter.addUser(this);
     }
     
     
