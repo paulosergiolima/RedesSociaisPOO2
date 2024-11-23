@@ -1,4 +1,4 @@
-package com.perdi.backend.datapkg;
+package com.perdi.backend.storage.datapkg;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -7,10 +7,10 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 
-import com.perdi.backend.postpkg.PhotoPost;
-import com.perdi.backend.postpkg.Post;
-import com.perdi.backend.postpkg.TextPost;
-import com.perdi.backend.postpkg.VideoPost;
+import com.perdi.backend.feed.postpkg.PhotoPost;
+import com.perdi.backend.feed.postpkg.Post;
+import com.perdi.backend.feed.postpkg.TextPost;
+import com.perdi.backend.feed.postpkg.VideoPost;
 
 import java.io.*;
 import java.lang.reflect.Type;

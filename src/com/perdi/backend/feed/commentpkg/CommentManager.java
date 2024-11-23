@@ -1,8 +1,10 @@
-package com.perdi.backend.postpkg;
+package com.perdi.backend.feed.commentpkg;
 
 /**
  * @author arthur
  */
+
+import com.perdi.backend.feed.postpkg.Post;
 
 import java.util.ArrayList;
 import java.util.UUID;

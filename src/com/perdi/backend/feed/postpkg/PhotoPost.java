@@ -1,11 +1,9 @@
-package com.perdi.backend.postpkg;
+package com.perdi.backend.feed.postpkg;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
-
-import com.perdi.backend.grouppkg.Group;
 
 
 public class PhotoPost extends Post {

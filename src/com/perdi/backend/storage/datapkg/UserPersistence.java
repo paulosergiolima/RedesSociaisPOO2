@@ -1,17 +1,15 @@
-package com.perdi.backend.datapkg;
+package com.perdi.backend.storage.datapkg;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.perdi.backend.eventpkg.Event;
 import com.perdi.backend.userpkg.User;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 /**

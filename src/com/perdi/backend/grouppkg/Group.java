@@ -1,11 +1,10 @@
 package com.perdi.backend.grouppkg;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.UUID;
 
 import com.perdi.backend.userpkg.User;
-import com.perdi.backend.postpkg.Post;
+import com.perdi.backend.feed.postpkg.Post;
 
 public class Group {
     private UUID id;

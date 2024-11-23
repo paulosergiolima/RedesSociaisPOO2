@@ -1,4 +1,4 @@
-package com.perdi.backend.postpkg;
+package com.perdi.backend.feed.postpkg;
 
 import java.util.UUID;
 

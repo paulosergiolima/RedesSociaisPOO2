@@ -1,4 +1,4 @@
-package com.perdi.backend.reactionpkg;
+package com.perdi.backend.feed.reactionpkg;
 
 /**
  * @author arthu

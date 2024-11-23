@@ -1,4 +1,4 @@
-package com.perdi.backend.loggerpkg;
+package com.perdi.backend.systempkg.loggerpkg;
 
 import java.util.ArrayList;
 import java.util.UUID;

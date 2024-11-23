@@ -1,10 +1,9 @@
-package com.perdi.backend.datapkg;
+package com.perdi.backend.storage.datapkg;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.perdi.backend.eventpkg.Event;
 import com.perdi.backend.grouppkg.Group;
 
 import java.io.*;

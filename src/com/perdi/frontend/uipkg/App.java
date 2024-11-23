@@ -1,14 +1,13 @@
-package com.perdi;
+package com.perdi.frontend.uipkg;
 
-import com.perdi.backend.datapkg.DataCenter;
-import com.perdi.backend.datapkg.UserPersistence;
-import com.perdi.backend.postpkg.Post;
-import com.perdi.backend.postpkg.TextPost;
-import com.perdi.backend.sytempkg.Recommendation;
+import com.perdi.backend.storage.datapkg.DataCenter;
+import com.perdi.backend.storage.datapkg.UserPersistence;
+import com.perdi.backend.feed.postpkg.Post;
+import com.perdi.backend.feed.postpkg.TextPost;
+import com.perdi.backend.systempkg.reccomendationpkg.Recommendation;
 import com.perdi.backend.userpkg.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class App {

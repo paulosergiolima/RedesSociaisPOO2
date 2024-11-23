@@ -1,4 +1,4 @@
-package com.perdi.backend.postpkg;
+package com.perdi.backend.feed.postpkg;
 
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
@@ -6,8 +6,9 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.ArrayList;
 
-import com.perdi.backend.datapkg.DataCenter;
-import com.perdi.backend.reactionpkg.Reaction;
+import com.perdi.backend.feed.commentpkg.CommentManager;
+import com.perdi.backend.storage.datapkg.DataCenter;
+import com.perdi.backend.feed.reactionpkg.Reaction;
 
 /*
  *      Post postExample1 = new TextPost/VideoPost/PhotoPost(ExampleUser);

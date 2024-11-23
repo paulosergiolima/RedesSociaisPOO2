@@ -1,6 +1,6 @@
-package com.perdi.backend.sytempkg;
+package com.perdi.backend.systempkg.reccomendationpkg;
 
-import com.perdi.backend.postpkg.Post;
+import com.perdi.backend.feed.postpkg.Post;
 
 public class PostValue {
     private Post post;

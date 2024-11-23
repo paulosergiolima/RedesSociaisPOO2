@@ -1,10 +1,9 @@
-package com.perdi.backend.sytempkg;
+package com.perdi.backend.systempkg.reccomendationpkg;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
-import com.perdi.backend.postpkg.Post;
-import com.perdi.backend.datapkg.DataCenter;
+import com.perdi.backend.feed.postpkg.Post;
+import com.perdi.backend.storage.datapkg.DataCenter;
 import com.perdi.backend.userpkg.User;
 
 /**

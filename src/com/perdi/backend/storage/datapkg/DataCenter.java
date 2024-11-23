@@ -1,4 +1,4 @@
-package com.perdi.backend.datapkg;
+package com.perdi.backend.storage.datapkg;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import com.perdi.backend.eventpkg.Event;
 import com.perdi.backend.grouppkg.Group;
-import com.perdi.backend.postpkg.Post;
+import com.perdi.backend.feed.postpkg.Post;
 import com.perdi.backend.userpkg.User;
 
 /**

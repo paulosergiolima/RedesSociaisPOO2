@@ -6,9 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-import com.perdi.backend.datapkg.DataCenter;
-import com.perdi.backend.postpkg.Post;
-import com.perdi.backend.postpkg.TextPost;
+import com.perdi.backend.storage.datapkg.DataCenter;
+import com.perdi.backend.feed.postpkg.Post;
+import com.perdi.backend.feed.postpkg.TextPost;
 
 public class User {
     private UUID id;
