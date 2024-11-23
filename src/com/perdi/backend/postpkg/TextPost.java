@@ -1,18 +1,19 @@
 package com.perdi.backend.postpkg;
 
-import com.perdi.backend.userpkg.User;
 import com.perdi.backend.grouppkg.Group;
+
+import java.util.UUID;
 
 public class TextPost extends Post {
     private String postTextContent;
 
-    public TextPost(User postUser, String postTextContent) {
-        super(postUser);
+    public TextPost(UUID postUserID, String postTextContent) {
+        super(postUserID);
         setPostTextContent(postTextContent);
     }
 
-    public TextPost(User postUser, Group postGroup, String postTextContent) {
-        super(postUser, postGroup);
+    public TextPost(UUID postUserID, Group postGroup, String postTextContent) {
+        super(postUserID, postGroup);
         setPostTextContent(postTextContent);
     }
 
