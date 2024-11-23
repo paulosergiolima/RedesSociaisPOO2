@@ -38,7 +38,7 @@ import com.perdi.backend.userpkg.User;
  *          toda vez que um usuário vê um post, ou seja, entra no post que
  *          aparece em seu "feed".
  *
- *      postExample.markAsEdited();
+ *      postExample2.markAsEdited();
  *          Toda vez que o postExample1, por exemplo, for editado, essa função
  *          deve estar sendo chamada, para marcar que o post foi editado.
  */
