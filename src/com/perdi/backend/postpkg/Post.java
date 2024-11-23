@@ -1,4 +1,5 @@
 package com.perdi.backend.postpkg;
+
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
 import java.util.Locale;
@@ -9,7 +10,45 @@ import com.perdi.backend.grouppkg.Group;
 import com.perdi.backend.reactionpkg.Reaction;
 import com.perdi.backend.userpkg.User;
 
-// @author Abigail Sayury
+/*
+ *      Post postExample1 = new TextPost/VideoPost/PhotoPost(ExampleUser);
+ *          Cria um Post para o Usuário ExampleUser, criando um ID aleatório
+ *          para esse post, a data de criação desse post, configurando a
+ *          quantidade de visualizações totais e semanais.
+ *
+ *      Post postExample2 = new TextPost/VideoPost/PhotoPost(ExampleUser2, ExampleGroup);
+ *          Cria um Post para o Usuário ExampleUser2, criando um ID aleatório
+ *          para esse post, a data de criação desse post, configurando a
+ *          quantidade de vizualizações totais e semanais, adicionando
+ *          também o inidicador que esse post pertence à um grupo, e o
+ *          grupo a qual ele pertence que é o ExampleGroup.
+ *
+ *      postExample.setContent(PostContent);
+ *          Define o conteúdo do Post com PostContent, e cada subclasse
+ *          identifica se o conteúdo está de acordo com o seu tipo de
+ *          conteúdo, retornando conteúdo inválido em caso de não
+ *          concordância.
+ *
+ *      String/ArrayList<String> conteudo = postExample.getContent();
+ *          Retorna ao objeto conteudo uma String ou um Array de Strings
+ *          do conteúdo do postExample.
+ *
+ *      postExample1.addView();
+ *          Adiciona ao postExample1 mais uma vizualização, e deve ser usado
+ *          toda vez que um usuário vê um post, ou seja, entra no post que
+ *          aparece em seu "feed".
+ *
+ *      postExample.markAsEdited();
+ *          Toda vez que o postExample1, por exemplo, for editado, essa função
+ *          deve estar sendo chamada, para marcar que o post foi editado.
+ */
+
+/**
+ * @author Sayu
+ *
+ * Classe Abstrata para servir de template para todos as
+ * subclasses que herdam de Post.
+ */
 
 public abstract class Post {
     
@@ -134,7 +173,7 @@ public abstract class Post {
     }
 
     public void setPostLastViewWeek(int postLastViewWeek) {
-        this.postLastViewWeek = this.postLastViewWeek;
+        this.postLastViewWeek = postLastViewWeek;
     }
 
     public boolean isPostDomainFlag() {
