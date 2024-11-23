@@ -14,8 +14,6 @@ public class Group {
     //Usuario vai ser a classe criada
     public Group() {
         this.id = UUID.randomUUID(); // altered for persistence, and consistency across the project
-        this.members = new ArrayList<>();
-        this.posts = new ArrayList<>();
     }
     public void putUser(User new_member) {
         members.add(new_member);
