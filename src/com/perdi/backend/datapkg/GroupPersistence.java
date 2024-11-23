@@ -6,12 +6,15 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.perdi.backend.grouppkg.Group;
 import com.perdi.backend.persistencepkg.LocalDateTimeAdapter;
+import com.perdi.backend.userpkg.User;
 
 import java.io.*;
+import java.lang.management.MemoryUsage;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Essa classe serve para armazenar os grupos em arquivos Json
@@ -99,5 +102,16 @@ public class GroupPersistence {
         List<Group> groups = loadGroups();
         groups.add(group);
         saveGroups(groups);
+    }
+
+    public Group loadGroupByID(UUID uuid) {
+        List<Group> groups = loadGroups();
+        for (Group group : groups) {
+            if (group.getId().equals(uuid)) {
+                return group;
+            }
+        }
+        System.out.println("Grupo com ID " + uuid + " nao encontrado.");
+        return null;
     }
 }
