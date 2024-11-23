@@ -9,13 +9,14 @@ import com.perdi.backend.postpkg.Post;
 
 public class Group {
     private UUID id;
+    private String name;
     private ArrayList<User> members;
     private ArrayList<Post> posts;
     //Usuario vai ser a classe criada
-    public Group() {
-        this.id = UUID.randomUUID(); // altered for persistence, and consistency across the project
-        this.members = new ArrayList<>();
-        this.posts = new ArrayList<>();
+    public Group() {this.id = UUID.randomUUID();}
+    public Group(String name) {
+        this.id = UUID.randomUUID();
+        this.name = name;// altered for persistence, and consistency across the project
     }
     public void putUser(User new_member) {
         members.add(new_member);
@@ -32,6 +33,7 @@ public class Group {
     public User getUser(User usuario) {
         return this.members.get(this.members.indexOf(usuario));
     }
+    public String getName() {return this.name;}
     public boolean isUserInGroup(User user) {
         return members.contains(user);
     }
