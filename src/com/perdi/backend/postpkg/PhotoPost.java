@@ -64,6 +64,7 @@ public class PhotoPost extends Post {
         return string;
     }
 
+    @Override
     public String toString() {
         return "PotoPhost{" +
                 "urls=" + returnUrls() +

@@ -43,7 +43,7 @@ public class User {
     
     
     // Editar perfil
-    private void editProfile(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy){
+    public void editProfile(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy){
         // se o parâmetro for nulo, significa que o usuário não quer alterar esse parâmetro
         if(userName != null){
             setUserName(userName);
