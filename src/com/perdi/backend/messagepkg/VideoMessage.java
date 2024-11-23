@@ -16,4 +16,8 @@ public class VideoMessage extends Message {
     public void setContent(String url_video) {
         this.url_video = url_video;
     }
+
+    public String getUrl_video() {
+        return url_video;
+    }
 }

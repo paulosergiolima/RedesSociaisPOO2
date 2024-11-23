@@ -13,6 +13,7 @@ public class TextMessage extends Message {
         super(sender, date);
         this.text = text;
         this.editFlag = false;
+        this.editDate = null;
     }
 
     @Override
@@ -26,5 +27,9 @@ public class TextMessage extends Message {
 
     public void setEditDate(LocalDateTime editDate) {
         this.editDate = editDate;
+    }
+
+    public String getText() {
+        return text;
     }
 }
