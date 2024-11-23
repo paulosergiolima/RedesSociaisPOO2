@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Essa classe serve para armazenar os usuarios em arquivos Json
@@ -99,5 +100,16 @@ public class UserPersistence {
         List<User> users = loadUsers();
         users.add(user);
         saveUsers(users);
+    }
+
+    public User loadUserByID(UUID uuid) {
+        List<User> users = loadUsers();
+        for (User user : users) {
+            if (user.getId().equals(uuid)) {
+                return user;
+            }
+        }
+        System.out.println("Usuario com ID " + uuid + " nao encontrado.");
+        return null;
     }
 }

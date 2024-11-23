@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.perdi.backend.datapkg.LocalDateAdapter;
 import com.perdi.backend.persistencepkg.LocalDateTimeAdapter;
 import com.perdi.backend.eventpkg.Event;
+import com.perdi.backend.userpkg.User;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Essa classe serve para facilitar armazenar os eventos em arquivos Json
@@ -103,5 +105,16 @@ public class EventPersistence {
         List<Event> events = loadEvents();
         events.add(event);
         saveEvents(events);
+    }
+
+    public Event loadEventByID(UUID uuid) {
+        List<Event> events = loadEvents();
+        for (Event event : events) {
+            if (event.getEventID().equals(uuid)) {
+                return event;
+            }
+        }
+        System.out.println("Evento com ID " + uuid + " nao encontrado.");
+        return null;
     }
 }
