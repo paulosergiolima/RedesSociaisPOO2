@@ -5,19 +5,22 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.perdi.backend.grouppkg.Group;
+import com.perdi.backend.persistencepkg.LocalDateTimeAdapter;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GroupPersistence {
 
-    private static final String FILE_NAME = "groups.json";
+    private static final String FILE_NAME = "src/com/perdi/backend/database/groups.json";
     private Gson gson;
 
     public GroupPersistence() {
         this.gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .setPrettyPrinting()
                 .create();
     }
@@ -58,7 +61,7 @@ public class GroupPersistence {
         return groups;
     }
 
-    public void addEvent(Group group) {
+    public void addGroup(Group group) {
         List<Group> groups = loadGroups();
         groups.add(group);
         saveGroups(groups);

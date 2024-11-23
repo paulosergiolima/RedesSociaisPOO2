@@ -1,0 +1,22 @@
+[
+  {
+    "text": "Ola, mundo!",
+    "editFlag": false,
+    "sender": {
+      "id": "880f6178-781e-4771-b172-acc877b2c89e",
+      "userName": "user1",
+      "nickName": "nickname1",
+      "email": "email1@example.com",
+      "pronouns": "he/him",
+      "profileDescription": "Description1",
+      "accountPrivacy": true,
+      "creationDate": "2024-11-23T13:41:58.658046253",
+      "followers": [],
+      "following": [],
+      "blockedUsers": [],
+      "userPost": []
+    },
+    "date": "2024-11-23T13:41:58.65818243",
+    "messageID": "312f9b60-0960-40c4-9aa8-3a79dec25165"
+  }
+]

@@ -17,4 +17,7 @@ public class ImageMessage extends Message {
         this.url_image = url_image;
     }
 
+    public String getUrl_image() {
+        return url_image;
+    }
 }

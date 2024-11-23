@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.perdi.backend.adapterpkg.LocalDateAdapter;
-import com.perdi.backend.adapterpkg.LocalDateTimeAdapter;
+import com.perdi.backend.persistencepkg.LocalDateAdapter;
+import com.perdi.backend.persistencepkg.LocalDateTimeAdapter;
 import com.perdi.backend.eventpkg.Event;
 
 import java.io.*;
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class EventPersistence {
 
-    private static final String FILE_NAME = "events.json";
+    private static final String FILE_NAME = "src/com/perdi/backend/database/users.json";
     private Gson gson;
 
     public EventPersistence() {

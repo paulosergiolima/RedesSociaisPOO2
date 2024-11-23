@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.perdi.backend.adapterpkg.LocalDateTimeAdapter;
+import com.perdi.backend.persistencepkg.LocalDateTimeAdapter;
 import com.perdi.backend.userpkg.User;
 
 import java.io.*;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class UserPersistence {
 
-    private static final String FILE_NAME = "users.json";
+    private static final String FILE_NAME = "src/com/perdi/backend/database/users.json";
     private Gson gson;
 
     public UserPersistence() {
