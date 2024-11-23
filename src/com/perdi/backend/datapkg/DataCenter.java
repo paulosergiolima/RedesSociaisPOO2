@@ -1,6 +1,6 @@
 package com.perdi.backend.datapkg;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -307,7 +307,7 @@ public class DataCenter {
         return result;
     }
 
-    public ArrayList<Event> getEventsInDate(LocalDate date)
+    public ArrayList<Event> getEventsInDate(LocalDateTime date)
     {
         ArrayList<Event> result = new ArrayList<>();
         for (Event event : events)
@@ -325,7 +325,7 @@ public class DataCenter {
         return result;
     }
 
-    public ArrayList<Event> getEventsAfterDate(LocalDate date)
+    public ArrayList<Event> getEventsAfterDate(LocalDateTime date)
     {
         ArrayList<Event> result = new ArrayList<>();
         for (Event event : events)
@@ -354,5 +354,10 @@ public class DataCenter {
         this.posts = posts;
         this.groups = groups;
         this.events = events;
+    }
+
+    public Boolean isFollowing(User user, UUID followedID)
+    {
+        return user.isFollowing(followedID);
     }
 }

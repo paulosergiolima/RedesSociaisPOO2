@@ -4,8 +4,10 @@ import com.perdi.backend.datapkg.DataCenter;
 import com.perdi.backend.datapkg.UserPersistence;
 import com.perdi.backend.postpkg.Post;
 import com.perdi.backend.postpkg.TextPost;
+import com.perdi.backend.sytempkg.Recommendation;
 import com.perdi.backend.userpkg.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,8 +40,20 @@ public class App {
         user1.addTextPost("Meu primeiro post!");
         System.out.println("João tem " + user1.getUserPost().size() + " posts.");
         TextPost post = (TextPost) user1.getUserPost().get(0); // Pegando o primeiro post de João
-        user1.removePost(post.getPostID());
-        System.out.println("João tem " + user1.getUserPost().size() + " posts após remoção.");
+        post.addView();
+        post.addView();
+        post.addView();
+        post.addView();
+        post.addView();
+
+        user2.addTextPost("batata!");
+        TextPost post2 = (TextPost) user2.getUserPost().get(0); // Pegando o primeiro post de João
+        post2.addView();
+        System.out.println("User1 Reccomend ");
+        ArrayList<Post> posts = Recommendation.getWeeklyRecommendation(user1);
+
+        System.out.println("User2 Reccomend ");
+        ArrayList<Post> posts2 = Recommendation.getWeeklyRecommendation(user2);
 
         // Testando a edição de perfil
         user1.editProfile("joao_doe_updated", null, "novo_email@example.com", null, "Agora sou mais experiente!", null);

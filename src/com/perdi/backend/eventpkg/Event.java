@@ -33,8 +33,8 @@ public class Event {
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
         this.eventPrivacy = eventPrivacy;
-        eventParticipants = new ArrayList<User>();
-        eventParticipants.add(firstUser);
+        eventParticipants = new ArrayList<UUID>();
+        eventParticipants.add(firstUser.getId());
     }
 
     public Event(UUID eventID,String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, Group firstGroup ) {
@@ -44,9 +44,10 @@ public class Event {
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
         this.eventPrivacy = eventPrivacy;
-        eventParticipants = new ArrayList<User>();
+        eventParticipants = new ArrayList<UUID>();
+        ArrayList<User> groupParticipants = firstGroup.getUsers();
         for( int i = 0, n = firstGroup.getUserCount() ; i < n; i++ ){
-            eventParticipants.add(firstGroup.getId(i) );
+            eventParticipants.add(groupParticipants.get(i).getId() );
         }
     }
 
@@ -57,8 +58,8 @@ public class Event {
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
         this.eventPrivacy = eventPrivacy;
-        eventParticipants = new ArrayList<User>();
-        eventParticipants.add(firstUser);
+        eventParticipants = new ArrayList<UUID>();
+        eventParticipants.add(firstUser.getId());
     }
 
     public Event(UUID eventID,String eventName, String eventDate, String eventLocation, int eventPrivacy, Group firstGroup ) {
@@ -68,9 +69,10 @@ public class Event {
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
         this.eventPrivacy = eventPrivacy;
-        eventParticipants = new ArrayList<User>();
+        eventParticipants = new ArrayList<UUID>();
+        ArrayList<User> groupParticipants = firstGroup.getUsers();
         for( int i = 0, n = firstGroup.getUserCount() ; i < n; i++ ){
-            eventParticipants.add(firstGroup.getId(i) );
+            eventParticipants.add(groupParticipants.get(i).getId() );
         }
     }
 
@@ -104,7 +106,7 @@ public class Event {
             for( int counterInvited = 0; counterInvited < arrayFriends.size() ; counterInvited++){ // for para todos q alguem esta seguindo
                 for( int counterParticipants = 0; counterParticipants < eventParticipants.size(); counterParticipants++ ){ // for para todos os
                     if( arrayFriends.get(counterInvited).equals(eventParticipants.get(counterParticipants)) ){             // participantes do evento
-                        eventParticipants.add(participant.getId);
+                        eventParticipants.add(participant.getId());
                         this.eventNumberParticipants++;
                         return;
                     }
@@ -113,7 +115,7 @@ public class Event {
 
         }
         if(this.eventPrivacy == 0 ){ // evento publico
-            eventParticipants.add(participant.getId);
+            eventParticipants.add(participant.getId());
             this.eventNumberParticipants++;
             return;
         }
@@ -169,15 +171,15 @@ public class Event {
 
     public int getEventNumberParticipants() {
         return eventNumberParticipants;
-
-
-        public int getEventPrivacy() {
-            return eventPrivacy;
-        }
-
-        public void setEventPrivacy(int eventPrivacy) {
-            this.eventPrivacy = eventPrivacy;
-        }
-
-
     }
+
+    public int getEventPrivacy() {
+        return eventPrivacy;
+    }
+
+    public void setEventPrivacy(int eventPrivacy) {
+        this.eventPrivacy = eventPrivacy;
+    }
+
+
+}

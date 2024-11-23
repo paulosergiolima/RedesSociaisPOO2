@@ -264,6 +264,16 @@ public class User {
         this.userPost = userPost;
     }
     
-    
+    public Boolean isFollowing(UUID followedID)
+    {
+        for(User user: following)
+        {
+            if(user.getId().equals(followedID))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     
 }

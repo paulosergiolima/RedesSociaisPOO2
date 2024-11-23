@@ -1,6 +1,7 @@
 package com.perdi.backend.sytempkg;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import com.perdi.backend.postpkg.Post;
 import com.perdi.backend.datapkg.DataCenter;
@@ -15,20 +16,17 @@ import com.perdi.backend.userpkg.User;
 public class Recommendation {
     private static DataCenter dataCenter = DataCenter.getInstance();
 
-    private static double calculateWeeklyRecommendationValue(Post post)
+    private static double calculateWeeklyRecommendationValue(Post post, User user)
     {
         ArrayList<Post> aux = dataCenter.getPosts();
+
         double isFriend = 1;
-        for(Post p : aux)
+        if(dataCenter.isFollowing(user, post.getPostUserID()))
         {
-            if(p.getPostUserID().equals(post.getPostUserID()))
-            {
-                isFriend = 1.5;
-                break;
-            }
+            isFriend = 1.5;
         }
 
-        return post.getPostWeeklyViews() * isFriend;
+        return (post.getPostWeeklyViews() + isFriend) * isFriend;
     }
 
     public static ArrayList<Post> getWeeklyRecommendation(User user)
@@ -37,12 +35,18 @@ public class Recommendation {
         ArrayList<Post> aux = dataCenter.getPosts();
         for (Post p : aux)
         {
-            PostValue v = new PostValue(p, calculateWeeklyRecommendationValue(p));
+            PostValue v = new PostValue(p, calculateWeeklyRecommendationValue(p, user));
             array.add(v);
         }
 
-        SortPostValue.quickSort(array, 0, array.size() - 1);
-        aux = null;
+        array.sort((a,b) -> a.getValue() < b.getValue() ? 1 : -1);
+
+        for(PostValue p: array)
+        {
+            System.out.println("PostR ID" + p.getPost().getPostID() + " Value" + p.getValue());
+        }
+
+        aux = new ArrayList<Post>();
 
         for (PostValue p : array)
         {
@@ -53,5 +57,44 @@ public class Recommendation {
         return aux;
     }
 
+    private static double calculateAllTimeRecommendationValue(Post post, User user)
+    {
+        ArrayList<Post> aux = dataCenter.getPosts();
 
+        double isFriend = 1;
+        if(dataCenter.isFollowing(user, post.getPostUserID()))
+        {
+            isFriend = 1.5;
+        }
+
+        return (post.getPostWeeklyViews() + isFriend) * isFriend;
+    }
+
+    public static ArrayList<Post> getAllTimeRecommendation(User user)
+    {
+        ArrayList<PostValue> array = new ArrayList<PostValue>();
+        ArrayList<Post> aux = dataCenter.getPosts();
+        for (Post p : aux)
+        {
+            PostValue v = new PostValue(p, calculateAllTimeRecommendationValue(p, user));
+            array.add(v);
+        }
+
+        array.sort((a,b) -> a.getValue() < b.getValue() ? 1 : -1);
+
+        for(PostValue p: array)
+        {
+            System.out.println("PostR ID" + p.getPost().getPostID() + " Value" + p.getValue());
+        }
+
+        aux = new ArrayList<Post>();
+
+        for (PostValue p : array)
+        {
+            Post v = p.getPost();
+            aux.add(v);
+        }
+
+        return aux;
+    }
 }
