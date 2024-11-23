@@ -162,7 +162,8 @@ public class User {
         if(postToRemove == null){ // não encontrou
             return;
         }else{
-            userPost.remove(postToRemove); // remove o post
+            userPost.remove(postToRemove);// remove o post
+            dataCenter.removePost(this.id,postID);
             return;
         }
     }

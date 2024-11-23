@@ -5,6 +5,7 @@ import java.time.format.*;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import com.perdi.backend.datapkg.DataCenter;
 import com.perdi.backend.userpkg.User;
 import com.perdi.backend.grouppkg.Group;
 
@@ -43,6 +44,8 @@ public class Event {
 
     private int eventPrivacy; // 0 public, 1 only friends
 
+    private static DataCenter dataCenter = DataCenter.getInstance();
+
     public Event(String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, User firstUser ) {
         this.eventID = UUID.randomUUID();
         this.eventName = eventName;
@@ -52,6 +55,8 @@ public class Event {
         this.eventPrivacy = eventPrivacy;
         eventParticipants = new ArrayList<UUID>();
         eventParticipants.add(firstUser.getId());
+
+        dataCenter.addEvent(this);
     }
 
     public Event(String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, Group firstGroup ) {
@@ -66,6 +71,7 @@ public class Event {
         for( int i = 0, n = firstGroup.getUserCount() ; i < n; i++ ){
             eventParticipants.add(groupParticipants.get(i).getId() );
         }
+        dataCenter.addEvent(this);
     }
 
     public Event(String eventName, String eventDate, String eventLocation, int eventPrivacy, User firstUser ) {
@@ -77,6 +83,7 @@ public class Event {
         this.eventPrivacy = eventPrivacy;
         eventParticipants = new ArrayList<UUID>();
         eventParticipants.add(firstUser.getId());
+        dataCenter.addEvent(this);
     }
 
     public Event(String eventName, String eventDate, String eventLocation, int eventPrivacy, Group firstGroup ) {
@@ -91,6 +98,7 @@ public class Event {
         for( int i = 0, n = firstGroup.getUserCount() ; i < n; i++ ){
             eventParticipants.add(groupParticipants.get(i).getId() );
         }
+        dataCenter.addEvent(this);
     }
 
     public void postponeEventInDays(int days){
