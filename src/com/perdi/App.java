@@ -1,8 +1,8 @@
 package com.perdi;
 
 import com.perdi.backend.eventpkg.Event;
-import com.perdi.backend.persistencepkg.EventPersistence;
-import com.perdi.backend.persistencepkg.UserPersistence;
+import com.perdi.backend.datapkg.EventPersistence;
+import com.perdi.backend.datapkg.UserPersistence;
 import com.perdi.backend.userpkg.User;
 
 import java.util.List;
