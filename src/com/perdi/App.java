@@ -47,6 +47,10 @@ public class App {
         System.out.println("Novo e-mail de João: " + user1.getEmail());
         System.out.println("Nova descrição de perfil de João: " + user1.getProfileDescription());
 
+        dataCenter.addUser(user1);
+        dataCenter.addUser(user2);
+        dataCenter.addUser(user3);
+
         userPersistence.saveUsers(dataCenter.getUsers());
 
         System.out.println("Trazendo usuarios para o armazenamento local...");
