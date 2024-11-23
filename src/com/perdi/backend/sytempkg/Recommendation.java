@@ -41,11 +41,6 @@ public class Recommendation {
 
         array.sort((a,b) -> a.getValue() < b.getValue() ? 1 : -1);
 
-        for(PostValue p: array)
-        {
-            System.out.println("PostR ID" + p.getPost().getPostID() + " Value" + p.getValue());
-        }
-
         aux = new ArrayList<Post>();
 
         for (PostValue p : array)
@@ -81,11 +76,6 @@ public class Recommendation {
         }
 
         array.sort((a,b) -> a.getValue() < b.getValue() ? 1 : -1);
-
-        for(PostValue p: array)
-        {
-            System.out.println("PostR ID" + p.getPost().getPostID() + " Value" + p.getValue());
-        }
 
         aux = new ArrayList<Post>();
 
