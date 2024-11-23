@@ -40,14 +40,6 @@ import com.perdi.backend.reactionpkg.Reaction;
  *          Toda vez que o postExample1, por exemplo, for editado, essa função
  *          deve estar sendo chamada, para marcar que o post foi editado.
  *
- *      postExample1.addSingleComment(comentarioDoZezinho);
- *          Quando um usuário comentar em um post, utiliza essa função para
- *          adicionar o comentário ao array de comentários do post.
- *
- *      postExample1.removeSingleComment(comentarioDoZezinho);
- *          Quando o usuário quiser excluir o comentário, ou o dono do post
- *          quiser excluir o comentário, ou seja, remover do array do Post
- *          utiliza essa função para remover o comentário do array.
  */
 
 /**
@@ -117,15 +109,6 @@ public abstract class Post {
         setPostEditDate();
     }
 
-    public void addSingleComment(Comment comment) {
-        postComments.addLast(comment);
-    }
-
-    public void removeSingleComment(Comment comment) {
-        for (int i = 0; i < postComments.size(); i++) {
-            if (postComments.get(i).equals(comment)) postComments.remove(i);
-        }
-    }
 
     // Getters & Setters
 
