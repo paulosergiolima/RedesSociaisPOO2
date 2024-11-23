@@ -83,6 +83,9 @@ import com.perdi.backend.userpkg.User;
  *
  *      ArrayList<Event> events = instancia.getEventsAfterDate(LocalDate)
  *          retorna oum array list com todos os eventos
+ *
+ *      instancia.setDataCenter(ArrayList<User>, ArrayList<Post>, ArrayList<Group>, ArrayList<Event>);
+ *          Setta o valor dos arrays para os arrays recebidos, serve somente ao carregar da persistencia
  */
 
 public class DataCenter {
@@ -343,5 +346,13 @@ public class DataCenter {
     public ArrayList<Event> getEvents()
     {
         return events;
+    }
+
+    public void setDataCenter(ArrayList<User> users, ArrayList<Post> posts, ArrayList<Group> groups, ArrayList<Event> events)
+    {
+        this.users = users;
+        this.posts = posts;
+        this.groups = groups;
+        this.events = events;
     }
 }
