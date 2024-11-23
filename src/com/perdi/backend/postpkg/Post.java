@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.ArrayList;
 
+import com.perdi.backend.datapkg.DataCenter;
 import com.perdi.backend.reactionpkg.Reaction;
 
 /*
@@ -69,6 +70,8 @@ public abstract class Post {
     private ArrayList<Reaction> postReactions;
     private CommentManager comments;
 
+    private static DataCenter dataCenter = DataCenter.getInstance();
+
     // Public Posts Constructor
     public Post(UUID postUserID) {
         setPostID();
@@ -77,6 +80,7 @@ public abstract class Post {
         setPostTotalViews();
         setPostWeeklyViews();
         setPostLastViewWeek(0);
+        dataCenter.addPost(this);
     }
 
     // Group Posts Constructor
@@ -156,7 +160,7 @@ public abstract class Post {
         return postTotalViews;
     }
 
-    private void setPostTotalViews() {
+    private void setPostTotalViews() {//to do
         this.postTotalViews = 0;
     }
 
