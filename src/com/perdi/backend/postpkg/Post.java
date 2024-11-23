@@ -6,9 +6,7 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.ArrayList;
 
-import com.perdi.backend.grouppkg.Group;
 import com.perdi.backend.reactionpkg.Reaction;
-import com.perdi.backend.userpkg.User;
 
 /*
  *      Post postExample1 = new TextPost/VideoPost/PhotoPost(ExampleUser);
@@ -63,7 +61,7 @@ public abstract class Post {
     
     private UUID postID;
     private UUID postUserID;
-    private Group postDomain;
+    private UUID postDomainID;
     private String postTitle;
     
     private LocalDateTime postCreationDate;
@@ -90,7 +88,7 @@ public abstract class Post {
     }
 
     // Group Posts Constructor
-    public Post(UUID postUserID, Group postDomain) {
+    public Post(UUID postUserID, UUID postDomainID) {
         setPostID();
         setPostUserID(postUserID);
         setPostCreationDate();
@@ -98,7 +96,7 @@ public abstract class Post {
         setPostWeeklyViews();
         setPostLastViewWeek(0);
         setPostDomainFlag();
-        setPostDomain(postDomain);
+        setPostDomain(postDomainID);
     }
 
     public abstract Object getContent();
@@ -203,12 +201,12 @@ public abstract class Post {
         this.postDomainFlag = true;
     }
 
-    public Group getPostDomain() {
-        return postDomain;
+    public UUID getPostDomain() {
+        return postDomainID;
     }
 
-    private void setPostDomain(Group postDomain) {
-        this.postDomain = postDomain;
+    private void setPostDomain(UUID postDomainID) {
+        this.postDomainID = postDomainID;
     }
     
     public String getPostTitle() {
