@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.perdi.backend.eventpkg.Event;
 import com.perdi.backend.userpkg.User;
 
 import java.io.*;
@@ -110,5 +111,18 @@ public class UserPersistence {
         }
         System.out.println("Usuario com ID " + uuid + " nao encontrado.");
         return null;
+    }
+
+    public boolean removeUserByID(UUID uuid) {
+        ArrayList<User> users = loadUsers();
+        boolean removed = users.removeIf(user -> user.getId().equals(uuid));
+
+        if (removed) {
+            saveUsers(users);
+            System.out.println("Usuario com ID " + uuid + " removido com sucesso.");
+        } else {
+            System.out.println("Usuario com ID " + uuid + " nao encontrado.");
+        }
+        return removed;
     }
 }

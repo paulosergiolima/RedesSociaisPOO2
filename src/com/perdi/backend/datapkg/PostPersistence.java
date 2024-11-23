@@ -54,7 +54,7 @@ public class PostPersistence {
         }
     }
 
-    public ArrayList<Post> loadPost() {
+    public ArrayList<Post> loadPosts() {
        ArrayList<Post> posts = new ArrayList<>();
         File file = new File(FILE_PATH);
 
@@ -82,13 +82,13 @@ public class PostPersistence {
     }
 
     public void addPost(Post post) {
-        ArrayList<Post> posts = loadPost();
+        ArrayList<Post> posts = loadPosts();
         posts.add(post);
         savePosts(posts);
     }
 
     public Post loadPostByID(UUID uuid) {
-        ArrayList<Post> posts = loadPost();
+        ArrayList<Post> posts = loadPosts();
         for (Post post : posts) {
             if (post.getPostID().equals(uuid)) {
                 return post;
@@ -97,5 +97,18 @@ public class PostPersistence {
 
         System.out.println("Post com ID " + uuid + " nao encontrado.");
         return null;
+    }
+
+    public boolean removePostByID(UUID uuid) {
+        ArrayList<Post> posts = loadPosts();
+        boolean removed = posts.removeIf(post -> post.getPostID().equals(uuid));
+
+        if (removed) {
+            savePosts(posts);
+            System.out.println("Post com ID " + uuid + " removido com sucesso.");
+        } else {
+            System.out.println("Post com ID " + uuid + " nao encontrado.");
+        }
+        return removed;
     }
 }

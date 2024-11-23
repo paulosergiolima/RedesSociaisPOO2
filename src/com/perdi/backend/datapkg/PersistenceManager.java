@@ -15,6 +15,6 @@ public class PersistenceManager {
     }
 
     public void loadAll(DataCenter dataCenter) {
-       dataCenter.setDataCenter(userPersistence.loadUsers(), postPersistence.loadPost(), groupPersistence.loadGroups(), eventPersistence.loadEvents());
+       dataCenter.setDataCenter(userPersistence.loadUsers(), postPersistence.loadPosts(), groupPersistence.loadGroups(), eventPersistence.loadEvents());
     }
 }
