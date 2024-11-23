@@ -1,85 +1,95 @@
 package com.perdi.backend.postpkg;
 
 /**
- * @author arthu
+ * @author arthur
  */
 
 import java.util.ArrayList;
 import java.util.UUID;
 
+import com.perdi.backend.postpkg.Post;
 
+/*
+*      Modelo do comentario:
+*      Como deve ser usado no codigo
+*          descricao da funcao
+*
+*       Comentario(atributo de post).addComment(Post post);
+*           Adiciona um post para a lista de comentarios
+*
+*       Comment
+*
+*/
 
 public class Comment {
     //constantes
     private static final int MAX_SIZE = 300;
-    private static final int MAX_DEPTH = 1;
 
     //atributos
-    private ArrayList<Post> comments;
-    private Comment subcomment;
+    private Post content;
+    private ArrayList<Comment> subcomment;
     private int depth;
 
     //construtor
-    Comment(int depth)
+    Comment(Post content)
     {
-        this.comments = new ArrayList<Post>();
-        this.depth = depth;
-        if(depth < MAX_DEPTH)
-        {
-            subcomment = new Comment(this.depth+1);
-        }
+        this.content = content;
+        this.subcomment = new ArrayList<Comment>();
+        this.depth = 0;
     }
 
+    Comment(Post content, int depth)
+    {
+        this.content = content;
+        this.subcomment = new ArrayList<Comment>();
+        this.depth = depth;
+    }
 
     //getters
-    public Comment getSubComments()
+    public UUID getPostID()
+    {
+        return this.content.getPostID();
+    }
+
+    public Comment getSubComment(UUID uuid)
+    {
+        for (Comment comment : subcomment) {
+            if (comment.getPostID().equals(uuid)) {
+                return comment;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Comment> getSubComments()
     {
         return this.subcomment;
     }
 
-    public int getCommentsSectionSize()
-    {
-        return this.comments.size();
-    }
     public int getSubCommentsSectionSize()
     {
-        return this.subcomment.getCommentsSectionSize();
-    }
-
-    //adicao de comentarios na lista
-    public boolean addComment(Post post)
-    {
-        if(comments.size() < MAX_SIZE)
-        {
-            comments.add(post);
-            return true;
-        }
-        return false;
+        return this.subcomment.size();
     }
 
     //adicao de subcommentarios
     public boolean addSubComment(Post post)
     {
-        if(subcomment.getCommentsSectionSize() < MAX_SIZE)
+        if(subcomment.size() < MAX_SIZE)
         {
-            return subcomment.addComment(post);
-        }
-        return false;
-    }
-
-    //remocao de comentarios na lista
-    public boolean removeComment(UUID targetPostID){
-        for( int i = 0; i < comments.size(); i++ ){
-            if( comments.get(i).getPostID().equals(targetPostID)  ){
-                comments.remove(i);
-                return true;
-            }
+            return subcomment.add(new Comment(post, depth+1));
         }
         return false;
     }
 
     //remocao de subcomentario
     public boolean removeSubComment(UUID targetPostID){
-        return subcomment.removeComment(targetPostID);
+        for( int i = 0; i < subcomment.size(); i++ ){
+            if( subcomment.get(i).getPostID().equals(targetPostID)  ){
+                subcomment.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
+
 }
