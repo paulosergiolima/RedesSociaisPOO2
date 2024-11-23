@@ -4,7 +4,7 @@ import com.perdi.backend.eventpkg.Event;
 import com.perdi.backend.grouppkg.Group;
 import com.perdi.backend.messagepkg.Message;
 import com.perdi.backend.messagepkg.TextMessage;
-import com.perdi.backend.persistencepkg.PersistenceManager;
+import com.perdi.backend.datapkg.PersistenceManager;
 import com.perdi.backend.postpkg.Post;
 import com.perdi.backend.postpkg.TextPost;
 import com.perdi.backend.userpkg.User;

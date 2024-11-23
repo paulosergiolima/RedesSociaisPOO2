@@ -7,6 +7,8 @@ package com.perdi.backend.postpkg;
 import java.util.ArrayList;
 import java.util.UUID;
 
+
+
 public class Comment {
     //constantes
     private static final int MAX_SIZE = 300;
