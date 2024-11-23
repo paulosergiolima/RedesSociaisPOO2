@@ -1,5 +1,7 @@
 package com.perdi.backend.postpkg;
 import java.time.LocalDateTime;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.ArrayList;
 
@@ -22,7 +24,10 @@ public abstract class Post {
     private boolean postDomainFlag;
     private boolean postEditFlag;
     
-    private int views;
+    private int postTotalViews;
+    private int postWeeklyViews;
+    private int postLastViewWeek;
+
     private ArrayList<Reaction> postReactions;
     private ArrayList<Comment> postComments;
 
@@ -31,7 +36,9 @@ public abstract class Post {
         setPostID();
         setPostUser(postUser);
         setPostCreationDate();
-        this.views = 0;
+        setPostTotalViews();
+        setPostWeeklyViews();
+        setPostLastViewWeek(0);
     }
 
     // Group Posts Constructor
@@ -39,7 +46,9 @@ public abstract class Post {
         setPostID();
         setPostUser(postUser);
         setPostCreationDate();
-        this.views = 0;
+        setPostTotalViews();
+        setPostWeeklyViews();
+        setPostLastViewWeek(0);
         setPostDomainFlag();
         setPostDomain(postDomain);
     }
@@ -47,8 +56,14 @@ public abstract class Post {
     public abstract Object getContent();
     public abstract void setContent(Object content);
 
-    public void addViews() {
-        this.views++;
+    public void addView() {
+        this.postTotalViews++;
+        int nowWeek = LocalDateTime.now().get(WeekFields.of(Locale.getDefault()).weekOfYear());
+        if (getPostLastViewWeek() != nowWeek) {
+            setPostLastViewWeek(nowWeek);
+            setPostWeeklyViews();
+        }
+        this.postWeeklyViews++;
     }
 
     public void markAsEdited() {
@@ -98,12 +113,28 @@ public abstract class Post {
         postEditDate = LocalDateTime.now();
     }
 
-    public int getViews() {
-        return views;
+    public int getPostTotalViews() {
+        return postTotalViews;
     }
 
-    public void setViews(int views) {
-        this.views = views;
+    private void setPostTotalViews() {
+        this.postTotalViews = 0;
+    }
+
+    public int getPostWeeklyViews() {
+        return postWeeklyViews;
+    }
+
+    public void setPostWeeklyViews() {
+        this.postWeeklyViews = 0;
+    }
+
+    public int getPostLastViewWeek() {
+        return postLastViewWeek;
+    }
+
+    public void setPostLastViewWeek(int postLastViewWeek) {
+        this.postLastViewWeek = this.postLastViewWeek;
     }
 
     public boolean isPostDomainFlag() {
