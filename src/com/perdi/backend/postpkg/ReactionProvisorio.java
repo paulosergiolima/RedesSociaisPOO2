@@ -7,6 +7,7 @@ package com.perdi.backend.postpkg;
 import java.util.ArrayList;
 
 import com.perdi.backend.postpkg.EnumReactionsProvisorio;
+import com.perdi.backend.userpkg.User;
 
 import java.time.LocalDate;
 

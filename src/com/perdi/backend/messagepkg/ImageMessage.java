@@ -16,4 +16,5 @@ public class ImageMessage extends Message {
     public void setContent(String url_video) {
         this.url_image = url_image;
     }
+
 }

@@ -12,10 +12,11 @@ import com.perdi.backend.userpkg.*;
 public class PhotoPost extends Post {
     private List<String> urls;
 
-    public PhotoPost(User postUser, List<String> urls) {
+    public PhotoPost(User postUser) {
         super(postUser);
-        this.urls = urls;
+        this.urls = new ArrayList<>();
     }
+
     public PhotoPost(User postUser, Group postGroup, List<String> urls) {
         super(postUser, postGroup);
         setImage(urls);
@@ -52,9 +53,19 @@ public class PhotoPost extends Post {
         return this.urls.remove(url);
     }
 
+    private String returnUrls() {
+        String string = "";
+
+        for (String url : this.urls) {
+            string = string.concat(url);
+        }
+
+        return string;
+    }
+
     public String toString() {
         return "PotoPhost{" +
-                "urls=" + urls +
+                "urls=" + returnUrls() +
                 ", postUser=" + getPostUser() +
                 ", postGroup=" + getPostDomain() +
                 ", createdAt= " + getPostCreationDate() +
