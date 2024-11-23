@@ -13,16 +13,50 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Essa classe serve para armazenar os grupos em arquivos Json
+ *
+ * @author miguel
+ */
+
+/*
+ *      Modelo do comentario:
+ *      Como deve ser usado no codigo
+ *          descricao da funcao
+ *
+ *      GroupPersistence instancia = GroupPersistence.getInstance();
+ *          retorna uma instancia(que e unica) de GroupPersistence
+ *
+ *      instancia.saveGroups(List<Group>);
+ *          cria um arquivo Json que tera os dados do input
+ *
+ *      instancia.loadGroups();
+ *          retorna os grupos do arquivo json localizado na database
+ *              se o arquivo de estiver vazio ou nao existir retorna uma lista vazia
+ *
+ *
+ *      instancia.addGroup(Group);
+ *          carrega o arquivo json em uma lista de grupos, adiciona o input nessa lista e salva a lista
+ */
+
 public class GroupPersistence {
 
     private static final String FILE_NAME = "src/com/perdi/backend/database/groups.json";
+    private static GroupPersistence instance;
     private Gson gson;
 
-    public GroupPersistence() {
+    private GroupPersistence() {
         this.gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .setPrettyPrinting()
                 .create();
+    }
+
+    public static GroupPersistence getInstance() {
+        if (instance == null) {
+            instance = new GroupPersistence();
+        }
+        return instance;
     }
 
     public void saveGroups(List<Group> groups) {

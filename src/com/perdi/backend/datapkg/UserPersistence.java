@@ -13,16 +13,50 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Essa classe serve para armazenar os usuarios em arquivos Json
+ *
+ * @author miguel
+ */
+
+/*
+ *      Modelo do comentario:
+ *      Como deve ser usado no codigo
+ *          descricao da funcao
+ *
+ *      UserPersistence instancia = UserPersistence.getInstance();
+ *          retorna uma instancia(que e unica) de UserPersistence
+ *
+ *      instancia.saveUsers(List<User>);
+ *          cria um arquivo Json que tera os dados do input
+ *
+ *      instancia.loadUsers();
+ *          retorna os usuarioss do arquivo json localizado na database
+ *              se o arquivo de estiver vazio ou nao existir retorna uma lista vazia
+ *
+ *
+ *      instancia.addUser(User);
+ *          carrega o arquivo json em uma lista de usuarios, adiciona o input nessa lista e salva a lista
+ */
+
 public class UserPersistence {
 
     private static final String FILE_NAME = "src/com/perdi/backend/database/users.json";
+    private static UserPersistence instance;
     private Gson gson;
 
-    public UserPersistence() {
+    private UserPersistence() {
         this.gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .setPrettyPrinting()
                 .create();
+    }
+
+    public static UserPersistence getInstance() {
+        if (instance == null) {
+            instance = new UserPersistence();
+        }
+        return instance;
     }
 
     public void saveUsers(List<User> users) {
