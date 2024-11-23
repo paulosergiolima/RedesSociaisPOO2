@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
 
+import com.perdi.backend.datapkg.DataCenter;
 import com.perdi.backend.userpkg.User;
 import com.perdi.backend.postpkg.Post;
 
@@ -12,11 +13,13 @@ public class Group {
     private String name;
     private ArrayList<User> members;
     private ArrayList<Post> posts;
+    private static DataCenter dataCenter = DataCenter.getInstance();
     //Usuario vai ser a classe criada
-    public Group() {this.id = UUID.randomUUID();}
+    public Group() {this.id = UUID.randomUUID();dataCenter.addGroup(this);}
     public Group(String name) {
         this.id = UUID.randomUUID();
         this.name = name;// altered for persistence, and consistency across the project
+        dataCenter.addGroup(this);
     }
     public void putUser(User new_member) {
         members.add(new_member);
