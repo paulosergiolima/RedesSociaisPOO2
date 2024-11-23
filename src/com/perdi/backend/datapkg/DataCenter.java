@@ -12,7 +12,7 @@ import com.perdi.backend.userpkg.User;
 /**
  * Essa classe serve para facilitar a comunicacao entre objetos de diferentes tipos
  *
- * @author arthu
+ * @author arthur
  */
 
 /*
@@ -44,6 +44,9 @@ import com.perdi.backend.userpkg.User;
  *
  *      Post post = instancia.getPost(UUID);
  *          retorna um Post do array list que tenha o mesmo UUID
+ *
+ *      ArrayList<Post> posts = instancia.getPosts(User);
+ *          retorna um array list com todos os posts do user
  *
  *      ArrayList<Post> posts = instancia.getPosts();
  *          retorna um array list com todos os posts
@@ -83,7 +86,7 @@ import com.perdi.backend.userpkg.User;
  */
 
 public class DataCenter {
-    private DataCenter instance;
+    private static DataCenter instance;
     private ArrayList<User> users;
     private ArrayList<Post> posts;
     //private ArrayList<Message> messages; n sei pq a classe de persistencia salva Message
@@ -99,7 +102,7 @@ public class DataCenter {
         events = new ArrayList<>();
     }
 
-    public DataCenter getInstannce()
+    public static DataCenter getInstance()
     {
         if(instance == null)
         {
@@ -108,7 +111,7 @@ public class DataCenter {
         return instance;
     }
 
-    public synchronized void addUser(User user)
+    public void addUser(User user)
     {
         users.add(user);
     }

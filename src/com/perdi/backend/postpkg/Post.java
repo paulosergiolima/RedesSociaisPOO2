@@ -29,7 +29,7 @@ public abstract class Post {
     private int postLastViewWeek;
 
     private ArrayList<Reaction> postReactions;
-    private ArrayList<Comment> postComments;
+    private CommentManager comments;
 
     // Public Posts Constructor
     public Post(User postUser) {
@@ -169,11 +169,11 @@ public abstract class Post {
         this.postReactions = postReactions;
     }
 
-    public ArrayList<Comment> getPostComments() {
-        return postComments;
+    public CommentManager getPostComments() {
+        return comments;
     }
 
-    public void setPostComments(ArrayList<Comment> postComments) {
-        this.postComments = postComments;
+    public void setPostComments(CommentManager postComments) {
+        this.comments = postComments;
     }
 }
