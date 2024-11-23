@@ -10,12 +10,24 @@ package com.perdi.backend.postpkg;
 
  public class SubComment extends Post{
      //construtor
-     SubComment(User postUser, String postText)
+     SubComment(User postUser)
      {
-         super(postUser, postText);
+         super(postUser);
      }
- 
+
+     @Override
+     public Object getContent() {
+         return null;
+     }
+
+     @Override
+     public void setContent(Object content) {
+
+     }
+
      //seters
+
+     /*
      public boolean setSubCommentText(String newText)
      {
          //WIP gostaria de montar uma classe de utilidade para fazer verificacao desse tipo (em relacao a validez(n sei se isso eh uma palavra) de uma variavel)
@@ -28,4 +40,6 @@ package com.perdi.backend.postpkg;
          }
          return false;
      }
+
+      */
  }

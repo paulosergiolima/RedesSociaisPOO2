@@ -12,6 +12,8 @@ import com.perdi.backend.userpkg.*;
 public class PhotoPost extends Post {
     private List<String> urls;
 
+    public PhotoPost() {}
+
     public PhotoPost(User postUser) {
         super(postUser);
         this.urls = new ArrayList<>();

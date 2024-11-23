@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import com.perdi.backend.postpkg.Post;
+import com.perdi.backend.postpkg.TextPost;
 
 public class User {
     private UUID id;
@@ -24,7 +25,7 @@ public class User {
     private ArrayList<Post> userPost; 
 
 
-    public User(UUID id, String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy, LocalDateTime creationDate, ArrayList<User> followers, ArrayList<User> following, Set<User> blockedUsers, ArrayList<Post> userPost) {
+    public User(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy) {
         this.id = UUID.randomUUID();
         this.userName = userName;
         this.nickName = nickName;
@@ -134,8 +135,8 @@ public class User {
     }
 
     // Adicionar post
-    public void addPost(String postText){
-        Post newPost = new Post(this, postText);
+    public void addTextPost(String postText){
+        Post newPost = new TextPost(this, postText);
         userPost.add(newPost);
 
         return;
@@ -148,7 +149,7 @@ public class User {
 
         // vasculhar cada um dos posts procurando pelo ID
         for(int i = 0; i < userPost.size(); i++){ 
-            if(userPost.get(i).getPostID().equalsIgnoreCase(postID)){ // encontrou o post
+            if(userPost.get(i).getPostID().equals(postID)){ // encontrou o post
                 postToRemove = userPost.get(i); // posição do post
                 break; // não precisa continuar a iteração 
             }

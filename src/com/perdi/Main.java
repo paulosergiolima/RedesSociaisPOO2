@@ -15,6 +15,8 @@ import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+
+
         PersistenceManager persistence = new PersistenceManager();
         ArrayList<User> users = new ArrayList<>();
         ArrayList<Post> posts = new ArrayList<>();
@@ -22,8 +24,8 @@ public class Main {
         ArrayList<Group> groups = new ArrayList<>();
         ArrayList<Event> events = new ArrayList<>();
 
-        User u1 = new User(UUID.randomUUID(), "a", "b", "c", "d", null, true, null, null, null, null, null);
-        User u2 = new User(UUID.randomUUID(), "a", "b", "c", "d", null, true, null, null, null, null, null);
+        User u1 = new User("a", "b", "c", "d", null, true);
+        User u2 = new User("a", "b", "c", "d", null, true);
         users.add(u1);
         users.add(u2);
 
@@ -43,8 +45,8 @@ public class Main {
         groups.add(g1);
         groups.add(g2);
 
-        Event e1 = new Event(UUID.randomUUID(), "eventName", "eventDate", "eventLocation", "eventDescription", 2, u1);
-        Event e2 = new Event(UUID.randomUUID(), "eventName", "eventDate", "eventLocation", "eventDescription", 2, u2);
+        Event e1 = new Event(UUID.randomUUID(), "eventName", "22/11/2024", "eventLocation", "eventDescription", 2, u1);
+        Event e2 = new Event(UUID.randomUUID(), "eventName", "22/11/2024", "eventLocation", "eventDescription", 2, u2);
         events.add(e1);
         events.add(e2);
 

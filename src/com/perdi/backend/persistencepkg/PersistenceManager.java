@@ -16,72 +16,81 @@ import com.perdi.backend.userpkg.User;
 
 public class PersistenceManager {
 
-    private static final Gson gson = new Gson();
+    private static final Gson gson;
+
+    static {
+        gson = new Gson()
+    }
 
     public PersistenceManager() {}
 
-    public void saveUsers(List<User> users, String filename) throws IOException {
-        try (Writer writer = new FileWriter(filename)) {
-            gson.toJson(users, writer);
+    private String ensureJsonExtension(String filename) {
+        return filename.endsWith(".json") ? filename : filename + ".json";
+    }
+
+    public boolean deleteFile(String filename) {
+        File file = new File(ensureJsonExtension(filename));
+        return file.exists() && file.delete();
+    }
+
+    public boolean fileExists(String filename) {
+        return new File(ensureJsonExtension(filename)).exists();
+    }
+
+    public <T> void saveToFile(List<T> list, String fileName) throws IOException {
+        try (FileWriter writer = new FileWriter(ensureJsonExtension(fileName))) {
+            gson.toJson(list, writer);
         }
+    }
+
+    public <T> List<T> loadFromFile(String filename, Type type) throws IOException {
+        File file = new File(ensureJsonExtension(filename));
+        if (!file.exists()) {
+            throw new FileNotFoundException("File not found: " + file.getAbsolutePath());
+        }
+        try (Reader reader = new FileReader(ensureJsonExtension(filename))) {
+            return gson.fromJson(reader, type);
+        } catch (Exception e) {
+            throw new IOException("Failed to load from file: " + filename, e);
+        }
+    }
+    public void saveUsers(List<User> users, String filename) throws IOException {
+        saveToFile(users, filename);
     }
 
     public List<User> loadUsers(String filename) throws IOException {
-        try (Reader reader = new FileReader(filename)) {
-            Type userListType = new TypeToken<List<User>>() {}.getType();
-            return gson.fromJson(reader, userListType);
-        }
+        return loadFromFile(filename, getUserListType());
     }
 
     public void savePosts(List<Post> posts, String filename) throws IOException {
-        try (Writer writer = new FileWriter(filename)) {
-            gson.toJson(posts, writer);
-        }
+        saveToFile(posts,filename);
     }
 
     public List<Post> loadPosts(String filename) throws IOException {
-        try (Reader reader = new FileReader(filename)) {
-            Type postListType = new TypeToken<List<Post>>() {}.getType();
-            return gson.fromJson(reader, postListType);
-        }
+        return loadFromFile(filename, getPostListType());
     }
 
     public void saveGroups(List<Group> groups, String filename) throws IOException {
-        try (Writer writer = new FileWriter(filename)) {
-            gson.toJson(groups, writer);
-        }
+        saveToFile(groups, filename);
     }
 
     public List<Group> loadGroups(String filename) throws IOException {
-        try (Reader reader = new FileReader(filename)) {
-            Type groupListType = new TypeToken<List<Group>>() {}.getType();
-            return gson.fromJson(reader, groupListType);
-        }
+        return loadFromFile(filename, getGroupListType());
     }
     public void saveEvents(List<Event> events, String filename) throws IOException {
-        try (Writer writer = new FileWriter(filename)) {
-            gson.toJson(events, writer);
-        }
+        saveToFile(events, filename);
     }
 
     public List<Event> loadEvents(String filename) throws IOException {
-        try (Reader reader = new FileReader(filename)) {
-            Type eventListType = new TypeToken<List<Event>>() {}.getType();
-            return gson.fromJson(reader, eventListType);
-        }
+        return loadFromFile(filename, getEventListType());
     }
 
     public void saveMessages(List<Message> messages, String filename) throws IOException {
-        try (Writer writer = new FileWriter(filename)) {
-            gson.toJson(messages, writer);
-        }
+        saveToFile(messages, filename);
     }
 
     public List<Message> loadMessages(String filename) throws IOException {
-        try (Reader reader = new FileReader(filename)) {
-            Type messageListType = new TypeToken<List<Message>>() {}.getType();
-            return gson.fromJson(reader, messageListType);
-        }
+        return loadFromFile(filename, getMessageListType());
     }
 
     // Methods to retrieve specific objects by ID
@@ -103,5 +112,20 @@ public class PersistenceManager {
 
     public Optional<Message> getMessageById(UUID id, String filename) throws IOException {
         return loadMessages(filename).stream().filter(message -> message.getMessageID().equals(id)).findFirst();
+    }
+
+    private static Type getUserListType() {
+        return new  TypeToken<List<User>>() {}.getType();
+    }private static Type getPostListType() {
+        return new  TypeToken<List<Post>>() {}.getType();
+    }
+    private static Type getGroupListType() {
+        return new  TypeToken<List<Group>>() {}.getType();
+    }
+    private static Type getEventListType() {
+        return new  TypeToken<List<Event>>() {}.getType();
+    }
+    private static Type getMessageListType() {
+        return new  TypeToken<List<Message>>() {}.getType();
     }
 }
