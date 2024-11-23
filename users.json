@@ -1,0 +1,30 @@
+[
+  {
+    "id": "421ed1df-faa9-416b-99fe-4e6a516f0c31",
+    "userName": "user1",
+    "nickName": "nickname1",
+    "email": "email1@example.com",
+    "pronouns": "he/him",
+    "profileDescription": "Description1",
+    "accountPrivacy": true,
+    "creationDate": "2024-11-23T04:05:29.003151603",
+    "followers": [],
+    "following": [],
+    "blockedUsers": [],
+    "userPost": []
+  },
+  {
+    "id": "c406bb13-4c51-4ec6-93af-ee92641f66d6",
+    "userName": "user1",
+    "nickName": "nickname1",
+    "email": "email1@example.com",
+    "pronouns": "he/him",
+    "profileDescription": "Description1",
+    "accountPrivacy": true,
+    "creationDate": "2024-11-23T04:09:08.477504434",
+    "followers": [],
+    "following": [],
+    "blockedUsers": [],
+    "userPost": []
+  }
+]
