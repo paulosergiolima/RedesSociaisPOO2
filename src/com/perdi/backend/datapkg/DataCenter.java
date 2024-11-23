@@ -1,6 +1,6 @@
 package com.perdi.backend.datapkg;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -307,12 +307,12 @@ public class DataCenter {
         return result;
     }
 
-    public ArrayList<Event> getEventsInDate(LocalDateTime date)
+    public ArrayList<Event> getEventsInDate(LocalDate date)
     {
         ArrayList<Event> result = new ArrayList<>();
         for (Event event : events)
         {
-            if(event.getEventDate().isEqual(date))
+            if(event.getEventDate().isEqual(date.atStartOfDay()))
             {
                 result.add(event);
             }
@@ -325,12 +325,12 @@ public class DataCenter {
         return result;
     }
 
-    public ArrayList<Event> getEventsAfterDate(LocalDateTime date)
+    public ArrayList<Event> getEventsAfterDate(LocalDate date)
     {
         ArrayList<Event> result = new ArrayList<>();
         for (Event event : events)
         {
-            if(event.getEventDate().isAfter(date))
+            if(event.getEventDate().isAfter(date.atStartOfDay()))
             {
                 result.add(event);
             }

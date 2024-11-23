@@ -13,6 +13,18 @@ import com.perdi.backend.userpkg.User;
  * @author arthur
  */
 
+/*
+ *      Modelo do comentario:
+ *      Como deve ser usado no codigo
+ *          descricao da funcao
+ *
+ *      ArrayList<Post> recomendacoes = Recommendation.getWeeklyRecommendation(User);
+ *          retorna um array de posts ordenados na ordem de "importancia semanal" para o usuario
+ *
+ *      ArrayList<Post> recomendacoes = Recommendation.getWeeklyRecommendation(User);
+ *          retorna um array de posts ordenados na ordem de "importancia desde o comeco" para o usuario
+*/
+
 public class Recommendation {
     private static DataCenter dataCenter = DataCenter.getInstance();
 
@@ -38,7 +50,7 @@ public class Recommendation {
             PostValue v = new PostValue(p, calculateWeeklyRecommendationValue(p, user));
             array.add(v);
         }
-
+        //Eu nao sei oq eh isso, mas o importante eh que parece que esta funcionando e isso eh tudo que importa
         array.sort((a,b) -> a.getValue() < b.getValue() ? 1 : -1);
 
         aux = new ArrayList<Post>();
