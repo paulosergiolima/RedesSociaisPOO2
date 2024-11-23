@@ -114,4 +114,17 @@ public class EventPersistence {
         System.out.println("Evento com ID " + uuid + " nao encontrado.");
         return null;
     }
+
+    public boolean removeEventByID(UUID uuid) {
+        ArrayList<Event> events = loadEvents();
+        boolean removed = events.removeIf(event -> event.getEventID().equals(uuid));
+
+        if (removed) {
+            saveEvents(events);
+            System.out.println("Evento com ID " + uuid + " removido com sucesso.");
+        } else {
+            System.out.println("Evento com ID " + uuid + " nao encontrado.");
+        }
+        return removed;
+    }
 }
