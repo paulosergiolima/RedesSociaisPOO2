@@ -18,8 +18,8 @@ public class PhotoPost extends Post {
         this.urls = new ArrayList<>();
     }
 
-    public PhotoPost(UUID postUserID, Group postGroup, List<String> urls) {
-        super(postUserID, postGroup);
+    public PhotoPost(UUID postUserID, UUID postGroupID, List<String> urls) {
+        super(postUserID, postGroupID);
         setImage(urls);
     }
 
