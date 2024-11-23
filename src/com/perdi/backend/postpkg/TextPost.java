@@ -12,8 +12,8 @@ public class TextPost extends Post {
         setPostTextContent(postTextContent);
     }
 
-    public TextPost(UUID postUserID, Group postGroup, String postTextContent) {
-        super(postUserID, postGroup);
+    public TextPost(UUID postUserID, UUID postGroupID, String postTextContent) {
+        super(postUserID, postGroupID);
         setPostTextContent(postTextContent);
     }
 

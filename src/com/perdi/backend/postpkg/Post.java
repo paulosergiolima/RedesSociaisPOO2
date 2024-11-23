@@ -6,9 +6,7 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.ArrayList;
 
-import com.perdi.backend.grouppkg.Group;
 import com.perdi.backend.reactionpkg.Reaction;
-import com.perdi.backend.userpkg.User;
 
 /*
  *      Post postExample1 = new TextPost/VideoPost/PhotoPost(ExampleUser);
@@ -42,14 +40,6 @@ import com.perdi.backend.userpkg.User;
  *          Toda vez que o postExample1, por exemplo, for editado, essa função
  *          deve estar sendo chamada, para marcar que o post foi editado.
  *
- *      postExample1.addSingleComment(comentarioDoZezinho);
- *          Quando um usuário comentar em um post, utiliza essa função para
- *          adicionar o comentário ao array de comentários do post.
- *
- *      postExample1.removeSingleComment(comentarioDoZezinho);
- *          Quando o usuário quiser excluir o comentário, ou o dono do post
- *          quiser excluir o comentário, ou seja, remover do array do Post
- *          utiliza essa função para remover o comentário do array.
  */
 
 /**
@@ -63,7 +53,7 @@ public abstract class Post {
     
     private UUID postID;
     private UUID postUserID;
-    private Group postDomain;
+    private UUID postDomainID;
     private String postTitle;
     
     private LocalDateTime postCreationDate;
@@ -90,7 +80,7 @@ public abstract class Post {
     }
 
     // Group Posts Constructor
-    public Post(UUID postUserID, Group postDomain) {
+    public Post(UUID postUserID, UUID postDomainID) {
         setPostID();
         setPostUserID(postUserID);
         setPostCreationDate();
@@ -98,7 +88,7 @@ public abstract class Post {
         setPostWeeklyViews();
         setPostLastViewWeek(0);
         setPostDomainFlag();
-        setPostDomain(postDomain);
+        setPostDomain(postDomainID);
     }
 
     public abstract Object getContent();
@@ -119,15 +109,6 @@ public abstract class Post {
         setPostEditDate();
     }
 
-    public void addSingleComment(Comment comment) {
-        postComments.addLast(comment);
-    }
-
-    public void removeSingleComment(Comment comment) {
-        for (int i = 0; i < postComments.size(); i++) {
-            if (postComments.get(i).equals(comment)) postComments.remove(i);
-        }
-    }
 
     // Getters & Setters
 
@@ -203,12 +184,12 @@ public abstract class Post {
         this.postDomainFlag = true;
     }
 
-    public Group getPostDomain() {
-        return postDomain;
+    public UUID getPostDomain() {
+        return postDomainID;
     }
 
-    private void setPostDomain(Group postDomain) {
-        this.postDomain = postDomain;
+    private void setPostDomain(UUID postDomainID) {
+        this.postDomainID = postDomainID;
     }
     
     public String getPostTitle() {
