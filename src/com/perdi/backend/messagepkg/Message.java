@@ -26,4 +26,6 @@ public abstract class Message {
     private void setMessageID() {
         this.messageID = UUID.randomUUID();
     }
+
+
 }
