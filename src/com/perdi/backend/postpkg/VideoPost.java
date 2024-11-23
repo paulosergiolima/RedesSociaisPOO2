@@ -16,4 +16,13 @@ public class VideoPost extends Post  {
         this.url_video = url_video;
     }
 
+    @Override
+    public Object getContent() {
+        return null;
+    }
+
+    @Override
+    public void setContent(Object content) {
+
+    }
 }

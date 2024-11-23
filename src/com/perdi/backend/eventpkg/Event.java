@@ -45,7 +45,7 @@ public class Event {
         this.eventDescription = eventDescription;
         this.eventPrivacy = eventPrivacy;
         eventParticipants = new ArrayList<User>();
-        for( int i = 0, n = firstGroup.getUserCount ; i < n; i++ ){
+        for( int i = 0, n = firstGroup.getUserCount() ; i < n; i++ ){
             eventParticipants.add(firstGroup.getUser(i) );
         }
     }
