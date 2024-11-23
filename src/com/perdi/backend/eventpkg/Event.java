@@ -12,12 +12,29 @@ import com.perdi.backend.grouppkg.Group;
  * @author cristian.eidi_unesp
  */
 
+/*
+Bateria de testes feito na main
+
+Event event1 = new Event("nomedoevento", "23-11-2024", "aqui", 1, user1);
+        event1.postponeEventInDays(2);
+        event1.advanceEventInDays(1);
+        event1.postponeEventInMonths(2);
+        event1.advanceEventInMonths(1);
+        event1.postponeEventInYears(2);
+        event1.advanceEventInYears(1);
+        System.out.println(event1.getEventDate());
+        user1.followUser(user2);
+        user2.followUser(user1);
+        event1.addParticipant(user2);
+        event1.addParticipant(user3);
+        event1.removeParticipant(user2);
+*/
 
 public class Event {
 
     private UUID eventID;
     private String eventName;
-    private LocalDateTime eventDate;
+    private LocalDate eventDate;
     private String eventLocation;
     private String eventDescription;
 
@@ -29,7 +46,7 @@ public class Event {
     public Event(String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, User firstUser ) {
         this.eventID = UUID.randomUUID();
         this.eventName = eventName;
-        this.eventDate = LocalDateTime.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
         this.eventPrivacy = eventPrivacy;
@@ -37,10 +54,10 @@ public class Event {
         eventParticipants.add(firstUser.getId());
     }
 
-    public Event(UUID eventID,String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, Group firstGroup ) {
+    public Event(String eventName, String eventDate, String eventLocation, String eventDescription, int eventPrivacy, Group firstGroup ) {
         this.eventID = UUID.randomUUID();
         this.eventName = eventName;
-        this.eventDate = LocalDateTime.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
         this.eventPrivacy = eventPrivacy;
@@ -54,7 +71,7 @@ public class Event {
     public Event(String eventName, String eventDate, String eventLocation, int eventPrivacy, User firstUser ) {
         this.eventID = UUID.randomUUID();// sem eventDescription
         this.eventName = eventName;
-        this.eventDate = LocalDateTime.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
         this.eventPrivacy = eventPrivacy;
@@ -62,10 +79,10 @@ public class Event {
         eventParticipants.add(firstUser.getId());
     }
 
-    public Event(UUID eventID,String eventName, String eventDate, String eventLocation, int eventPrivacy, Group firstGroup ) {
+    public Event(String eventName, String eventDate, String eventLocation, int eventPrivacy, Group firstGroup ) {
         this.eventID = UUID.randomUUID(); // sem eventDescription
         this.eventName = eventName;
-        this.eventDate = LocalDateTime.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
         this.eventPrivacy = eventPrivacy;
@@ -102,17 +119,23 @@ public class Event {
 
     public void addParticipant(User participant){
         if(this.eventPrivacy == 1){ // evento apenas amigos
+
             ArrayList<User> arrayFriends = participant.getFollowing();
+            ArrayList<UUID> arrayUIDD = new ArrayList<UUID>();
+            for( int i = 0, n = arrayFriends.size() ; i < n; i++ ){
+                arrayUIDD.add(arrayFriends.get(i).getId() );
+            }
             for( int counterInvited = 0; counterInvited < arrayFriends.size() ; counterInvited++){ // for para todos q alguem esta seguindo
                 for( int counterParticipants = 0; counterParticipants < eventParticipants.size(); counterParticipants++ ){ // for para todos os
-                    if( arrayFriends.get(counterInvited).equals(eventParticipants.get(counterParticipants)) ){             // participantes do evento
+                    if( arrayUIDD.get(counterInvited).equals(eventParticipants.get(counterParticipants)) ){             // participantes do evento
                         eventParticipants.add(participant.getId());
                         this.eventNumberParticipants++;
+                        System.out.println("adicionado");
                         return;
                     }
                 }
             }
-
+            System.out.println("Nao adicionado");
         }
         if(this.eventPrivacy == 0 ){ // evento publico
             eventParticipants.add(participant.getId());
@@ -125,12 +148,15 @@ public class Event {
 
 
     public void removeParticipant(User participant){
-        for( int counter = 0; counter < eventNumberParticipants; counter++ ){
-            if( participant.equals(eventParticipants.get(counter))  ){
+        for( int counter = 0; counter <= eventNumberParticipants; counter++ ){
+            if( (participant.getId()).equals(eventParticipants.get(counter))  ){
                 eventParticipants.remove(counter);
                 this.eventNumberParticipants--;
+                System.out.println("removido");
+                return;
             }
         }
+        System.out.println("nao removido");
     }
 
     public UUID getEventID() {
@@ -145,12 +171,12 @@ public class Event {
         this.eventName = eventName;
     }
 
-    public LocalDateTime getEventDate() {
+    public LocalDate getEventDate() {
         return eventDate;
     }
 
     public void setEventDate(String eventDate) {
-        this.eventDate = LocalDateTime.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.eventDate = LocalDate.parse(eventDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public String getEventLocation() {
