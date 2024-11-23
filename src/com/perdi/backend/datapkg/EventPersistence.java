@@ -15,17 +15,52 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Essa classe serve para facilitar armazenar os eventos em arquivos Json
+ *
+ * @author miguel
+ */
+
+/*
+ *      Modelo do comentario:
+ *      Como deve ser usado no codigo
+ *          descricao da funcao
+ *
+ *      EventPersistence instancia = EventPersistence.getInstance();
+ *          retorna uma instancia(que e unica) de EventPersistence
+ *
+ *      instancia.saveEvents(List<Event>);
+ *          cria um arquivo Json que tera os dados do input
+ *
+ *      instancia.loadEvents();
+ *          retorna os eventos do arquivo json localizado na database
+ *              se o arquivo de estiver vazio ou nao existir retorna uma lista vazia
+ *
+ *
+ *      instancia.addEvent(Event);
+ *          carrega o arquivo json em uma lista de eventos, adiciona o input nessa lista e salva a lista
+ */
+
+
 public class EventPersistence {
 
     private static final String FILE_NAME = "src/com/perdi/backend/database/events.json";
+    private static EventPersistence instance;
     private Gson gson;
 
-    public EventPersistence() {
+    private EventPersistence() {
         this.gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .setPrettyPrinting()
                 .create();
+    }
+
+    public static EventPersistence getInstance()  {
+        if (instance == null) {
+            instance = new EventPersistence();
+        }
+        return instance;
     }
 
     public void saveEvents(List<Event> events) {
@@ -54,7 +89,7 @@ public class EventPersistence {
             }
 
         } catch (JsonSyntaxException | EOFException e) {
-            System.out.println("Erro ao interpretar o JSON.  O arquivo pode estar corrompido ou vazio.");
+            System.out.println("Erro ao interpretar o JSON. O arquivo pode estar corrompido ou vazio.");
             e.printStackTrace();
             events = new ArrayList<>();
         } catch (IOException e) {
