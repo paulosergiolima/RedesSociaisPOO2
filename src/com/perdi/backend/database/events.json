@@ -23,5 +23,30 @@
     ],
     "eventNumberParticipants": 0,
     "eventPrivacy": 0
+  },
+  {
+    "eventID": "7cb8fe1d-b4ed-47d3-a85c-8a2f05c8ab32",
+    "eventName": "Event Name",
+    "eventDate": "23/11/2024",
+    "eventLocation": "Event Location",
+    "eventDescription": "Event Description",
+    "eventParticipants": [
+      {
+        "id": "b54464f7-29d3-4449-9a2d-70af0b18aeab",
+        "userName": "user1",
+        "nickName": "nickname1",
+        "email": "email1@example.com",
+        "pronouns": "he/him",
+        "profileDescription": "Description1",
+        "accountPrivacy": true,
+        "creationDate": "2024-11-23T15:05:01.640600834",
+        "followers": [],
+        "following": [],
+        "blockedUsers": [],
+        "userPost": []
+      }
+    ],
+    "eventNumberParticipants": 0,
+    "eventPrivacy": 0
   }
 ]

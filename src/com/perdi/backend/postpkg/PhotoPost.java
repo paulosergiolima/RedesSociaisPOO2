@@ -1,12 +1,11 @@
 package com.perdi.backend.postpkg;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import com.perdi.backend.grouppkg.Group;
-import com.perdi.backend.userpkg.*;
 
 
 public class PhotoPost extends Post {
@@ -14,13 +13,13 @@ public class PhotoPost extends Post {
 
     // public PhotoPost() {}
 
-    public PhotoPost(User postUser) {
-        super(postUser);
+    public PhotoPost(UUID postUserID) {
+        super(postUserID);
         this.urls = new ArrayList<>();
     }
 
-    public PhotoPost(User postUser, Group postGroup, List<String> urls) {
-        super(postUser, postGroup);
+    public PhotoPost(UUID postUserID, Group postGroup, List<String> urls) {
+        super(postUserID, postGroup);
         setImage(urls);
     }
 
@@ -68,7 +67,7 @@ public class PhotoPost extends Post {
     public String toString() {
         return "PotoPhost{" +
                 "urls=" + returnUrls() +
-                ", postUser=" + getPostUser() +
+                ", postUser=" + getPostUserID() +
                 ", postGroup=" + getPostDomain() +
                 ", createdAt= " + getPostCreationDate() +
                 "}";

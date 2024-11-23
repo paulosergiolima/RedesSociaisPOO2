@@ -1,4 +1,5 @@
 package com.perdi.backend.postpkg;
+
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
 import java.util.Locale;
@@ -9,12 +10,59 @@ import com.perdi.backend.grouppkg.Group;
 import com.perdi.backend.reactionpkg.Reaction;
 import com.perdi.backend.userpkg.User;
 
-// @author Abigail Sayury
+/*
+ *      Post postExample1 = new TextPost/VideoPost/PhotoPost(ExampleUser);
+ *          Cria um Post para o Usuário ExampleUser, criando um ID aleatório
+ *          para esse post, a data de criação desse post, configurando a
+ *          quantidade de visualizações totais e semanais.
+ *
+ *      Post postExample2 = new TextPost/VideoPost/PhotoPost(ExampleUser2, ExampleGroup);
+ *          Cria um Post para o Usuário ExampleUser2, criando um ID aleatório
+ *          para esse post, a data de criação desse post, configurando a
+ *          quantidade de vizualizações totais e semanais, adicionando
+ *          também o inidicador que esse post pertence à um grupo, e o
+ *          grupo a qual ele pertence que é o ExampleGroup.
+ *
+ *      postExample.setContent(PostContent);
+ *          Define o conteúdo do Post com PostContent, e cada subclasse
+ *          identifica se o conteúdo está de acordo com o seu tipo de
+ *          conteúdo, retornando conteúdo inválido em caso de não
+ *          concordância.
+ *
+ *      String/ArrayList<String> conteudo = postExample.getContent();
+ *          Retorna ao objeto conteudo uma String ou um Array de Strings
+ *          do conteúdo do postExample.
+ *
+ *      postExample1.addView();
+ *          Adiciona ao postExample1 mais uma vizualização, e deve ser usado
+ *          toda vez que um usuário vê um post, ou seja, entra no post que
+ *          aparece em seu "feed".
+ *
+ *      postExample2.markAsEdited();
+ *          Toda vez que o postExample1, por exemplo, for editado, essa função
+ *          deve estar sendo chamada, para marcar que o post foi editado.
+ *
+ *      postExample1.addSingleComment(comentarioDoZezinho);
+ *          Quando um usuário comentar em um post, utiliza essa função para
+ *          adicionar o comentário ao array de comentários do post.
+ *
+ *      postExample1.removeSingleComment(comentarioDoZezinho);
+ *          Quando o usuário quiser excluir o comentário, ou o dono do post
+ *          quiser excluir o comentário, ou seja, remover do array do Post
+ *          utiliza essa função para remover o comentário do array.
+ */
+
+/**
+ * @author Sayu
+ *
+ * Classe Abstrata para servir de template para todos as
+ * subclasses que herdam de Post.
+ */
 
 public abstract class Post {
     
     private UUID postID;
-    private User postUser;
+    private UUID postUserID;
     private Group postDomain;
     private String postTitle;
     
@@ -32,9 +80,9 @@ public abstract class Post {
     private CommentManager comments;
 
     // Public Posts Constructor
-    public Post(User postUser) {
+    public Post(UUID postUserID) {
         setPostID();
-        setPostUser(postUser);
+        setPostUserID(postUserID);
         setPostCreationDate();
         setPostTotalViews();
         setPostWeeklyViews();
@@ -42,9 +90,9 @@ public abstract class Post {
     }
 
     // Group Posts Constructor
-    public Post(User postUser, Group postDomain) {
+    public Post(UUID postUserID, Group postDomain) {
         setPostID();
-        setPostUser(postUser);
+        setPostUserID(postUserID);
         setPostCreationDate();
         setPostTotalViews();
         setPostWeeklyViews();
@@ -71,6 +119,16 @@ public abstract class Post {
         setPostEditDate();
     }
 
+    public void addSingleComment(Comment comment) {
+        postComments.addLast(comment);
+    }
+
+    public void removeSingleComment(Comment comment) {
+        for (int i = 0; i < postComments.size(); i++) {
+            if (postComments.get(i).equals(comment)) postComments.remove(i);
+        }
+    }
+
     // Getters & Setters
 
     public UUID getPostID() {
@@ -81,12 +139,12 @@ public abstract class Post {
         postID = UUID.randomUUID();
     }
 
-    public User getPostUser() {
-        return postUser;
+    public UUID getPostUserID() {
+        return postUserID;
     }
 
-    private void setPostUser(User postUser) {
-        this.postUser = postUser;
+    private void setPostUserID(UUID postUserID) {
+        this.postUserID = postUserID;
     }
 
     public LocalDateTime getPostCreationDate() {
@@ -134,7 +192,7 @@ public abstract class Post {
     }
 
     public void setPostLastViewWeek(int postLastViewWeek) {
-        this.postLastViewWeek = this.postLastViewWeek;
+        this.postLastViewWeek = postLastViewWeek;
     }
 
     public boolean isPostDomainFlag() {
