@@ -4,12 +4,18 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+
+
+import com.perdi.backend.postpkg.PhotoPost;
 import com.perdi.backend.postpkg.Post;
+import com.perdi.backend.postpkg.TextPost;
+import com.perdi.backend.postpkg.VideoPost;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class PostPersistence {
@@ -19,7 +25,16 @@ public class PostPersistence {
     private Gson gson;
 
     private PostPersistence() {
+
+        RuntimeTypeAdapterFactory<Post> typeAdapterFactory = RuntimeTypeAdapterFactory
+                .of(Post.class, "type")
+                .registerSubtype(TextPost.class, "TextPost")
+                .registerSubtype(PhotoPost.class, "PhotoPost")
+                .registerSubtype(VideoPost.class, "VideoPost");
+
         this.gson = new GsonBuilder()
+                .registerTypeAdapterFactory(typeAdapterFactory)
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .setPrettyPrinting()
                 .create();
     }
