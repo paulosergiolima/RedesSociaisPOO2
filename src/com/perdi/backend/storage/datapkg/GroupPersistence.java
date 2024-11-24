@@ -41,7 +41,7 @@ import java.util.UUID;
 
 public class GroupPersistence {
 
-    private static final String FILE_NAME = "src/com/perdi/backend/database/groups.json";
+    private static final String FILE_NAME = "src/com/perdi/backend/storage/database/groups.json";
     private static GroupPersistence instance;
     private Gson gson;
 

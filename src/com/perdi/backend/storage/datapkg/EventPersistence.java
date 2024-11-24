@@ -42,7 +42,7 @@ import java.util.UUID;
 
 public class EventPersistence {
 
-    private static final String FILE_NAME = "src/com/perdi/backend/database/events.json";
+    private static final String FILE_NAME = "src/com/perdi/backend/storage/database/events.json";
     private static EventPersistence instance;
     private Gson gson;
 

@@ -18,9 +18,35 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * Essa classe serve para armazenar os posts em arquivos Json
+ *
+ * @author miguel
+ */
+
+/*
+ *      Modelo do comentario:
+ *      Como deve ser usado no codigo
+ *          descricao da funcao
+ *
+ *      PostPersistence instancia = PostPersistence.getInstance();
+ *          retorna uma instancia(que e unica) de PostPersistence
+ *
+ *      instancia.savePosts(List<Post>);
+ *          cria um arquivo Json que tera os dados do input
+ *
+ *      instancia.loadPosts();
+ *          retorna os usuarioss do arquivo json localizado na database
+ *              se o arquivo de estiver vazio ou nao existir retorna uma lista vazia
+ *
+ *
+ *      instancia.addPost(User);
+ *          carrega o arquivo json em uma lista de usuarios, adiciona o input nessa lista e salva a lista
+ */
+
 public class PostPersistence {
 
-    public static final  String FILE_PATH = "src/com/perdi/backend/database/posts.json";
+    public static final  String FILE_PATH = "src/com/perdi/backend/storage/database/posts.json";
     private static PostPersistence instance;
     private Gson gson;
 

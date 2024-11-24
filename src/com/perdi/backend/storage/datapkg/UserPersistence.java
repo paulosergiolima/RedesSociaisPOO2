@@ -40,7 +40,7 @@ import java.util.UUID;
 
 public class UserPersistence {
 
-    private static final String FILE_NAME = "src/com/perdi/backend/database/users.json";
+    private static final String FILE_NAME = "src/com/perdi/backend/storage/database/users.json";
     private static UserPersistence instance;
     private Gson gson;
 
