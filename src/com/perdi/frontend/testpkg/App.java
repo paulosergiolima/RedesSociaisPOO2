@@ -1,4 +1,4 @@
-package com.perdi.frontend.uipkg;
+package com.perdi.frontend.testpkg;
 
 import com.perdi.backend.storage.datapkg.DataCenter;
 import com.perdi.backend.storage.datapkg.UserPersistence;
