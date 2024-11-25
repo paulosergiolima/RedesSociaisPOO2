@@ -12,7 +12,7 @@
       <maximumSize width="1280" height="720"/>
       <minimumSize width="600" height="200"/>
       <name value=""/>
-      <preferredSize width="600" height="200"/>
+      <preferredSize width="600" height="300"/>
     </properties>
     <border type="none" title="" title-justification="2" title-position="2"/>
     <children>
@@ -55,16 +55,6 @@
               <text value="Password"/>
             </properties>
           </component>
-          <component id="afc28" class="javax.swing.JPasswordField" binding="PasswordField">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <margin top="2" left="5" bottom="2" right="5"/>
-            </properties>
-          </component>
           <component id="60460" class="javax.swing.JButton" binding="RegisterButton">
             <constraints>
               <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
@@ -94,27 +84,6 @@
               <text value="UserName"/>
             </properties>
           </component>
-          <grid id="1cbef" binding="WarningPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="5fb0f" class="javax.swing.JTextField" binding="WarningField">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <editable value="false"/>
-                  <visible value="false"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
           <component id="bf51e" class="javax.swing.JTextField" binding="UserNameField">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -122,6 +91,26 @@
               </grid>
             </constraints>
             <properties/>
+          </component>
+          <component id="9995" class="javax.swing.JTextField" binding="PasswordField">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="5fb0f" class="javax.swing.JTextField" binding="WarningField">
+            <constraints>
+              <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="true"/>
+              <text value=""/>
+              <visible value="true"/>
+            </properties>
           </component>
         </children>
       </grid>
