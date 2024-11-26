@@ -173,7 +173,7 @@ public class User {
     }
 
     // Adicionar mensagem
-    public void addTextMessage(String messageText, recipentID) {
+    public void addTextMessage(String messageText, UUID recipentID) {
         Message newMessage = new TextMessage(this.id, recipentID, messageText);
         userMessage.add(newMessage);
 

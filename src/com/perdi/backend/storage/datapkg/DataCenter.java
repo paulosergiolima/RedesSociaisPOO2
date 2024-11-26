@@ -364,16 +364,13 @@ public class DataCenter {
         }
     }
 
-    public Message getMessage(UUID uuid)
-    {
-        for (Message message : messages)
-        {
-            if(message.getMessageID().equals(uuid))
-            {
+    public Message getMessage(UUID uuid) {
+        for (Message message : messages) {
+            if(message.getMessageID().equals(uuid)) {
                 return message;
             }
-            return null;
         }
+        return null;
     }
 
     public ArrayList<Message> getMessages()

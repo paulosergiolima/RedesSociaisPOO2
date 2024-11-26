@@ -9,9 +9,9 @@ public class VideoMessage extends Message {
     
     private String url_video;
 
-    public VideoMessage(UUID senderID, UUID recipentID, String url_video) {
+    public VideoMessage(UUID senderID, UUID recipientID, String url_video) {
         super(senderID, recipientID);
-        setUrl_Video(url_video);
+        setUrl_video(url_video);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class VideoMessage extends Message {
     @Override
     public void setContent(Object content) {
         if (content instanceof String string) {
-            setUrl_Video(string);
+            setUrl_video(string);
         } else {
             System.out.println("Conteúdo Inválido");
         }
