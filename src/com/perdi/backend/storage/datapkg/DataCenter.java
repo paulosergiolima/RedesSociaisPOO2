@@ -8,6 +8,7 @@ import com.perdi.backend.eventpkg.Event;
 import com.perdi.backend.grouppkg.Group;
 import com.perdi.backend.feed.postpkg.Post;
 import com.perdi.backend.userpkg.User;
+import com.perdi.backend.messagepkg.Message;
 
 /**
  * Essa classe serve para facilitar a comunicacao entre objetos de diferentes tipos
@@ -92,7 +93,7 @@ public class DataCenter {
     private static DataCenter instance;
     private ArrayList<User> users;
     private ArrayList<Post> posts; // n foi implementado
-    //private ArrayList<Message> messages; n sei pq a classe de persistencia salva Message
+    private ArrayList<Message> messages;
     private ArrayList<Group> groups;
     private ArrayList<Event> events;
 
@@ -100,7 +101,7 @@ public class DataCenter {
     {
         users = new ArrayList<>();
         posts = new ArrayList<>();
-        //messages = new ArrayList<>();
+        messages = new ArrayList<>();
         groups = new ArrayList<>();
         events = new ArrayList<>();
     }
@@ -348,12 +349,45 @@ public class DataCenter {
         return events;
     }
 
-    public void setDataCenter(ArrayList<User> users, ArrayList<Post> posts, ArrayList<Group> groups, ArrayList<Event> events)
+    public void addMessage(Message message)
+    {
+        messages.add(message);
+    }
+
+    public void removeMessage(UUID uuid)
+    {
+        for (int i = 0; i < messages.size(); i++) {
+            if(messages.get(i).getMessageID().equals(uuid))
+            {
+                messages.remove(i);
+            }
+        }
+    }
+
+    public Message getMessage(UUID uuid)
+    {
+        for (Message message : messages)
+        {
+            if(message.getMessageID().equals(uuid))
+            {
+                return message;
+            }
+            return null;
+        }
+    }
+
+    public ArrayList<Message> getMessages()
+    {
+        return messages;
+    }
+
+    public void setDataCenter(ArrayList<User> users, ArrayList<Post> posts, ArrayList<Group> groups, ArrayList<Event> events, ArrayList<Message> messages)
     {
         this.users = users;
         this.posts = posts;
         this.groups = groups;
         this.events = events;
+        this.messages = messages;
     }
 
     public Boolean isFollowing(User user, UUID followedID)
