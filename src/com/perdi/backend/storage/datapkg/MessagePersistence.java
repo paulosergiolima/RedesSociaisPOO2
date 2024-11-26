@@ -7,10 +7,10 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 
-import com.perdi.backend.feed.messagepkg.Message;
-import com.perdi.backend.feed.messagepkg.TextMessage;
-import com.perdi.backend.feed.messagepkg.ImageMessage;
-import com.perdi.backend.feed.messagepkg.VideoMessage;
+import com.perdi.backend.messagepkg.Message;
+import com.perdi.backend.messagepkg.TextMessage;
+import com.perdi.backend.messagepkg.ImageMessage;
+import com.perdi.backend.messagepkg.VideoMessage;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -47,7 +47,7 @@ public class MessagePersistence {
     }
 
     public void saveMessages(ArrayList<Message> messages) {
-        try (Writer writer = new FileWriter(FILE_PATH)) {
+        try (Writer writer = new FileWriter(FILE_NAME)) {
             gson.toJson(messages, writer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,19 +56,19 @@ public class MessagePersistence {
 
     public ArrayList<Message> loadMessages() {
         ArrayList<Message> messages = new ArrayList<>();
-        File file = new File(FILE_PATH);
+        File file = new File(FILE_NAME);
 
         if (!file.exists() || file.length() == 0) {
             System.out.println("O arquivo de mensagens esta vazio ou nao existe. Retornando uma lista vazia.");
             return messages;
         }
 
-        try (Reader reader = new FileReader(FILE_PAH)) {
+        try (Reader reader = new FileReader(FILE_NAME)) {
             Type messageListType = new TypeToken<ArrayList<Message>>() {}.getType();
             messages = gson.fromJson(reader, messageListType);
 
             if (messages == null) {
-                message = new ArrayList<>();
+                messages = new ArrayList<>();
             }
         } catch (JsonSyntaxException | EOFException e) {
             System.out.println("Erro ao interpretar o Json. O arquivo pode estar corrompido ou vazio.");
@@ -81,14 +81,14 @@ public class MessagePersistence {
         return messages;
     }
 
-    public void addMessage(Message messages) {
+    public void addMessage(Message message) {
         ArrayList<Message> messages = loadMessages();
         messages.add(message);
         saveMessages(messages);
     }
 
     public Message loadMessageByID(UUID uuid) {
-        ArrayList<Message> message = loadMessages();
+        ArrayList<Message> messages = loadMessages();
         for (Message message : messages) {
             if (message.getMessageID().equals(uuid)) {
                 return message;

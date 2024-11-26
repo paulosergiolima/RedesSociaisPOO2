@@ -11,7 +11,7 @@ public class ImageMessage extends Message {
 
     public ImageMessage(UUID senderID, UUID recipentID, String url_image) {
         super(senderID, recipentID);
-        setUrl_Image(url_image);
+        setUrl_image(url_image);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class ImageMessage extends Message {
     @Override
     public void setContent(Object content) {
         if (content instanceof String string) {
-            setUrl_Image(string);
+            setUrl_image(string);
         } else {
             System.out.println("Conteúdo Inválido");
         }
