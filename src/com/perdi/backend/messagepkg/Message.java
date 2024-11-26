@@ -7,25 +7,47 @@ import com.perdi.backend.userpkg.User;
 
 public abstract class Message {
     
-    private User sender;
-    private LocalDateTime date;
     private UUID messageID;
+    private UUID senderID;
+    private UUID recipentID;
+    private LocalDateTime sendDate;
 
-    public Message(User sender, LocalDateTime date) {
-        this.sender = sender;
-        this.date = date;
-        setMessageID(); // added for the sake of consistency across the project
+    public Message(UUID senderID, UUID recipentID) {
+        setMessageID();
+        setSenderID(senderID);
+        setRecipientID(recipentID);
+        setSendDate();
     }
 
-    public abstract void setContent(String messages);
+    public abstract Object getContent();
+
+    public abstract void setContent(Object content);
 
     public UUID getMessageID() {
         return messageID;
+    }
+
+    public UUID getSenderID() {
+        return senderID;
+    }
+
+    public UUID getRecipientID() {
+        return recipentID;
     }
 
     private void setMessageID() {
         this.messageID = UUID.randomUUID();
     }
 
+    private void setSenderID(UUID senderID) {
+        this.senderID = senderID;
+    }
 
+    private void setRecipientID(UUID recipientID) {
+        this.recipentID = recipientID;
+    }
+
+    private void setSendDate() {
+        this.sendDate = LocalDateTime.now();
+    }
 }

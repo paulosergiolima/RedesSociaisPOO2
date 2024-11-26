@@ -9,6 +9,8 @@ import java.util.UUID;
 import com.perdi.backend.storage.datapkg.DataCenter;
 import com.perdi.backend.feed.postpkg.Post;
 import com.perdi.backend.feed.postpkg.TextPost;
+import com.perdi.backend.messagepkg.Message;
+import com.perdi.backend.messagepkg.TextMessage;
 
 public class User {
     private UUID id;
@@ -24,6 +26,7 @@ public class User {
     private ArrayList<User> following;
     private Set<User> blockedUsers; // evita duplicatas e é mais eficiente nesse caso
     private ArrayList<Post> userPost;
+    private ArrayList<Message> userMessage;
 
     private static DataCenter dataCenter = DataCenter.getInstance();
 
@@ -41,6 +44,7 @@ public class User {
         this.following = new ArrayList<>();
         this.blockedUsers = new HashSet<>();
         this.userPost = new ArrayList<>();
+        this.userMessage = new ArrayList<>();
 
         dataCenter.addUser(this);
     }
@@ -167,6 +171,36 @@ public class User {
             return;
         }
     }
+
+    // Adicionar mensagem
+    public void addTextMessage(String messageText, recipentID) {
+        Message newMessage = new TextMessage(this.id, recipentID, messageText);
+        userMessage.add(newMessage);
+
+        return;
+    }
+
+    // Remover mensagem
+    public void removeMessage(UUID messageID) { // procura a mensagem pelo seu ID
+
+        Message messageToRemove = null;
+
+        // vasculhar cada uma das mensagens procurando pelo ID
+        for(int i = 0; i < userMessage.size(); i++) {
+            if(userMessage.get(i).getMessageID().equals(messageID)) { // encontrou a mensagem
+                messageToRemove = userMessage.get(i); // posição da mensagem
+                break; // não precisa continuar a iteração 
+            }
+        }
+
+        if(messageToRemove == null) { // não encontrou
+            return;
+        } else {
+            userMessage.remove(messageToRemove); // remove a mensagem
+            dataCenter.removeMessage(messageID);
+            return;
+        }
+    }
     
     // Getters e Setters
     public UUID getId() {
@@ -263,6 +297,14 @@ public class User {
 
     public void setUserPost(ArrayList<Post> userPost) {
         this.userPost = userPost;
+    }
+
+    public ArrayList<Message> getUserMessage(){
+        return userMessage;
+    }
+
+    public void setUserMessage(ArrayList<Message> userMessage) {
+        this.userMessage = userMessage;
     }
     
     public Boolean isFollowing(UUID followedID)
