@@ -10,6 +10,17 @@
 - Utilizar **variáveis** no padrão camelCase e **classes** o padrão CamelCase maiúscula
 - Modelo do instagram
 
+## Modelos de Comentário
+
+```java
+/*
+ *   Método de Uso no código:
+ *   Descrição da Função
+ *   {...}
+ */
+```
+
+
 ## Classes e Colaboradores
 
 | Classe | Aluno |

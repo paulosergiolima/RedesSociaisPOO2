@@ -1,32 +1,53 @@
 package com.perdi.backend.messagepkg;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import com.perdi.backend.userpkg.User;
 
-public class Message {
-    private String content;
-    private User sender;
-    private LocalDateTime date;
-    private boolean editFlag;
-    private LocalDateTime editDate;
+public abstract class Message {
+    
+    private UUID messageID;
+    private UUID senderID;
+    private UUID recipentID;
+    private LocalDateTime sendDate;
 
-    public Message(String content, User sender, LocalDateTime date) {
-        this.content = content;
-        this.sender = sender;
-        this.date = date;
-        this.editFlag = false;
+    public Message(UUID senderID, UUID recipentID) {
+        setMessageID();
+        setSenderID(senderID);
+        setRecipientID(recipentID);
+        setSendDate();
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public abstract Object getContent();
+
+    public abstract void setContent(Object content);
+
+    public UUID getMessageID() {
+        return messageID;
     }
 
-    public void setEditFlag(boolean editFlag) {
-        this.editFlag = editFlag;
+    public UUID getSenderID() {
+        return senderID;
     }
 
-    public void setEditDate(LocalDateTime editDate) {
-        this.editDate = editDate;
+    public UUID getRecipientID() {
+        return recipentID;
+    }
+
+    private void setMessageID() {
+        this.messageID = UUID.randomUUID();
+    }
+
+    private void setSenderID(UUID senderID) {
+        this.senderID = senderID;
+    }
+
+    private void setRecipientID(UUID recipientID) {
+        this.recipentID = recipientID;
+    }
+
+    private void setSendDate() {
+        this.sendDate = LocalDateTime.now();
     }
 }

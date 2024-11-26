@@ -1,0 +1,51 @@
+[
+  {
+    "postTextContent": "Este e um post de texto!",
+    "postID": "fe193da2-42da-48fc-ab5f-3f78e5cfacdf",
+    "postUserID": "ca7cba4c-c1cc-41b9-8586-ff66587b4eb0",
+    "postCreationDate": "2024-11-23T17:16:51.995885881",
+    "postDomainFlag": false,
+    "postEditFlag": false,
+    "postTotalViews": 0,
+    "postWeeklyViews": 0,
+    "postLastViewWeek": 0
+  },
+  {
+    "postTextContent": "Texto de um post em grupo",
+    "postID": "45148308-3028-4537-99b5-2c3f2424c751",
+    "postUserID": "9f2c28d7-fa94-4b10-9f41-fc004efbc86e",
+    "postDomainID": "9683c1fa-bc4f-4498-b624-70879d835c0f",
+    "postCreationDate": "2024-11-23T17:16:51.99599086",
+    "postDomainFlag": true,
+    "postEditFlag": false,
+    "postTotalViews": 0,
+    "postWeeklyViews": 0,
+    "postLastViewWeek": 0
+  },
+  {
+    "urls": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg"
+    ],
+    "postID": "a85ab508-2746-4ae3-9218-a0db11fb8e4f",
+    "postUserID": "ca7cba4c-c1cc-41b9-8586-ff66587b4eb0",
+    "postDomainID": "9683c1fa-bc4f-4498-b624-70879d835c0f",
+    "postCreationDate": "2024-11-23T17:16:51.996149621",
+    "postDomainFlag": true,
+    "postEditFlag": false,
+    "postTotalViews": 0,
+    "postWeeklyViews": 0,
+    "postLastViewWeek": 0
+  },
+  {
+    "url_video": "https://example.com/video.mp4",
+    "postID": "565db3b8-03bd-44c9-8e40-6767a60967d6",
+    "postUserID": "9f2c28d7-fa94-4b10-9f41-fc004efbc86e",
+    "postCreationDate": "2024-11-23T17:16:51.99664332",
+    "postDomainFlag": false,
+    "postEditFlag": false,
+    "postTotalViews": 0,
+    "postWeeklyViews": 0,
+    "postLastViewWeek": 0
+  }
+]

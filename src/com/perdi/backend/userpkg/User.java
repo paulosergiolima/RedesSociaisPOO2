@@ -6,7 +6,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-import com.perdi.backend.postpkg.Post;
+import com.perdi.backend.storage.datapkg.DataCenter;
+import com.perdi.backend.feed.postpkg.Post;
+import com.perdi.backend.feed.postpkg.TextPost;
+import com.perdi.backend.messagepkg.Message;
+import com.perdi.backend.messagepkg.TextMessage;
 
 public class User {
     private UUID id;
@@ -21,10 +25,12 @@ public class User {
     private ArrayList<User> followers; 
     private ArrayList<User> following;
     private Set<User> blockedUsers; // evita duplicatas e é mais eficiente nesse caso
-    private ArrayList<Post> userPost; 
+    private ArrayList<Post> userPost;
+    private ArrayList<Message> userMessage;
 
+    private static DataCenter dataCenter = DataCenter.getInstance();
 
-    public User(UUID id, String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy, LocalDateTime creationDate, ArrayList<User> followers, ArrayList<User> following, Set<User> blockedUsers, ArrayList<Post> userPost) {
+    public User(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy) {
         this.id = UUID.randomUUID();
         this.userName = userName;
         this.nickName = nickName;
@@ -38,11 +44,14 @@ public class User {
         this.following = new ArrayList<>();
         this.blockedUsers = new HashSet<>();
         this.userPost = new ArrayList<>();
+        this.userMessage = new ArrayList<>();
+
+        dataCenter.addUser(this);
     }
     
     
     // Editar perfil
-    private void editProfile(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy){
+    public void editProfile(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy){
         // se o parâmetro for nulo, significa que o usuário não quer alterar esse parâmetro
         if(userName != null){
             setUserName(userName);
@@ -134,8 +143,8 @@ public class User {
     }
 
     // Adicionar post
-    public void addPost(String postText){
-        Post newPost = new Post(this, postText);
+    public void addTextPost(String postText){
+        Post newPost = new TextPost(this.id, postText);
         userPost.add(newPost);
 
         return;
@@ -148,7 +157,7 @@ public class User {
 
         // vasculhar cada um dos posts procurando pelo ID
         for(int i = 0; i < userPost.size(); i++){ 
-            if(userPost.get(i).getPostID().equalsIgnoreCase(postID)){ // encontrou o post
+            if(userPost.get(i).getPostID().equals(postID)){ // encontrou o post
                 postToRemove = userPost.get(i); // posição do post
                 break; // não precisa continuar a iteração 
             }
@@ -158,6 +167,37 @@ public class User {
             return;
         }else{
             userPost.remove(postToRemove); // remove o post
+            dataCenter.removePost(this.id,postID);
+            return;
+        }
+    }
+
+    // Adicionar mensagem
+    public void addTextMessage(String messageText, recipentID) {
+        Message newMessage = new TextMessage(this.id, recipentID, messageText);
+        userMessage.add(newMessage);
+
+        return;
+    }
+
+    // Remover mensagem
+    public void removeMessage(UUID messageID) { // procura a mensagem pelo seu ID
+
+        Message messageToRemove = null;
+
+        // vasculhar cada uma das mensagens procurando pelo ID
+        for(int i = 0; i < userMessage.size(); i++) {
+            if(userMessage.get(i).getMessageID().equals(messageID)) { // encontrou a mensagem
+                messageToRemove = userMessage.get(i); // posição da mensagem
+                break; // não precisa continuar a iteração 
+            }
+        }
+
+        if(messageToRemove == null) { // não encontrou
+            return;
+        } else {
+            userMessage.remove(messageToRemove); // remove a mensagem
+            dataCenter.removeMessage(messageID);
             return;
         }
     }
@@ -258,7 +298,25 @@ public class User {
     public void setUserPost(ArrayList<Post> userPost) {
         this.userPost = userPost;
     }
+
+    public ArrayList<Message> getUserMessage(){
+        return userMessage;
+    }
+
+    public void setUserMessage(ArrayList<Message> userMessage) {
+        this.userMessage = userMessage;
+    }
     
-    
+    public Boolean isFollowing(UUID followedID)
+    {
+        for(User user: following)
+        {
+            if(user.getId().equals(followedID))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     
 }
