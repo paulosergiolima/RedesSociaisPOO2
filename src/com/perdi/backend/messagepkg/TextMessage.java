@@ -1,35 +1,38 @@
 package com.perdi.backend.messagepkg;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
+
 import com.perdi.backend.userpkg.User;
 
 public class TextMessage extends Message {
 
-    private String text;
-    private boolean editFlag;
-    private LocalDateTime editDate;
+    private String messageTextContent;
 
-    public TextMessage(User sender, LocalDateTime date, String text) {
-        super(sender, date);
-        this.text = text;
-        this.editFlag = false;
-        this.editDate = null;
+    public TextMessage(UUID senderID, UUID recipientID, String messageTextContent) {
+        super(senderID, recipientID);
+        setMessageTextContent(messageTextContent);
     }
 
     @Override
-    public void setContent(String text) {
-        this.text = text;
+    public Object getContent() {
+        return messageTextContent;
     }
 
-    public void setEditFlag(boolean editFlag) {
-        this.editFlag = editFlag;
+    @Override
+    public void setContent(Object content) {
+        if (content instanceof String string) {
+            setMessageTextContent(string);
+        } else {
+            System.out.println("Conteúdo Inválido");
+        }
     }
 
-    public void setEditDate(LocalDateTime editDate) {
-        this.editDate = editDate;
+    public String getMessageTextContent() {
+        return messageTextContent;
     }
 
-    public String getText() {
-        return text;
+    private void setMessageTextContent(String messageTextContent) {
+        this.messageTextContent = messageTextContent;
     }
 }
