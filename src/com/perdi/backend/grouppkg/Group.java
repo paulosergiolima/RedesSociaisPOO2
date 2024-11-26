@@ -1,23 +1,20 @@
 package com.perdi.backend.grouppkg;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import com.perdi.backend.userpkg.User;
 import com.perdi.backend.postpkg.Post;
+import com.perdi.backend.userpkg.User;
+
+import java.util.ArrayList;
+import java.util.UUID;
 
 public class Group {
-    private int id;
+    private UUID id;
     private ArrayList<User> members;
     private ArrayList<Post> posts;
-<<<<<<< HEAD:src/Group.java
-=======
+
     //Usuario vai ser a classe criada
     public Group() {
-        Random rand = new Random()
-        this.id = rand.nextInt(0,999999);
+        this.id = UUID.randomUUID();
     }
->>>>>>> master:src/com/perdi/backend/grouppkg/Group.java
     public void putUser(User new_member) {
         members.add(new_member);
     }
