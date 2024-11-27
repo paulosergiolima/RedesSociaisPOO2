@@ -1,38 +1,78 @@
 [
   {
-    "id": "7146f9ae-149e-4b98-9966-438ce993f35c",
-    "userName": "a",
-    "nickName": "a",
-    "email": "@",
-    "accountPrivacy": false,
-    "creationDate": "2024-11-25T18:30:30.3237345",
+    "id": "a1cf695d-0e57-4398-b5e2-8941147480a9",
+    "userName": "joao_doe_updated",
+    "nickName": "João",
+    "email": "novo_email@example.com",
+    "pronouns": "he/him",
+    "profileDescription": "Agora sou mais experiente!",
+    "accountPrivacy": true,
+    "creationDate": "2024-11-27T02:55:14.6979611",
     "followers": [],
     "following": [],
     "blockedUsers": [],
-    "userPost": []
+    "userPost": [
+      {
+        "postTextContent": "Meu primeiro post!",
+        "postID": "71039d3d-c592-45a8-be14-1fd80c4ddc4f",
+        "postUserID": "a1cf695d-0e57-4398-b5e2-8941147480a9",
+        "postCreationDate": "2024-11-27T02:55:14.7059609",
+        "postDomainFlag": false,
+        "postEditFlag": false,
+        "postTotalViews": 6,
+        "postWeeklyViews": 6,
+        "postLastViewWeek": 48
+      },
+      {
+        "postTextContent": "batata!",
+        "postID": "10fa66f9-5ef0-4f1b-8b23-3c8447c941aa",
+        "postUserID": "a1cf695d-0e57-4398-b5e2-8941147480a9",
+        "postCreationDate": "2024-11-27T02:55:14.7349644",
+        "postDomainFlag": false,
+        "postEditFlag": false,
+        "postTotalViews": 0,
+        "postWeeklyViews": 0,
+        "postLastViewWeek": 0
+      }
+    ],
+    "userMessage": []
   },
   {
-    "id": "6fdbceba-be57-454a-a062-f0a5dbd3e5c5",
-    "userName": "b",
-    "nickName": "b",
-    "email": "@",
-    "accountPrivacy": false,
-    "creationDate": "2024-11-25T18:31:05.9779524",
+    "id": "a1cf695d-0e57-4398-b5e2-8941147480a9",
+    "userName": "joao_doe_updated",
+    "nickName": "João",
+    "email": "novo_email@example.com",
+    "pronouns": "he/him",
+    "profileDescription": "Agora sou mais experiente!",
+    "accountPrivacy": true,
+    "creationDate": "2024-11-27T02:55:14.6979611",
     "followers": [],
     "following": [],
     "blockedUsers": [],
-    "userPost": []
-  },
-  {
-    "id": "8d5e526e-ecac-427d-b6f1-7c667f36fad4",
-    "userName": "b",
-    "nickName": "b",
-    "email": "@",
-    "accountPrivacy": false,
-    "creationDate": "2024-11-25T18:34:17.0210316",
-    "followers": [],
-    "following": [],
-    "blockedUsers": [],
-    "userPost": []
+    "userPost": [
+      {
+        "postTextContent": "Meu primeiro post!",
+        "postID": "71039d3d-c592-45a8-be14-1fd80c4ddc4f",
+        "postUserID": "a1cf695d-0e57-4398-b5e2-8941147480a9",
+        "postCreationDate": "2024-11-27T02:55:14.7059609",
+        "postDomainFlag": false,
+        "postEditFlag": false,
+        "postTotalViews": 6,
+        "postWeeklyViews": 6,
+        "postLastViewWeek": 48
+      },
+      {
+        "postTextContent": "batata!",
+        "postID": "10fa66f9-5ef0-4f1b-8b23-3c8447c941aa",
+        "postUserID": "a1cf695d-0e57-4398-b5e2-8941147480a9",
+        "postCreationDate": "2024-11-27T02:55:14.7349644",
+        "postDomainFlag": false,
+        "postEditFlag": false,
+        "postTotalViews": 0,
+        "postWeeklyViews": 0,
+        "postLastViewWeek": 0
+      }
+    ],
+    "userMessage": []
   }
 ]
