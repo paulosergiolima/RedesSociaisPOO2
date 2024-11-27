@@ -2,7 +2,6 @@ package com.perdi.backend.userpkg;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -24,13 +23,29 @@ public class User {
 
     private ArrayList<User> followers; 
     private ArrayList<User> following;
-    private Set<User> blockedUsers; // evita duplicatas e é mais eficiente nesse caso
+    private Set<User> blockedUsers;
+    private FollowManager followManager = new FollowersFollowing();
+    private BlockManager blockManager = new BlockUser();
+    private UserEdit userEdit = new UserEdit();
+    
     private ArrayList<Post> userPost;
     private ArrayList<Message> userMessage;
 
     private static DataCenter dataCenter = DataCenter.getInstance();
 
-    public User(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy) {
+    /**
+     * Construtor de User
+     * Criar um novo usuário a partir dos dados fornecidos
+     *  
+     * @param userName nome verdadeiro do usuário
+     * @param nickName apelido do usuário para a rede
+     * @param email email cadastrado
+     * @param pronouns pronome utilizado
+     * @param profileDescription descrição do perfil do usuário
+     * @param accountPrivacy privacidade da conta, que pode ser pública ou privada
+    */ 
+
+    protected User(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy) {
         this.id = UUID.randomUUID();
         this.userName = userName;
         this.nickName = nickName;
@@ -40,9 +55,6 @@ public class User {
         this.accountPrivacy = accountPrivacy;
         this.creationDate = LocalDateTime.now();
 
-        this.followers = new ArrayList<>();
-        this.following = new ArrayList<>();
-        this.blockedUsers = new HashSet<>();
         this.userPost = new ArrayList<>();
         this.userMessage = new ArrayList<>();
 
@@ -50,104 +62,107 @@ public class User {
     }
     
     
-    // Editar perfil
-    public void editProfile(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy){
-        // se o parâmetro for nulo, significa que o usuário não quer alterar esse parâmetro
-        if(userName != null){
-            setUserName(userName);
-        }
-
-        if(nickName != null){
-            setNickName(nickName);
-        }
-
-        if(email != null){
-            setEmail(email);
-        }
-
-        if(pronouns != null){
-            setPronouns(pronouns);
-        }
-
-        if(profileDescription != null){
-            setProfileDescription(profileDescription);
-        }
-
-        if(accountPrivacy != null){
-            setAccountPrivacy(accountPrivacy);
-        }
+    /**
+     * Método para seguir
+     * 
+     * @param user usuário que irá seguir
+     * @return manipulação nos seguidores do usuário
+    */
+    public boolean follow(User user) {
+        return followManager.follow(this, user);
     }
 
-    // Possibilidade de seguir um novo usuário
-    public void followUser(User user){
-        if(user == null || blockedUsers.contains(user)){ // usuário não existe ou está bloqueado
-            return;
-        }
+    /**
+     * Método para parar de seguir
+     * 
+     * @param user usuário que quer parar de ser seguido
+     * @return deixa de seguir o usuário
+     */
 
-        // função inspirada na do Arthur + Miguel
-        if(!this.equals(user)){ // evita que o usuário siga a si mesmo
-            this.following.add(user);
-            user.followers.add(this);
-        }
+    public boolean unfollow(User user) {
+        return followManager.unfollow(this, user);
     }
 
-    public void removeFollower(User user){
-        if(user == null){
-            return;
-        }
+    /***
+     * Método para remover seguidor
+     * 
+     * @param user a pessoa que o usuário quer tirar de seguidor
+     * @return remoção do seguidor do usuário
+     */
 
-        if(followers.contains(user)){
-            followers.remove(user);
-            user.following.remove(this);
-        }
-
-        return;
+    public boolean removeFollower(User user) {
+        return followManager.removeFollower(this, user);
     }
 
-    public int followersQuantity(){
-        return followers.size();
+    /**
+     * Quantidade de seguidores
+     * 
+     * @return a quantidade de seguidores do usuário
+     */
+
+    public int getFollowersCount() {
+        return followManager.getFollowersCount(this);
     }
 
-    public int followingQuanitty(){
-        return following.size();
+    /**
+     * Quantidade de seguidores
+     * 
+     * @return quantidade de pessoas que o usuário segue
+     */
+
+    public int getFollowingCount() {
+        return followManager.getFollowingCount(this);
+    }
+   
+    // Métodos de bloqueio
+
+    /**
+     * Método para bloquear usuário
+     * 
+     * 
+     * @param user Usuário a ser bloqueado
+     * @return usuário foi bloqueado
+    */
+    public boolean blockUser(User user) {
+        return blockManager.blockUser(this, user);
     }
 
-    // Bloquear outro usuário
-    public void blockUser(User user){
-        if(user == null){
-            return;
-        }
+    /**
+     * Método para desbloquear usuário 
+     * 
+     * @param user usuário a ser debloqueado
+     * @return desbloqueio do usuário em questão
+     */
+    
+    public boolean unblockUser(User user) {
+        return blockManager.unblockUser(this, user);
+    }
+    
+    /**
+     * Verificação de bloqueio de usuário
+     * 
+     * @param user usuário que foi possivelmente bloqueado
+     * @return se o usuário foi bloqueado ou não
+     */
 
-        blockedUsers.add(user);
-        following.remove(user);
-        followers.remove(user);
-
-        // o this se refere ao próprio objeto (isabella help)
-        user.followers.remove(this);
-        user.following.remove(this);
+    public boolean isUserBlocked(User user) {
+        return blockManager.isUserBlocked(this, user);
     }
 
-    public void unblockUser(User user){
-        if(user == null){ 
-            return; 
-        }
+    /**
+     * Editor de usuário
+     * Permite que algumas informações sejam alteradas após a criação da conta
+     * 
+     * @param userName nome verdadeiro do usuário
+     * @param nickName apelido do usuário para a rede
+     * @param email email cadastrado
+     * @param pronouns pronome utilizado
+     * @param profileDescription descrição do perfil do usuário
+     * @param accountPrivacy privacidade da conta, que pode ser pública ou privada
+     */
 
-        if(!blockedUsers.contains(user)){ // ()== false) usuário não está bloqueado
-            return;
-        }
-
-        blockedUsers.remove(user);
-
-        // não necessariamente o usuário quer seguir e ser seguido
-        return; 
-    }
-
-    // Adicionar post
-    public void addTextPost(String postText){
-        Post newPost = new TextPost(this.id, postText);
-        userPost.add(newPost);
-
-        return;
+    public void editUser(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy){
+        userEdit.editUser(this, userName, nickName, email, pronouns, profileDescription, accountPrivacy);
     }
 
     // Remover post
@@ -201,7 +216,8 @@ public class User {
             return;
         }
     }
-    
+
+
     // Getters e Setters
     public UUID getId() {
         return id;
@@ -305,18 +321,6 @@ public class User {
 
     public void setUserMessage(ArrayList<Message> userMessage) {
         this.userMessage = userMessage;
-    }
-    
-    public Boolean isFollowing(UUID followedID)
-    {
-        for(User user: following)
-        {
-            if(user.getId().equals(followedID))
-            {
-                return true;
-            }
-        }
-        return false;
     }
     
 }
