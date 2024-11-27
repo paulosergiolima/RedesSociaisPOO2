@@ -23,7 +23,6 @@ public class Login {
     private JLabel PasswordLabel;
     private JButton RegisterButton;
     private JButton LoginButton;
-    private JPanel PhotoPanel;
     private JLabel WelcomeLabel;
     private JTextField UserNameField;
     private JLabel UserNameLabel;
