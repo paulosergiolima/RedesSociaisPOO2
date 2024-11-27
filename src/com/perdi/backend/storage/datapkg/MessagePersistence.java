@@ -39,7 +39,7 @@ public class MessagePersistence {
                 .create();
     }
 
-    public static MessagePersistence getIntance() {
+    public static MessagePersistence getInstance() {
         if (instance == null) {
             instance = new MessagePersistence();
         }
