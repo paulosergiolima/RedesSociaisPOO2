@@ -20,12 +20,11 @@ public class User {
     private Boolean accountPrivacy; 
     private LocalDateTime creationDate;
 
-
     private ArrayList<User> followers; 
     private ArrayList<User> following;
     private FollowManager followManager = new FollowersFollowing();
+    private BlockManager blockManager = new BlockUser();
     
-    private Set<User> blockedUsers; // evita duplicatas e é mais eficiente nesse caso
     private ArrayList<Post> userPost;
 
     private static DataCenter dataCenter = DataCenter.getInstance();
@@ -40,15 +39,13 @@ public class User {
         this.accountPrivacy = accountPrivacy;
         this.creationDate = LocalDateTime.now();
 
-        
-        this.blockedUsers = new HashSet<>();
         this.userPost = new ArrayList<>();
 
         dataCenter.addUser(this);
     }
     
     
-     // Métodos delegados
+    // Métodos delegados
     public boolean follow(User user) {
         return followManager.follow(this, user);
     }
@@ -69,6 +66,18 @@ public class User {
         return followManager.getFollowingCount(this);
     }
    
+    // Métodos de bloqueio
+    public boolean blockUser(User user) {
+        return blockManager.blockUser(this, user);
+    }
+    
+    public boolean unblockUser(User user) {
+        return blockManager.unblockUser(this, user);
+    }
+    
+    public boolean isUserBlocked(User user) {
+        return blockManager.isUserBlocked(this, user);
+    }
     
     // Getters e Setters
     public UUID getId() {
