@@ -9,7 +9,9 @@ import com.perdi.backend.storage.datapkg.DataCenter;
 import com.perdi.backend.feed.postpkg.Post;
 import com.perdi.backend.feed.postpkg.TextPost;
 import com.perdi.backend.messagepkg.Message;
+import com.perdi.backend.messagepkg.MessageFactory;
 import com.perdi.backend.messagepkg.TextMessage;
+import com.perdi.backend.messagepkg.MessageType;
 
 public class User {
     private UUID id;
@@ -187,36 +189,27 @@ public class User {
         }
     }
 
-    // Adicionar mensagem
-    public void addTextMessage(String messageText, UUID recipentID) {
-        Message newMessage = new TextMessage(this.id, recipentID, messageText);
-        userMessage.add(newMessage);
-
-        return;
+    /**
+     * Método para adicionar mensagens
+     * 
+     * @param recipientID ID do usuário que recebe a mensagem
+     * @param messageContent conteúdo da mensagem
+     * @param messageType tipo da mensagem
+     * @return se a mensagem foi enviada ou não
+     */
+    public boolean addMessage(UUID recipentID, String messageContent, MessageType type) {
+        return MessageFactory.createMessage(this.id, recipentID, messageContent, type, this.userMessage);
     }
 
-    // Remover mensagem
-    public void removeMessage(UUID messageID) { // procura a mensagem pelo seu ID
-
-        Message messageToRemove = null;
-
-        // vasculhar cada uma das mensagens procurando pelo ID
-        for(int i = 0; i < userMessage.size(); i++) {
-            if(userMessage.get(i).getMessageID().equals(messageID)) { // encontrou a mensagem
-                messageToRemove = userMessage.get(i); // posição da mensagem
-                break; // não precisa continuar a iteração 
-            }
-        }
-
-        if(messageToRemove == null) { // não encontrou
-            return;
-        } else {
-            userMessage.remove(messageToRemove); // remove a mensagem
-            dataCenter.removeMessage(messageID);
-            return;
-        }
+    /**
+     * Método para remover mensagens
+     * 
+     * @param messageID ID da mensagem a ser removida
+     * @return se a mensagem foi removida ou não
+     */
+    public boolean removeMessage(UUID messageID) {
+        return MessageFactory.removeMessage(messageID, this.userMessage, this.dataCenter);
     }
-
 
     // Getters e Setters
     public UUID getId() {
