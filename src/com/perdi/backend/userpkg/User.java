@@ -29,6 +29,7 @@ public class User {
     private UserEdit userEdit = new UserEdit();
     
     private ArrayList<Post> userPost;
+    private ArrayList<Message> userMessage;
 
     private static DataCenter dataCenter = DataCenter.getInstance();
 
@@ -55,6 +56,7 @@ public class User {
         this.creationDate = LocalDateTime.now();
 
         this.userPost = new ArrayList<>();
+        this.userMessage = new ArrayList<>();
 
         dataCenter.addUser(this);
     }
@@ -215,6 +217,7 @@ public class User {
         }
     }
 
+
     // Getters e Setters
     public UUID getId() {
         return id;
@@ -310,6 +313,14 @@ public class User {
 
     public void setUserPost(ArrayList<Post> userPost) {
         this.userPost = userPost;
+    }
+
+    public ArrayList<Message> getUserMessage(){
+        return userMessage;
+    }
+
+    public void setUserMessage(ArrayList<Message> userMessage) {
+        this.userMessage = userMessage;
     }
     
 }
