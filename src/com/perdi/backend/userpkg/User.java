@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import com.perdi.backend.storage.datapkg.DataCenter;
 import com.perdi.backend.feed.postpkg.Post;
-import com.perdi.backend.feed.postpkg.TextPost;;
+// import com.perdi.backend.feed.postpkg.TextPost;
 
 public class User {
     private UUID id;
@@ -24,6 +24,7 @@ public class User {
     private Set<User> blockedUsers;
     private FollowManager followManager = new FollowersFollowing();
     private BlockManager blockManager = new BlockUser();
+    private UserEdit userEdit = new UserEdit()
     
     private ArrayList<Post> userPost;
 
@@ -79,6 +80,11 @@ public class User {
         return blockManager.isUserBlocked(this, user);
     }
     
+    // Edição de usuário
+    public void editUser(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy){
+        userEdit.editUser(this, userName, nickName, email, pronouns, profileDescription, accountPrivacy);
+    }
+
     // Getters e Setters
     public UUID getId() {
         return id;
