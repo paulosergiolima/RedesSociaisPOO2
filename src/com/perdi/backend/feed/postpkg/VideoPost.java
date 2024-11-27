@@ -18,11 +18,12 @@ public class VideoPost extends Post  {
 
     @Override
     public Object getContent() {
-        return null;
+        return this.url_video;
     }
 
     @Override
     public void setContent(Object content) {
+        this.url_video = content.toString();
 
     }
 }

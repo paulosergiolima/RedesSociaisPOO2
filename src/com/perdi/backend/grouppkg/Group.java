@@ -1,39 +1,53 @@
 package com.perdi.backend.grouppkg;
-
-import com.perdi.backend.postpkg.Post;
 import com.perdi.backend.userpkg.User;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class Group {
-	private UUID id;
-	private ArrayList<User> members;
-	private ArrayList<Post> posts;
+	private final UUID id;
+	private ArrayList<UUID> members;
+	private ArrayList<UUID> posts;
+	private String description;
+	private String name;
+	private UUID admin;
 
-	//Usuario vai ser a classe criada
 	public Group() {this.id = UUID.randomUUID();}
-	public Group(String name) {
+	public Group(String name, String description) {
 		this.id = UUID.randomUUID();
-		this.name = name;// altered for persistence, and consistency across the project
+		this.name = name;
+		this.description = description;
 	}
-	public void putUser(User new_member) {
+
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public UUID getAdmin() {
+		return admin;
+	}
+	public void setAdmin(UUID admin) {
+		this.admin = admin;
+	}
+	public void putUser(UUID new_member) {
 		members.add(new_member);
 	}
-	public void removeUser(User member) {
+	public void removeUser(UUID member) {
 		members.remove(member);
 	}
-	public ArrayList<User> getUsers() {
+	public ArrayList<UUID> getUsers() {
 		return this.members;
 	}
-	public User getUser(int index) {
+	public UUID getUser(int index) {
 		return this.members.get(index);
 	}
-	public User getUser(User user) {
+	public UUID getUser(UUID user) {
 		return this.members.get(this.members.indexOf(user));
 	}
 	public String getName() {return this.name;}
-	public boolean isUserInGroup(User user) {
+	public boolean isUserInGroup(UUID user) {
 		return members.contains(user);
 	}
 	public boolean isUserInGroup(int index) {
@@ -44,5 +58,14 @@ public class Group {
 	}
 	public UUID getId() {
 		return id;
+	}
+	public void putPost(UUID post) {
+		posts.add(post);
+	}
+	public void removePost(UUID post) {
+		posts.remove(post);
+	}
+	public ArrayList<UUID> getPosts() {
+		return this.posts;
 	}
 }
