@@ -16,24 +16,24 @@ public class App {
         UserPersistence userPersistence = UserPersistence.getInstance();
         // Criando usuários
         User user1 = new User("joao_doe", "João", "joao@example.com", "he/him", "Adoro programar!", true);
-        User user2 = new User("maria_silva", "Maria", "maria@example.com", "she/her", "Amo a natureza!", true);
-        User user3 = new User("lucas_oliveira", "Lucas", "lucas@example.com", "they/them", "Viciado em jogos!", false);
+        // User user2 = new User("maria_silva", "Maria", "maria@example.com", "she/her", "Amo a natureza!", true);
+        // User user3 = new User("lucas_oliveira", "Lucas", "lucas@example.com", "they/them", "Viciado em jogos!", false);
 
         // Testando a funcionalidade de seguir e quantidade de seguidores
-        user1.followUser(user2);
-        user1.followUser(user3);
-        System.out.println("João está seguindo: " + user1.followingQuanitty() + " usuários.");
-        System.out.println("Maria tem: " + user2.followersQuantity() + " seguidores.");
+        // user1.followUser(user2);
+        // user1.followUser(user3);
+        // System.out.println("João está seguindo: " + user1.followingQuanitty() + " usuários.");
+        // System.out.println("Maria tem: " + user2.followersQuantity() + " seguidores.");
 
         // Testando a funcionalidade de bloquear usuário
-        user1.blockUser(user3);
+        // user1.blockUser(user3);
         System.out.println("João tem " + user1.getBlockedUsers().size() + " usuários bloqueados.");
-        System.out.println("Lucas está bloqueado? " + user1.getBlockedUsers().contains(user3));
+        // System.out.println("Lucas está bloqueado? " + user1.getBlockedUsers().contains(user3));
 
         // Testando a funcionalidade de desbloquear usuário
-        user1.unblockUser(user3);
+        // user1.unblockUser(user3);
         System.out.println("João tem " + user1.getBlockedUsers().size() + " usuários bloqueados.");
-        System.out.println("Lucas está bloqueado? " + user1.getBlockedUsers().contains(user3));
+        // System.out.println("Lucas está bloqueado? " + user1.getBlockedUsers().contains(user3));
 
         // Testando a funcionalidade de criar e remover posts
         user1.addTextPost("Meu primeiro post!");
@@ -45,14 +45,14 @@ public class App {
         post.addView();
         post.addView();
 
-        user2.addTextPost("batata!");
-        TextPost post2 = (TextPost) user2.getUserPost().get(0); // Pegando o primeiro post de João
+        user1.addTextPost("batata!");
+        TextPost post2 = (TextPost) user1.getUserPost().get(0); // Pegando o primeiro post de João
         post2.addView();
         System.out.println("User1 Reccomend ");
         ArrayList<Post> posts = Recommendation.getWeeklyRecommendation(user1);
 
         System.out.println("User2 Reccomend ");
-        ArrayList<Post> posts2 = Recommendation.getWeeklyRecommendation(user2);
+        ArrayList<Post> posts2 = Recommendation.getWeeklyRecommendation(user1);
 
         // Testando a edição de perfil
         user1.editProfile("joao_doe_updated", null, "novo_email@example.com", null, "Agora sou mais experiente!", null);
@@ -61,8 +61,8 @@ public class App {
         System.out.println("Nova descrição de perfil de João: " + user1.getProfileDescription());
 
         dataCenter.addUser(user1);
-        dataCenter.addUser(user2);
-        dataCenter.addUser(user3);
+        // dataCenter.addUser(user2);
+        // dataCenter.addUser(user3);
 
         userPersistence.saveUsers(dataCenter.getUsers());
 
