@@ -2,7 +2,6 @@ package com.perdi.backend.userpkg;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -22,6 +21,7 @@ public class User {
 
     private ArrayList<User> followers; 
     private ArrayList<User> following;
+    private Set<User> blockedUsers;
     private FollowManager followManager = new FollowersFollowing();
     private BlockManager blockManager = new BlockUser();
     

@@ -14,7 +14,7 @@ public class FollowersFollowing implements FollowManager{
             return false;
         }
 
-        if(follower.getBlockedUsers().contains(following) || following.getBlockedUsers().contains(follower)){
+        if (follower.isUserBlocked(following) || following.isUserBlocked(follower)) {
             System.out.println("Não pode seguir ou ser seguido por um usuário bloqueado.");
             return false;
         }
