@@ -7,7 +7,9 @@ import java.util.UUID;
 
 import com.perdi.backend.storage.datapkg.DataCenter;
 import com.perdi.backend.feed.postpkg.Post;
-// import com.perdi.backend.feed.postpkg.TextPost;
+import com.perdi.backend.feed.postpkg.TextPost;
+import com.perdi.backend.messagepkg.Message;
+import com.perdi.backend.messagepkg.TextMessage;
 
 public class User {
     private UUID id;
@@ -159,6 +161,58 @@ public class User {
 
     public void editUser(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy){
         userEdit.editUser(this, userName, nickName, email, pronouns, profileDescription, accountPrivacy);
+    }
+
+    // Remover post
+    public void removePost(UUID postID){ // procura o post pelo seu ID
+
+        Post postToRemove = null;
+
+        // vasculhar cada um dos posts procurando pelo ID
+        for(int i = 0; i < userPost.size(); i++){ 
+            if(userPost.get(i).getPostID().equals(postID)){ // encontrou o post
+                postToRemove = userPost.get(i); // posição do post
+                break; // não precisa continuar a iteração 
+            }
+        }
+
+        if(postToRemove == null){ // não encontrou
+            return;
+        }else{
+            userPost.remove(postToRemove); // remove o post
+            dataCenter.removePost(this.id,postID);
+            return;
+        }
+    }
+
+    // Adicionar mensagem
+    public void addTextMessage(String messageText, UUID recipentID) {
+        Message newMessage = new TextMessage(this.id, recipentID, messageText);
+        userMessage.add(newMessage);
+
+        return;
+    }
+
+    // Remover mensagem
+    public void removeMessage(UUID messageID) { // procura a mensagem pelo seu ID
+
+        Message messageToRemove = null;
+
+        // vasculhar cada uma das mensagens procurando pelo ID
+        for(int i = 0; i < userMessage.size(); i++) {
+            if(userMessage.get(i).getMessageID().equals(messageID)) { // encontrou a mensagem
+                messageToRemove = userMessage.get(i); // posição da mensagem
+                break; // não precisa continuar a iteração 
+            }
+        }
+
+        if(messageToRemove == null) { // não encontrou
+            return;
+        } else {
+            userMessage.remove(messageToRemove); // remove a mensagem
+            dataCenter.removeMessage(messageID);
+            return;
+        }
     }
 
     // Getters e Setters
