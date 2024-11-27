@@ -24,11 +24,23 @@ public class User {
     private Set<User> blockedUsers;
     private FollowManager followManager = new FollowersFollowing();
     private BlockManager blockManager = new BlockUser();
-    private UserEdit userEdit = new UserEdit()
+    private UserEdit userEdit = new UserEdit();
     
     private ArrayList<Post> userPost;
 
     private static DataCenter dataCenter = DataCenter.getInstance();
+
+    /**
+     * Construtor de User
+     * Criar um novo usuário a partir dos dados fornecidos
+     *  
+     * @param userName nome verdadeiro do usuário
+     * @param nickName apelido do usuário para a rede
+     * @param email email cadastrado
+     * @param pronouns pronome utilizado
+     * @param profileDescription descrição do perfil do usuário
+     * @param accountPrivacy privacidade da conta, que pode ser pública ou privada
+    */ 
 
     protected User(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy) {
         this.id = UUID.randomUUID();
@@ -46,41 +58,105 @@ public class User {
     }
     
     
-    // Métodos delegados
+    /**
+     * Método para seguir
+     * 
+     * @param user usuário que irá seguir
+     * @return manipulação nos seguidores do usuário
+    */
     public boolean follow(User user) {
         return followManager.follow(this, user);
     }
+
+    /**
+     * Método para parar de seguir
+     * 
+     * @param user usuário que quer parar de ser seguido
+     * @return deixa de seguir o usuário
+     */
 
     public boolean unfollow(User user) {
         return followManager.unfollow(this, user);
     }
 
+    /***
+     * Método para remover seguidor
+     * 
+     * @param user a pessoa que o usuário quer tirar de seguidor
+     * @return remoção do seguidor do usuário
+     */
+
     public boolean removeFollower(User user) {
         return followManager.removeFollower(this, user);
     }
 
+    /**
+     * Quantidade de seguidores
+     * 
+     * @return a quantidade de seguidores do usuário
+     */
+
     public int getFollowersCount() {
         return followManager.getFollowersCount(this);
     }
+
+    /**
+     * Quantidade de seguidores
+     * 
+     * @return quantidade de pessoas que o usuário segue
+     */
 
     public int getFollowingCount() {
         return followManager.getFollowingCount(this);
     }
    
     // Métodos de bloqueio
+
+    /**
+     * Método para bloquear usuário
+     * 
+     * 
+     * @param user Usuário a ser bloqueado
+     * @return usuário foi bloqueado
+    */
     public boolean blockUser(User user) {
         return blockManager.blockUser(this, user);
     }
+
+    /**
+     * Método para desbloquear usuário 
+     * 
+     * @param user usuário a ser debloqueado
+     * @return desbloqueio do usuário em questão
+     */
     
     public boolean unblockUser(User user) {
         return blockManager.unblockUser(this, user);
     }
     
+    /**
+     * Verificação de bloqueio de usuário
+     * 
+     * @param user usuário que foi possivelmente bloqueado
+     * @return se o usuário foi bloqueado ou não
+     */
+
     public boolean isUserBlocked(User user) {
         return blockManager.isUserBlocked(this, user);
     }
-    
-    // Edição de usuário
+
+    /**
+     * Editor de usuário
+     * Permite que algumas informações sejam alteradas após a criação da conta
+     * 
+     * @param userName nome verdadeiro do usuário
+     * @param nickName apelido do usuário para a rede
+     * @param email email cadastrado
+     * @param pronouns pronome utilizado
+     * @param profileDescription descrição do perfil do usuário
+     * @param accountPrivacy privacidade da conta, que pode ser pública ou privada
+     */
+
     public void editUser(String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy){
         userEdit.editUser(this, userName, nickName, email, pronouns, profileDescription, accountPrivacy);
     }

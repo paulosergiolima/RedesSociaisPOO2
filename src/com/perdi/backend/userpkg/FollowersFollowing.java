@@ -2,9 +2,18 @@ package com.perdi.backend.userpkg;
 
 public class FollowersFollowing implements FollowManager{
 
+    /**
+     * Seguir um usuário e ser seguido
+     * 
+     * @param follower é um User que indica quem recebera um seguidor
+     * @param following é um User quem será seguido 
+     * @return True no caso de ter sido seguido e False caso já seja seguido
+    */
+
     @Override
     public boolean follow(User follower, User following){
-        // Validações
+        
+
         if(follower == null || following == null){
             throw new IllegalArgumentException("Usuário não pode ser nulo");
         }
@@ -31,6 +40,14 @@ public class FollowersFollowing implements FollowManager{
         return false;
     }
 
+    /**
+     * Parar de seguir
+     * 
+     * @param follower é o User que possui um seguidor
+     * @param toUnfollow é o User seguido que não será mais seguido
+     * @return True no caso de sucesso e False caso já não siga mais
+    */
+
     @Override
     public boolean unfollow(User follower, User toUnfollow) {
         if(follower == null || toUnfollow == null){
@@ -47,6 +64,14 @@ public class FollowersFollowing implements FollowManager{
         System.out.println(follower.getUserName() + " não está seguindo " + toUnfollow.getUserName());
         return false;
     }
+
+    /**
+     * Remover um seguidor
+     * 
+     * @param user usuário que deseja remover o seguidor
+     * @param follower o seguidor que será removido
+     * @return True no caso de remoção e False caso já esteja removido
+    */
 
     @Override
     public boolean removeFollower(User user, User follower) {
@@ -65,6 +90,13 @@ public class FollowersFollowing implements FollowManager{
         return false;
     }
 
+    /**
+     * Resgatar a quantidade de seguidores 
+     * 
+     * @param user o usuário a ver a quantidade de seguidores
+     * @return a quantidade inteira de usuários que seguem
+    */
+
     @Override
     public int getFollowersCount(User user) {
         if(user == null){
@@ -72,6 +104,13 @@ public class FollowersFollowing implements FollowManager{
         }
         return user.getFollowers().size();
     }
+
+    /**
+     * Resgatar a quantidade de seguindo
+     * 
+     * @param user o usuário a ver a quantidade de seguindo
+     * @return a quantidade inteira de pessoas que o usuário segue
+    */
 
     @Override
     public int getFollowingCount(User user) {

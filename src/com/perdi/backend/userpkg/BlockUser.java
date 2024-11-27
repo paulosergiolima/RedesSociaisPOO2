@@ -3,6 +3,14 @@ package com.perdi.backend.userpkg;
 import java.util.Set;
 
 public class BlockUser implements BlockManager{
+
+    /**
+     * Método para bloquear usuário
+     * 
+     * @param blocker usuário que está bloqueando
+     * @param toBlock usuário que será bloqueado
+     * @return True caso o usuário seja bloqueado
+    */
     
     @Override
     public boolean blockUser(User blocker, User toBlock) {
@@ -25,6 +33,14 @@ public class BlockUser implements BlockManager{
         return false;
     }
 
+    /** 
+     * Método para desbloquear usuário
+     * 
+     * @param blocker usuário que bloqueou
+     * @param toUnblock usuario que será desbloqueado
+     * @return True caso seja desbloqueado
+    */
+
     @Override
     public boolean unblockUser(User blocker, User toUnblock) {
         if(blocker == null || toUnblock == null){
@@ -41,6 +57,13 @@ public class BlockUser implements BlockManager{
         return false;
     }
 
+    /**
+     * Método para verificar se usuário foi bloqueado
+     * 
+     * @param blocker usuário que possivelmente bloqueou
+     * @param toCheck usuário que será checado
+     * @return True se o usuário foi bloqueado
+    */
     @Override
     public boolean isUserBlocked(User blocker, User toCheck) {
         if(blocker == null || toCheck == null){

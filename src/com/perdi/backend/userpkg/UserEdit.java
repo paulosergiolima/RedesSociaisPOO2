@@ -2,6 +2,18 @@ package com.perdi.backend.userpkg;
 
 public class UserEdit{
 
+    /**
+     * Edição de usuário
+     * 
+     * @param userName nome verdadeiro do usuário
+     * @param nickName apelido do usuário para a rede
+     * @param email email cadastrado
+     * @param pronouns pronome utilizado
+     * @param profileDescription descrição do perfil do usuário
+     * @param accountPrivacy privacidade da conta, que pode ser pública ou privada
+     * @throws IllegalArgumentException que o usuário não existe
+     */
+
     public void editUser(User user, String userName, String nickName, String email, String pronouns, String profileDescription, Boolean accountPrivacy) {
 
         if(user == null){
